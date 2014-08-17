@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>8838FAA7-8E4F-4D88-AF69-7B45793153A0</string>
+	<key>IDESourceControlProjectName</key>
+	<string>tags</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>239C211D0720E00966A69B10113F387A933E9A89</key>
+		<string>https://github.com/iamtomcat/iostags.git</string>
+		<key>95438028B10BBB846574013D29F154A00556A9D1</key>
+		<string>https://github.com/Quick/Nimble</string>
+		<key>D0725CAC6FF2D66F2C83C2C48DC12106D42DAA64</key>
+		<string>https://github.com/Quick/Quick.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>tags.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>239C211D0720E00966A69B10113F387A933E9A89</key>
+		<string>../..</string>
+		<key>95438028B10BBB846574013D29F154A00556A9D1</key>
+		<string>../../../Nimble</string>
+		<key>D0725CAC6FF2D66F2C83C2C48DC12106D42DAA64</key>
+		<string>../../../Quick</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/iamtomcat/iostags.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>239C211D0720E00966A69B10113F387A933E9A89</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>95438028B10BBB846574013D29F154A00556A9D1</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Nimble</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D0725CAC6FF2D66F2C83C2C48DC12106D42DAA64</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Quick</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>239C211D0720E00966A69B10113F387A933E9A89</string>
+			<key>IDESourceControlWCCName</key>
+			<string>tags</string>
+		</dict>
+	</array>
+</dict>
+</plist>
