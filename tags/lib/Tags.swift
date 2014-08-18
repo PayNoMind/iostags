@@ -120,7 +120,6 @@ func == (lhs: TagInput, rhs: TagInput) -> Bool {
   Tag Space Class
 */
 class TagSpace : UIScrollView, UITextFieldDelegate, TagDelegate {
-  let DEFAULT_Y : CGFloat = 55.0
   var tagArray = [TagInput]()
   var activeField = UITextField()
   //var plateDelegate : movePlates?
@@ -134,7 +133,12 @@ class TagSpace : UIScrollView, UITextFieldDelegate, TagDelegate {
     self.addNewTag(false)
   }
   
-  func layoutTags(tags:[String]) {
+  //for testing
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+  }
+  
+  func addTags(tags:[String]) {
     for tag in tags {
       self.addNewTag(false, string: tag)
     }
@@ -142,6 +146,10 @@ class TagSpace : UIScrollView, UITextFieldDelegate, TagDelegate {
   
   func getTags () -> [TagInput] {
     return tagArray
+  }
+  
+  func getTagCardinality () -> Int {
+    return tagArray.count
   }
   
   func checkIntersection(sender:TagInput) {
@@ -205,9 +213,6 @@ class TagSpace : UIScrollView, UITextFieldDelegate, TagDelegate {
   }
   
   func resetTagSpace() {
-    var frame : CGRect = self.frame
-    frame.origin.y = DEFAULT_Y
-    self.frame = frame
     for tag in tagArray {
       tag.removeFromSuperview()
     }
