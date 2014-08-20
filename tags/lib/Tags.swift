@@ -45,12 +45,12 @@ class TagInput : UITextField, Equatable {
   override init(frame: CGRect) {
     super.init(frame: frame)    
     NSNotificationCenter.defaultCenter().addObserver(self, selector: "myTextDidChange:", name: "UITextFieldTextDidChangeNotification", object: self)
-    self.layer.borderWidth = BORDER_WIDTH;
-    self.layer.borderColor = BORDER_COLOR;
-    self.layer.cornerRadius = CORNER_RADIUS;
-    self.layer.masksToBounds = true;
-    self.font = UIFont.systemFontOfSize(FONT_SIZE);
-    self.returnKeyType = .Done;
+    self.layer.borderWidth = BORDER_WIDTH
+    self.layer.borderColor = BORDER_COLOR
+    self.layer.cornerRadius = CORNER_RADIUS
+    self.layer.masksToBounds = true
+    self.font = UIFont.systemFontOfSize(FONT_SIZE)
+    self.returnKeyType = .Done
   }
   
   convenience init(position: CGPoint, string:String="") {
@@ -61,16 +61,16 @@ class TagInput : UITextField, Equatable {
   }
   
   func shrinkWrap() {
-    let stringSize : NSString = self.text;
-    let size : CGSize = stringSize.sizeWithAttributes([NSFontAttributeName: UIFont.systemFontOfSize(FONT_SIZE)]);
-    let rectHold : CGRect = self.frame;
-    self.frame = CGRectMake(rectHold.origin.x, rectHold.origin.y, size.width+10.0, DEFAULT_HEIGHT);
+    let stringSize : NSString = self.text
+    let size : CGSize = stringSize.sizeWithAttributes([NSFontAttributeName: UIFont.systemFontOfSize(FONT_SIZE)])
+    let rectHold : CGRect = self.frame
+    self.frame = CGRectMake(rectHold.origin.x, rectHold.origin.y, size.width+10.0, DEFAULT_HEIGHT)
   }
   
   func updatePosition(pos: CGPoint) {
-    var frame : CGRect = self.frame;
-    frame.origin = pos;
-    self.frame = frame;
+    var frame : CGRect = self.frame
+    frame.origin = pos
+    self.frame = frame
   }
   
   func myTextDidChange(send: NSNotification) {
@@ -124,7 +124,7 @@ class TagSpace : UIScrollView, UITextFieldDelegate, TagDelegate {
   
   required init(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
-    self.contentSize = CGSizeMake(self.frame.width, self.frame.height);
+    self.contentSize = CGSizeMake(self.frame.width, self.frame.height)
     self.scrollEnabled = true
     contentSave = self.frame.width
     self.addNewTag(false)
@@ -161,13 +161,13 @@ class TagSpace : UIScrollView, UITextFieldDelegate, TagDelegate {
     tempFrame.origin.x -= 1.0
     
     if CGRectIntersectsRect(sender.frame, tempFrame) {
-      NSLog("Intersect!!");
+      NSLog("Intersect!!")
       self.slideTags(typingTag!)
     }
   }
   
   func slideTags(indexStart: Int) {
-    NSLog("index is %ld %lu",indexStart,(tagArray.count-indexStart-1));
+    NSLog("index is %ld %lu",indexStart,(tagArray.count-indexStart-1))
     let indexes = NSIndexSet(indexesInRange: NSMakeRange(indexStart+1, tagArray.count-indexStart-1))
     
     for idx in indexStart+1...(tagArray.count-1) {
@@ -284,18 +284,5 @@ class TagSpace : UIScrollView, UITextFieldDelegate, TagDelegate {
       textField.frame = tag
     }
   }
-  
- // - (void)keyboardWasShown:(NSNotification*)aNotification {
-  //    NSDictionary* info = [aNotification userInfo];
-  //    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-  //    CGRect bkgndRect = activeField.superview.frame;
-  //    NSLog(@"field postion=%f",bkgndRect.size.height);
-  //
-  //    bkgndRect.size.height += kbSize.height;
-  //    [activeField.superview setFrame:bkgndRect];
-  //    NSLog(@"field postion=%f",self.contentOffset.y);
-  //
-  //    [self setContentOffset:CGPointMake(0.0, activeField.frame.origin.y-kbSize.height) animated:YES];
- // }
 
 }
