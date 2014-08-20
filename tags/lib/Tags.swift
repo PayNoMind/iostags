@@ -17,6 +17,7 @@ extension Array {
 protocol TagDelegate {
   func tagTooWide(send:TagInput)
   func checkIntersection(send:TagInput)
+  func tagShrunk(send:TagInput)
 }
 
 let CORNER_RADIUS : CGFloat = 5.0
@@ -57,7 +58,6 @@ class TagInput : UITextField, Equatable {
     NSLog("called %f", DEFAULT_WIDTH)
     self.init(frame:CGRectMake(position.x, position.y, DEFAULT_WIDTH, DEFAULT_HEIGHT))
     self.text = string
-    //self.shrinkWrap()
   }
   
   func shrinkWrap() {
@@ -80,8 +80,8 @@ class TagInput : UITextField, Equatable {
       let pos2 : UITextPosition = self.tokenizer.positionFromPosition(pos, toBoundary: .Word, inDirection: 0)
       let range : UITextRange = self.textRangeFromPosition(pos, toPosition: pos2)
       let resultFrame : CGRect = self.firstRectForRange(range)
+
       let rectHold : CGRect = self.frame
-      
       let tagSpaceWidth : CGFloat = self.superview!.frame.size.width
       
       var width : CGFloat = 20.0
@@ -89,6 +89,10 @@ class TagInput : UITextField, Equatable {
         width = resultFrame.size.width+12.0
       }
       self.frame = CGRectMake(rectHold.origin.x, rectHold.origin.y, width, resultFrame.size.height)
+
+      if self.frame.width < rectHold.width {
+        self.tagDelegate?.tagShrunk(self)
+      }
       
       if rectHold.origin.x + max(rectHold.size.width, resultFrame.size.width + 10.0) > tagSpaceWidth {
         self.tagDelegate?.tagTooWide(self)
@@ -121,6 +125,7 @@ class TagSpace : UIScrollView, UITextFieldDelegate, TagDelegate {
   var activeField = UITextField()
   //var plateDelegate : movePlates?
   var contentSave : CGFloat = 0
+  var totalWidth = 0
   
   required init(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
@@ -149,6 +154,11 @@ class TagSpace : UIScrollView, UITextFieldDelegate, TagDelegate {
     return tagArray.count
   }
   
+  func tagShrunk(sender:TagInput) {
+      let typingTag = find(tagArray, sender)
+      self.slideTags(typingTag!)
+  }
+
   func checkIntersection(sender:TagInput) {
     let typingTag = find(tagArray, sender)
     
@@ -284,5 +294,4 @@ class TagSpace : UIScrollView, UITextFieldDelegate, TagDelegate {
       textField.frame = tag
     }
   }
-
 }
