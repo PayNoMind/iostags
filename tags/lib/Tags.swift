@@ -38,15 +38,13 @@ let FONT_SIZE : CGFloat = 14.0
 class TagInput : UITextField, Equatable {
   var tagDelegate : TagDelegate?
   
-  required init(coder aDecoder: NSCoder!) {
+  required init(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
   }
   
   override init(frame: CGRect) {
-    super.init(frame: frame)
-    let textChangeSelector : Selector = "myTextDidChange:";
-    
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: textChangeSelector, name: "UITextFieldTextDidChangeNotification", object: self)
+    super.init(frame: frame)    
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "myTextDidChange:", name: "UITextFieldTextDidChangeNotification", object: nil)
     self.layer.borderWidth = BORDER_WIDTH;
     self.layer.borderColor = BORDER_COLOR;
     self.layer.cornerRadius = CORNER_RADIUS;
@@ -125,7 +123,7 @@ class TagSpace : UIScrollView, UITextFieldDelegate, TagDelegate {
   //var plateDelegate : movePlates?
   var contentSave : CGFloat = 0
   
-  required init(coder aDecoder: NSCoder!) {
+  required init(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     self.contentSize = CGSizeMake(self.frame.width, self.frame.height);
     self.scrollEnabled = true
