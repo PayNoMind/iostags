@@ -44,7 +44,7 @@ class TagInput : UITextField, Equatable {
   
   override init(frame: CGRect) {
     super.init(frame: frame)    
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "myTextDidChange:", name: "UITextFieldTextDidChangeNotification", object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "myTextDidChange:", name: "UITextFieldTextDidChangeNotification", object: self)
     self.layer.borderWidth = BORDER_WIDTH;
     self.layer.borderColor = BORDER_COLOR;
     self.layer.cornerRadius = CORNER_RADIUS;
@@ -107,7 +107,6 @@ class TagInput : UITextField, Equatable {
     let inset : CGRect = CGRectMake(bounds.origin.x + 5, bounds.origin.y, bounds.size.width - 10, bounds.size.height)
     return inset
   }
-  
 }
 
 func == (lhs: TagInput, rhs: TagInput) -> Bool {
@@ -202,7 +201,7 @@ class TagSpace : UIScrollView, UITextFieldDelegate, TagDelegate {
     //lastObj.updatePosition(CGPointMake(0.0, nextPos))
     if self.checkHeight(lastObj) || true {
       self.contentSize = CGSizeMake(self.frame.width + lastObj.frame.width, self.frame.height)
-      NSLog("conent size %@", self.contentSize.width)
+      NSLog("content size %@", self.contentSize.width)
 //      var frame = self.frame
 //      frame.size.height += lastHeight+4.0
 //      self.frame = frame
@@ -223,14 +222,22 @@ class TagSpace : UIScrollView, UITextFieldDelegate, TagDelegate {
     var nextPos : CGFloat = 0.0
     
     if tagArray.count > 0 {
-      let lastWidth = tagArray.last.frame.size.width
-      let lastX = tagArray.last.frame.origin.x
-      lastY = tagArray.last.frame.origin.y
-      nextPos = lastX+lastWidth+4.0
+      //Check if last tag is empty
+      if countElements(tagArray.last.text) == 0 {
+        tagArray.last.text = string
+        tagArray.last.shrinkWrap()
+        return
+      } else {
+        let lastWidth = tagArray.last.frame.size.width
+        let lastX = tagArray.last.frame.origin.x
+        lastY = tagArray.last.frame.origin.y
+        nextPos = lastX+lastWidth+4.0
+      }
     }
     
     tagArray.append(TagInput(position: CGPointMake(nextPos, lastY), string: string))
-    NSLog("nextpos = %f",self.frame.size.width);
+    NSLog("nextpos = %f",self.frame.size.width)
+    tagArray.last.shrinkWrap()
     tagArray.last.delegate = self
     tagArray.last.tagDelegate = self
     
