@@ -15,14 +15,17 @@ extension Array {
 }
 
 protocol TagDelegate {
-  func tagTooWide(send:TagInput)
-  func checkIntersection(send:TagInput)
   func tagShrunk(send:TagInput)
+  func checkTagSize(send:TagInput)
 }
 
-let CORNER_RADIUS : CGFloat = 5.0
-let LABEL_MARGIN_DEFAULT = 5.0
-let BOTTOM_MARGIN_DEFAULT = 5.0
+func == (lhs: TagInput, rhs: TagInput) -> Bool {
+  return lhs.text == rhs.text
+}
+
+private let CORNER_RADIUS : CGFloat = 5.0
+private let LABEL_MARGIN_DEFAULT = 5.0
+private let BOTTOM_MARGIN_DEFAULT = 5.0
 let HORIZONTAL_PADDING_DEFAULT = 7.0
 let VERTICAL_PADDING_DEFAULT = 3.0
 let BACKGROUND_COLOR = UIColor(red: 0.93, green: 0.93, blue: 0.93, alpha: 1.00)
@@ -30,12 +33,15 @@ let TEXT_COLOR = UIColor.blackColor()
 let TEXT_SHADOW_COLOR = UIColor.whiteColor()
 let TEXT_SHADOW_OFFSET = CGSizeMake(0.0, 1.0)
 let BORDER_COLOR = UIColor.blackColor().CGColor
-let BORDER_WIDTH : CGFloat = 0.5
-let DEFAULT_WIDTH : CGFloat = 50.0
-let DEFAULT_HEIGHT : CGFloat = 17.0
-let STARTING_WIDTH : CGFloat = 20.0
-let FONT_SIZE : CGFloat = 14.0
+let BORDER_WIDTH: CGFloat = 0.5
+let DEFAULT_WIDTH: CGFloat = 50.0
+let DEFAULT_HEIGHT: CGFloat = 17.0
+let STARTING_WIDTH: CGFloat = 20.0
+private let FONT_SIZE: CGFloat = 14.0
 
+/*
+  TagInput Class
+*/
 class TagInput : UITextField, Equatable {
   var tagDelegate : TagDelegate?
   
@@ -45,7 +51,7 @@ class TagInput : UITextField, Equatable {
   
   override init(frame: CGRect) {
     super.init(frame: frame)    
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "myTextDidChange:", name: "UITextFieldTextDidChangeNotification", object: self)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "tagTextChanged:", name: "UITextFieldTextDidChangeNotification", object: self)
     self.layer.borderWidth = BORDER_WIDTH
     self.layer.borderColor = BORDER_COLOR
     self.layer.cornerRadius = CORNER_RADIUS
@@ -67,13 +73,7 @@ class TagInput : UITextField, Equatable {
     self.frame = CGRectMake(rectHold.origin.x, rectHold.origin.y, size.width+10.0, DEFAULT_HEIGHT)
   }
   
-  func updatePosition(pos: CGPoint) {
-    var frame : CGRect = self.frame
-    frame.origin = pos
-    self.frame = frame
-  }
-  
-  func myTextDidChange(send: NSNotification) {
+  func tagTextChanged(send: NSNotification) {
     if (send.object as UITextField).text != "" {
       let pos : UITextPosition = self.beginningOfDocument
       self.layer.backgroundColor = UIColor.redColor().CGColor
@@ -82,7 +82,6 @@ class TagInput : UITextField, Equatable {
       let resultFrame : CGRect = self.firstRectForRange(range)
 
       let rectHold : CGRect = self.frame
-      let tagSpaceWidth : CGFloat = self.superview!.frame.size.width
       
       var width : CGFloat = 20.0
       if resultFrame.size.width+12.0 > STARTING_WIDTH {
@@ -93,12 +92,7 @@ class TagInput : UITextField, Equatable {
       if self.frame.width < rectHold.width {
         self.tagDelegate?.tagShrunk(self)
       }
-      
-      if rectHold.origin.x + max(rectHold.size.width, resultFrame.size.width + 10.0) > tagSpaceWidth {
-        self.tagDelegate?.tagTooWide(self)
-      } else {
-        self.tagDelegate?.checkIntersection(self)
-      }
+      self.tagDelegate?.checkTagSize(self)
     }
   }
   
@@ -111,10 +105,6 @@ class TagInput : UITextField, Equatable {
     let inset : CGRect = CGRectMake(bounds.origin.x + 5, bounds.origin.y, bounds.size.width - 10, bounds.size.height)
     return inset
   }
-}
-
-func == (lhs: TagInput, rhs: TagInput) -> Bool {
-  return lhs.text == rhs.text
 }
 
 /*
@@ -155,8 +145,19 @@ class TagSpace : UIScrollView, UITextFieldDelegate, TagDelegate {
   }
   
   func tagShrunk(sender:TagInput) {
-      let typingTag = find(tagArray, sender)
-      self.slideTags(typingTag!)
+    let typingTag = find(tagArray, sender)
+    self.slideTags(typingTag!)
+  }
+
+  func checkTagSize(currentTag:TagInput) {
+    let tagIndex = find(tagArray, currentTag)
+    let tagFrame = currentTag.frame
+
+    if tagFrame.origin.x + max(tagFrame.size.width, tagFrame.size.width + 10.0) > self.frame.width {
+      self.tagTooWide(currentTag)
+    } else {
+      self.checkIntersection(currentTag)
+    }
   }
 
   func checkIntersection(sender:TagInput) {
@@ -183,6 +184,7 @@ class TagSpace : UIScrollView, UITextFieldDelegate, TagDelegate {
     for idx in indexStart+1...(tagArray.count-1) {
       var object : TagInput = tagArray[idx]
       let prevTag : TagInput = tagArray[idx-1]
+
       let prevWidth : CGFloat = prevTag.frame.origin.x + prevTag.frame.size.width
       var temp : CGRect = object.frame
       temp.origin.x = prevWidth + 5.0
