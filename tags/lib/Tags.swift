@@ -22,7 +22,7 @@
 
 import UIKit
 
-extension Array {
+private extension Array {
   var last: T {
     return self[self.endIndex - 1]
   }
@@ -64,11 +64,11 @@ class TagInput : UITextField, Equatable {
   }
   
   override init(frame: CGRect) {
-    super.init(frame: frame)    
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "tagTextChanged:", name: "UITextFieldTextDidChangeNotification", object: self)
+    super.init(frame: frame)
     self.layer.borderWidth = BORDER_WIDTH
     self.layer.borderColor = BORDER_COLOR
     self.layer.cornerRadius = CORNER_RADIUS
+    self.layer.backgroundColor = BACKGROUND_COLOR.CGColor
     self.layer.masksToBounds = true
     self.font = UIFont.systemFontOfSize(FONT_SIZE)
     self.returnKeyType = .Done
@@ -85,29 +85,6 @@ class TagInput : UITextField, Equatable {
     let size : CGSize = stringSize.sizeWithAttributes([NSFontAttributeName: UIFont.systemFontOfSize(FONT_SIZE)])
     let rectHold : CGRect = self.frame
     self.frame = CGRectMake(rectHold.origin.x, rectHold.origin.y, size.width+10.0, DEFAULT_HEIGHT)
-  }
-  
-  func tagTextChanged(send: NSNotification) {
-    if (send.object as UITextField).text != "" {
-      let pos : UITextPosition = self.beginningOfDocument
-      self.layer.backgroundColor = UIColor.redColor().CGColor
-      let pos2 : UITextPosition = self.tokenizer.positionFromPosition(pos, toBoundary: .Word, inDirection: 0)
-      let range : UITextRange = self.textRangeFromPosition(pos, toPosition: pos2)
-      let resultFrame : CGRect = self.firstRectForRange(range)
-
-      let rectHold : CGRect = self.frame
-      
-      var width : CGFloat = 20.0
-      if resultFrame.size.width+12.0 > STARTING_WIDTH {
-        width = resultFrame.size.width+12.0
-      }
-      self.frame = CGRectMake(rectHold.origin.x, rectHold.origin.y, width, resultFrame.size.height)
-
-      if self.frame.width < rectHold.width {
-        self.tagDelegate?.tagShrunk(self)
-      }
-      self.tagDelegate?.checkTagSize(self)
-    }
   }
   
   override func textRectForBounds(bounds: CGRect) -> CGRect {
@@ -177,7 +154,7 @@ class TagSpace : UIScrollView, UITextFieldDelegate, TagDelegate {
   func checkIntersection(sender:TagInput) {
     let typingTag = find(tagArray, sender)
     
-    if typingTag==tagArray.count-1 {
+    if typingTag==tagArray.last {
       return
     }
     
@@ -242,6 +219,30 @@ class TagSpace : UIScrollView, UITextFieldDelegate, TagDelegate {
     tagArray.removeAll(keepCapacity: false)
     self.addNewTag(false)
   }
+
+  func tagTextChanged(textField: TagInput) {
+    if textField.text != "" {
+      let pos : UITextPosition = textField.beginningOfDocument
+      let pos2 : UITextPosition = textField.tokenizer.positionFromPosition(pos, toBoundary: .Word, inDirection: 0)
+      let range : UITextRange = textField.textRangeFromPosition(pos, toPosition: pos2)
+      let resultFrame : CGRect = textField.firstRectForRange(range)
+
+      let rectHold : CGRect = textField.frame
+      
+      var width : CGFloat = 20.0
+      if resultFrame.size.width+12.0 > STARTING_WIDTH {
+        width = resultFrame.size.width+12.0
+      }
+      textField.frame = CGRectMake(rectHold.origin.x, rectHold.origin.y, width, resultFrame.size.height)
+
+      if self.frame.width < rectHold.width {
+        self.tagShrunk(textField)
+        //self.tagDelegate?.tagShrunk(self)
+      }
+      self.checkTagSize(textField)
+      //self.tagDelegate?.checkTagSize(self)
+    }
+  }
   
   func addNewTag(becomeFirstResponder: Bool, string:String="") {
     var lastY : CGFloat = 0.0
@@ -266,6 +267,7 @@ class TagSpace : UIScrollView, UITextFieldDelegate, TagDelegate {
     tagArray.last.shrinkWrap()
     tagArray.last.delegate = self
     tagArray.last.tagDelegate = self
+    tagArray.last.addTarget(self, action:"tagTextChanged:", forControlEvents: UIControlEvents.EditingChanged)
     
     if nextPos+STARTING_WIDTH >= self.frame.width {
       self.tagTooWide(tagArray.last)
@@ -289,7 +291,7 @@ class TagSpace : UIScrollView, UITextFieldDelegate, TagDelegate {
     return true
   }
   
-  func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+  func textField(textField: TagInput, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
     if countElements(string) > 0 {
       let lastCharacter = string.substringFromIndex(advance(string.endIndex, -1))
       
