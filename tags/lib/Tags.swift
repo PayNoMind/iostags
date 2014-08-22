@@ -19,7 +19,6 @@
 //LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
-//
 
 import UIKit
 
@@ -41,17 +40,17 @@ func == (lhs: TagInput, rhs: TagInput) -> Bool {
 private let CORNER_RADIUS : CGFloat = 5.0
 private let LABEL_MARGIN_DEFAULT = 5.0
 private let BOTTOM_MARGIN_DEFAULT = 5.0
-let HORIZONTAL_PADDING_DEFAULT = 7.0
-let VERTICAL_PADDING_DEFAULT = 3.0
-let BACKGROUND_COLOR = UIColor(red: 0.93, green: 0.93, blue: 0.93, alpha: 1.00)
-let TEXT_COLOR = UIColor.blackColor()
-let TEXT_SHADOW_COLOR = UIColor.whiteColor()
-let TEXT_SHADOW_OFFSET = CGSizeMake(0.0, 1.0)
-let BORDER_COLOR = UIColor.blackColor().CGColor
-let BORDER_WIDTH: CGFloat = 0.5
-let DEFAULT_WIDTH: CGFloat = 50.0
-let DEFAULT_HEIGHT: CGFloat = 17.0
-let STARTING_WIDTH: CGFloat = 20.0
+private let HORIZONTAL_PADDING_DEFAULT = 7.0
+private let VERTICAL_PADDING_DEFAULT = 3.0
+private let BACKGROUND_COLOR = UIColor(red: 0.93, green: 0.93, blue: 0.93, alpha: 1.00)
+private let TEXT_COLOR = UIColor.blackColor()
+private let TEXT_SHADOW_COLOR = UIColor.whiteColor()
+private let TEXT_SHADOW_OFFSET = CGSizeMake(0.0, 1.0)
+private let BORDER_COLOR = UIColor.blackColor().CGColor
+private let BORDER_WIDTH: CGFloat = 0.5
+private let DEFAULT_WIDTH: CGFloat = 50.0
+private let DEFAULT_HEIGHT: CGFloat = 17.0
+private let STARTING_WIDTH: CGFloat = 20.0
 private let FONT_SIZE: CGFloat = 14.0
 
 /*
