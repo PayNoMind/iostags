@@ -257,7 +257,6 @@ class TagSpace : UIScrollView, UITextFieldDelegate {
     NSLog("nextpos = %f",self.frame.size.width)
     tagArray.last.shrinkWrap()
     tagArray.last.delegate = self
-    tagArray.last.tagDelegate = self
     tagArray.last.addTarget(self, action:"tagTextChanged:", forControlEvents: UIControlEvents.EditingChanged)
     
     if nextPos+STARTING_WIDTH >= self.frame.width {
