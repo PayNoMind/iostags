@@ -28,11 +28,6 @@ private extension Array {
   }
 }
 
-protocol TagDelegate {
-  func tagShrunk(send:TagInput)
-  func checkTagSize(send:TagInput)
-}
-
 func == (lhs: TagInput, rhs: TagInput) -> Bool {
   return lhs.text == rhs.text
 }
@@ -57,8 +52,6 @@ private let FONT_SIZE: CGFloat = 14.0
   TagInput Class
 */
 class TagInput : UITextField, Equatable {
-  var tagDelegate : TagDelegate?
-  
   required init(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
   }
@@ -101,7 +94,7 @@ class TagInput : UITextField, Equatable {
 /*
   Tag Space Class
 */
-class TagSpace : UIScrollView, UITextFieldDelegate, TagDelegate {
+class TagSpace : UIScrollView, UITextFieldDelegate {
   var tagArray = [TagInput]()
   var activeField = UITextField()
   //var plateDelegate : movePlates?
@@ -237,10 +230,8 @@ class TagSpace : UIScrollView, UITextFieldDelegate, TagDelegate {
 
       if self.frame.width < rectHold.width {
         self.tagShrunk(textField)
-        //self.tagDelegate?.tagShrunk(self)
       }
       self.checkTagSize(textField)
-      //self.tagDelegate?.checkTagSize(self)
     }
   }
   
