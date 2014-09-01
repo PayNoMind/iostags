@@ -14,7 +14,9 @@ class ViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     tagView?.addTags(["groceries","home","work","test","stuff","longstringthatislong"])
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    var test = TagSpace(frame: CGRectMake(0, 600.0, 320.0, 20.0))
+    self.view.addSubview(test)
   }
 
   override func didReceiveMemoryWarning() {

@@ -19,7 +19,6 @@
 //LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
-
 import UIKit
 
 private extension Array {
@@ -33,10 +32,10 @@ func == (lhs: TagInput, rhs: TagInput) -> Bool {
 }
 
 private let CORNER_RADIUS : CGFloat = 5.0
-private let LABEL_MARGIN_DEFAULT = 5.0
-private let BOTTOM_MARGIN_DEFAULT = 5.0
-private let HORIZONTAL_PADDING_DEFAULT = 7.0
-private let VERTICAL_PADDING_DEFAULT = 3.0
+private let LABEL_MARGIN_DEFAULT : CGFloat = 5.0
+private let BOTTOM_MARGIN_DEFAULT : CGFloat = 5.0
+private let HORIZONTAL_PADDING_DEFAULT : CGFloat = 7.0
+private let VERTICAL_PADDING_DEFAULT : CGFloat = 3.0
 private let BACKGROUND_COLOR = UIColor(red: 0.93, green: 0.93, blue: 0.93, alpha: 1.00)
 private let TEXT_COLOR = UIColor.blackColor()
 private let TEXT_SHADOW_COLOR = UIColor.whiteColor()
@@ -58,17 +57,17 @@ class TagInput : UITextField, Equatable {
   
   override init(frame: CGRect) {
     super.init(frame: frame)
+    self.textColor = TEXT_COLOR
+    self.layer.masksToBounds = true
     self.layer.borderWidth = BORDER_WIDTH
     self.layer.borderColor = BORDER_COLOR
     self.layer.cornerRadius = CORNER_RADIUS
     self.layer.backgroundColor = BACKGROUND_COLOR.CGColor
-    self.layer.masksToBounds = true
     self.font = UIFont.systemFontOfSize(FONT_SIZE)
     self.returnKeyType = .Done
   }
   
   convenience init(position: CGPoint, string:String="") {
-    NSLog("called %f", DEFAULT_WIDTH)
     self.init(frame:CGRectMake(position.x, position.y, DEFAULT_WIDTH, DEFAULT_HEIGHT))
     self.text = string
   }
@@ -80,38 +79,47 @@ class TagInput : UITextField, Equatable {
     self.frame = CGRectMake(rectHold.origin.x, rectHold.origin.y, size.width+10.0, DEFAULT_HEIGHT)
   }
   
+  //Functions for margins over uitextfields
+  //Used to center the text
   override func textRectForBounds(bounds: CGRect) -> CGRect {
-    let inset : CGRect = CGRectMake(bounds.origin.x + 5, bounds.origin.y, bounds.size.width - 10, bounds.size.height)
-    return inset
+    return CGRectMake(bounds.origin.x + LABEL_MARGIN_DEFAULT, bounds.origin.y, bounds.size.width - 10, bounds.size.height)
   }
   
   override func editingRectForBounds(bounds: CGRect) -> CGRect {
-    let inset : CGRect = CGRectMake(bounds.origin.x + 5, bounds.origin.y, bounds.size.width - 10, bounds.size.height)
-    return inset
+    return CGRectMake(bounds.origin.x + LABEL_MARGIN_DEFAULT, bounds.origin.y, bounds.size.width - 10, bounds.size.height)
   }
 }
 
 /*
   Tag Space Class
 */
+private let HORIZONTAL_SCROLL = true
 class TagSpace : UIScrollView, UITextFieldDelegate {
   var tagArray = [TagInput]()
   var activeField = UITextField()
-  //var plateDelegate : movePlates?
-  var contentSave : CGFloat = 0
   var totalWidth = 0
+  var actualWidth : CGFloat = 0
   
   required init(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
-    self.contentSize = CGSizeMake(self.frame.width, self.frame.height)
     self.scrollEnabled = true
-    contentSave = self.frame.width
+    NSLog("yo %@ 2:%@",self.frame.width-(self.frame.width-320.0), UIScreen.mainScreen().bounds.width)
+
+    if HORIZONTAL_SCROLL {
+      actualWidth = self.frame.width-(self.frame.width-UIScreen.mainScreen().bounds.width)
+      self.contentSize = CGSizeMake(actualWidth, 0.0)
+    } else {
+//      actualWidth = self.frame.width-(self.frame.width-UIScreen.mainScreen().bounds.width)
+//      self.contentSize = CGSizeMake(actualWidth, 0.0)
+    }
     self.addNewTag(false)
   }
   
   //for testing
   override init(frame: CGRect) {
     super.init(frame: frame)
+    NSLog("Frame Called")
+    self.addNewTag(false, string:"cheeseburger")
   }
   
   func addTags(tags:[String]) {
@@ -193,7 +201,7 @@ class TagSpace : UIScrollView, UITextFieldDelegate {
     let lastY : CGFloat = lastObj.frame.origin.y
     let nextPos : CGFloat = lastHeight+lastY+4.0
     
-    NSLog("Tag too wide %@",nextPos)
+    NSLog("Tag too wide %@",self.frame.width + lastObj.frame.width)
     //lastObj.updatePosition(CGPointMake(0.0, nextPos))
     if self.checkHeight(lastObj) || true {
       self.contentSize = CGSizeMake(self.frame.width + lastObj.frame.width, self.frame.height)
@@ -228,7 +236,7 @@ class TagSpace : UIScrollView, UITextFieldDelegate {
       }
       textField.frame = CGRectMake(rectHold.origin.x, rectHold.origin.y, width, resultFrame.size.height)
 
-      if self.frame.width < rectHold.width {
+      if textField.frame.width < rectHold.width {
         self.tagShrunk(textField)
       }
       self.checkTagSize(textField)
@@ -252,14 +260,13 @@ class TagSpace : UIScrollView, UITextFieldDelegate {
         nextPos = lastX+lastWidth+4.0
       }
     }
-    
     tagArray.append(TagInput(position: CGPointMake(nextPos, lastY), string: string))
-    NSLog("nextpos = %f",self.frame.size.width)
     tagArray.last.shrinkWrap()
     tagArray.last.delegate = self
     tagArray.last.addTarget(self, action:"tagTextChanged:", forControlEvents: UIControlEvents.EditingChanged)
-    
-    if nextPos+STARTING_WIDTH >= self.frame.width {
+
+    NSLog("nextpos = 1:%@ 2:%@ 3:%@ 4:%@", self.frame.width, nextPos+tagArray.last.frame.width, nextPos, tagArray.last.frame.width)
+    if nextPos+tagArray.last.frame.width >= actualWidth {
       self.tagTooWide(tagArray.last)
     }
     self.addSubview(tagArray.last)

@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="14A329f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
+        <capability name="Constraints with attributes relative to the layout margin" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,19 +17,54 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hnF-Th-joy" customClass="TagSpace" customModule="Tags" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="127" width="600" height="33"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" directionalLockEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xHU-6y-896" customClass="TagSpace" customModule="Tags">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.035351606610000003" alpha="1" colorSpace="calibratedRGB"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="xHU-6y-896" secondAttribute="bottom" constant="525" id="0fj-Lu-Qjb"/>
+                            <constraint firstItem="xHU-6y-896" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="16" id="M9M-KD-2VK">
+                                <variation key="widthClass=compact" constant="-16"/>
+                            </constraint>
+                            <constraint firstItem="xHU-6y-896" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="fVh-1A-hix"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="xHU-6y-896" secondAttribute="trailing" constant="16" id="uOM-bp-7ne">
+                                <variation key="widthClass=compact" constant="-16"/>
+                            </constraint>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="M9M-KD-2VK"/>
+                                <exclude reference="fVh-1A-hix"/>
+                                <exclude reference="uOM-bp-7ne"/>
+                                <exclude reference="0fj-Lu-Qjb"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="xHU-6y-896"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="M9M-KD-2VK"/>
+                                <include reference="fVh-1A-hix"/>
+                                <include reference="uOM-bp-7ne"/>
+                                <include reference="0fj-Lu-Qjb"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="xHU-6y-896"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
-                        <outlet property="tagView" destination="hnF-Th-joy" id="XDd-Lb-B15"/>
+                        <outlet property="tagView" destination="xHU-6y-896" id="1FK-Ab-bry"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="627" y="507"/>
         </scene>
     </scenes>
 </document>
