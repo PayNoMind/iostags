@@ -97,7 +97,7 @@ private let HORIZONTAL_SCROLL = true
 class TagSpace : UIScrollView, UITextFieldDelegate {
   var tagArray = [TagInput]()
   var activeField = UITextField()
-  var totalWidth = 0
+  var totalWidth : CGFloat = 0.0
   var actualWidth : CGFloat = 0
   
   required init(coder aDecoder: NSCoder) {
@@ -107,6 +107,7 @@ class TagSpace : UIScrollView, UITextFieldDelegate {
 
     if HORIZONTAL_SCROLL {
       actualWidth = self.frame.width-(self.frame.width-UIScreen.mainScreen().bounds.width)
+      totalWidth = actualWidth
       self.contentSize = CGSizeMake(actualWidth, 0.0)
     } else {
 //      actualWidth = self.frame.width-(self.frame.width-UIScreen.mainScreen().bounds.width)
@@ -126,6 +127,7 @@ class TagSpace : UIScrollView, UITextFieldDelegate {
     for tag in tags {
       self.addNewTag(false, string: tag)
     }
+    self.addNewTag(false)
   }
   
   func getTags () -> [TagInput] {
@@ -144,8 +146,8 @@ class TagSpace : UIScrollView, UITextFieldDelegate {
   func checkTagSize(currentTag:TagInput) {
     let tagIndex = find(tagArray, currentTag)
     let tagFrame = currentTag.frame
-
-    if tagFrame.origin.x + max(tagFrame.size.width, tagFrame.size.width + 10.0) > self.frame.width {
+    
+    if tagFrame.origin.x + max(tagFrame.size.width, tagFrame.size.width + 10.0) > self.contentSize.width {
       self.tagTooWide(currentTag)
     } else {
       self.checkIntersection(currentTag)
@@ -153,19 +155,20 @@ class TagSpace : UIScrollView, UITextFieldDelegate {
   }
 
   func checkIntersection(sender:TagInput) {
-    let typingTag = find(tagArray, sender)
+    let typingTagIdx = find(tagArray, sender)
+    let typingTag = tagArray[typingTagIdx!]
     
     if typingTag==tagArray.last {
       return
     }
     
-    let nextTag : TagInput = tagArray[(typingTag!+1)]
+    let nextTag : TagInput = tagArray[(typingTagIdx!+1)]
     var tempFrame : CGRect = nextTag.frame
     tempFrame.origin.x -= 1.0
     
     if CGRectIntersectsRect(sender.frame, tempFrame) {
       NSLog("Intersect!!")
-      self.slideTags(typingTag!)
+      self.slideTags(typingTagIdx!)
     }
   }
   
@@ -182,9 +185,7 @@ class TagSpace : UIScrollView, UITextFieldDelegate {
       temp.origin.x = prevWidth + 5.0
       object.frame = temp
       
-      if (object.frame.origin.x+object.frame.size.width) >= 300.0 {
-        self.tagTooWide(object)
-      }
+      checkTagSize(object)
     }
   }
   
@@ -203,14 +204,17 @@ class TagSpace : UIScrollView, UITextFieldDelegate {
     
     NSLog("Tag too wide %@",self.frame.width + lastObj.frame.width)
     //lastObj.updatePosition(CGPointMake(0.0, nextPos))
-    if self.checkHeight(lastObj) || true {
-      self.contentSize = CGSizeMake(self.frame.width + lastObj.frame.width, self.frame.height)
+    if self.checkHeight(lastObj) && !HORIZONTAL_SCROLL {
+      self.contentSize = CGSizeMake(UIScreen.mainScreen().bounds.width + lastObj.frame.width, self.frame.height)
       NSLog("content size %@", self.contentSize.width)
 //      var frame = self.frame
 //      frame.size.height += lastHeight+4.0
 //      self.frame = frame
+    } else {
+      totalWidth += nextPos + DEFAULT_WIDTH
+      self.contentSize = CGSizeMake(totalWidth, self.frame.height)
+      println("Expand width content size \(self.contentSize.width) and total width \(totalWidth)")
     }
-    //self.plateDelegate?.tagSpaceExpanding()
   }
   
   func resetTagSpace() {
@@ -224,7 +228,7 @@ class TagSpace : UIScrollView, UITextFieldDelegate {
   func tagTextChanged(textField: TagInput) {
     if textField.text != "" {
       let pos : UITextPosition = textField.beginningOfDocument
-      let pos2 : UITextPosition = textField.tokenizer.positionFromPosition(pos, toBoundary: .Word, inDirection: 0)
+      let pos2 : UITextPosition = textField.tokenizer.positionFromPosition(pos, toBoundary: .Word, inDirection: 0)!
       let range : UITextRange = textField.textRangeFromPosition(pos, toPosition: pos2)
       let resultFrame : CGRect = textField.firstRectForRange(range)
 
@@ -261,7 +265,9 @@ class TagSpace : UIScrollView, UITextFieldDelegate {
       }
     }
     tagArray.append(TagInput(position: CGPointMake(nextPos, lastY), string: string))
-    tagArray.last.shrinkWrap()
+    if string != "" {
+      tagArray.last.shrinkWrap()
+    }
     tagArray.last.delegate = self
     tagArray.last.addTarget(self, action:"tagTextChanged:", forControlEvents: UIControlEvents.EditingChanged)
 
