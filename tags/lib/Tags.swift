@@ -143,6 +143,7 @@ class TagSpace : UIScrollView, UITextFieldDelegate {
     self.slideTags(typingTag!)
   }
 
+  //Handle any logic that deals with changing the size of content area
   func checkTagSize(currentTag:TagInput) {
     let tagIndex = find(tagArray, currentTag)
     let tagFrame = currentTag.frame
@@ -199,6 +200,7 @@ class TagSpace : UIScrollView, UITextFieldDelegate {
   
   func tagTooWide(lastObj:TagInput) {
     let lastHeight : CGFloat = lastObj.frame.size.height
+    let lastWidth : CGFloat = lastObj.frame.size.width
     let lastY : CGFloat = lastObj.frame.origin.y
     let nextPos : CGFloat = lastHeight+lastY+4.0
     
@@ -206,12 +208,11 @@ class TagSpace : UIScrollView, UITextFieldDelegate {
     //lastObj.updatePosition(CGPointMake(0.0, nextPos))
     if self.checkHeight(lastObj) && !HORIZONTAL_SCROLL {
       self.contentSize = CGSizeMake(UIScreen.mainScreen().bounds.width + lastObj.frame.width, self.frame.height)
-      NSLog("content size %@", self.contentSize.width)
-//      var frame = self.frame
-//      frame.size.height += lastHeight+4.0
-//      self.frame = frame
+      var frame = self.frame
+      frame.size.height += lastHeight+4.0
+      self.frame = frame
     } else {
-      totalWidth += nextPos + DEFAULT_WIDTH
+      totalWidth += nextPos + lastWidth
       self.contentSize = CGSizeMake(totalWidth, self.frame.height)
       println("Expand width content size \(self.contentSize.width) and total width \(totalWidth)")
     }
@@ -272,9 +273,7 @@ class TagSpace : UIScrollView, UITextFieldDelegate {
     tagArray.last.addTarget(self, action:"tagTextChanged:", forControlEvents: UIControlEvents.EditingChanged)
 
     NSLog("nextpos = 1:%@ 2:%@ 3:%@ 4:%@", self.frame.width, nextPos+tagArray.last.frame.width, nextPos, tagArray.last.frame.width)
-    if nextPos+tagArray.last.frame.width >= actualWidth {
-      self.tagTooWide(tagArray.last)
-    }
+    checkTagSize(tagArray.last)
     self.addSubview(tagArray.last)
     
     if becomeFirstResponder {
