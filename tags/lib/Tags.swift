@@ -110,8 +110,8 @@ class TagSpace : UIScrollView, UITextFieldDelegate {
       totalWidth = actualWidth
       self.contentSize = CGSizeMake(actualWidth, 0.0)
     } else {
-//      actualWidth = self.frame.width-(self.frame.width-UIScreen.mainScreen().bounds.width)
-//      self.contentSize = CGSizeMake(actualWidth, 0.0)
+      actualWidth = self.frame.width-(self.frame.width-UIScreen.mainScreen().bounds.width)
+      self.contentSize = CGSizeMake(actualWidth, 0.0)
     }
     self.addNewTag(false)
   }
@@ -142,11 +142,19 @@ class TagSpace : UIScrollView, UITextFieldDelegate {
     let typingTag = find(tagArray, sender)
     self.slideTags(typingTag!)
   }
+  
+  func centerTag(currentTag:TagInput) {
+    if currentTag.frame.width + currentTag.frame.origin.x > self.frame.width/2.0 {
+      self.scrollRectToVisible(currentTag.frame, animated: true)
+    }
+  }
 
   //Handle any logic that deals with changing the size of content area
   func checkTagSize(currentTag:TagInput) {
     let tagIndex = find(tagArray, currentTag)
     let tagFrame = currentTag.frame
+    
+    self.centerTag(currentTag)
     
     if tagFrame.origin.x + max(tagFrame.size.width, tagFrame.size.width + 10.0) > self.contentSize.width {
       self.tagTooWide(currentTag)

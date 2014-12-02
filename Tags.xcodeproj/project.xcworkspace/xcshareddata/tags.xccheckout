@@ -7,7 +7,7 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>8838FAA7-8E4F-4D88-AF69-7B45793153A0</string>
 	<key>IDESourceControlProjectName</key>
-	<string>tags</string>
+	<string>Tags</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>239C211D0720E00966A69B10113F387A933E9A89</key>
@@ -18,7 +18,7 @@
 		<string>https://github.com/Quick/Quick.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>tags.xcodeproj</string>
+	<string>Tags.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>239C211D0720E00966A69B10113F387A933E9A89</key>
