@@ -21,12 +21,6 @@
 //SOFTWARE.
 import UIKit
 
-private extension Array {
-  var last: T {
-    return self[self.endIndex - 1]
-  }
-}
-
 func == (lhs: TagInput, rhs: TagInput) -> Bool {
   return lhs.text == rhs.text
 }
@@ -262,30 +256,30 @@ class TagSpace : UIScrollView, UITextFieldDelegate {
     
     if tagArray.count > 0 {
       //Check if last tag is empty
-      if countElements(tagArray.last.text) == 0 {
-        tagArray.last.text = string
-        tagArray.last.shrinkWrap()
+      if countElements(tagArray.last!.text) == 0 {
+        tagArray.last!.text = string
+        tagArray.last!.shrinkWrap()
         return
       } else {
-        let lastWidth = tagArray.last.frame.size.width
-        let lastX = tagArray.last.frame.origin.x
-        lastY = tagArray.last.frame.origin.y
+        let lastWidth = tagArray.last!.frame.size.width
+        let lastX = tagArray.last!.frame.origin.x
+        lastY = tagArray.last!.frame.origin.y
         nextPos = lastX+lastWidth+4.0
       }
     }
     tagArray.append(TagInput(position: CGPointMake(nextPos, lastY), string: string))
     if string != "" {
-      tagArray.last.shrinkWrap()
+      tagArray.last!.shrinkWrap()
     }
-    tagArray.last.delegate = self
-    tagArray.last.addTarget(self, action:"tagTextChanged:", forControlEvents: UIControlEvents.EditingChanged)
+    tagArray.last?.delegate = self
+    tagArray.last?.addTarget(self, action:"tagTextChanged:", forControlEvents: UIControlEvents.EditingChanged)
 
-    NSLog("nextpos = 1:%@ 2:%@ 3:%@ 4:%@", self.frame.width, nextPos+tagArray.last.frame.width, nextPos, tagArray.last.frame.width)
-    checkTagSize(tagArray.last)
-    self.addSubview(tagArray.last)
+    NSLog("nextpos = 1:%@ 2:%@ 3:%@ 4:%@", self.frame.width, nextPos+tagArray.last!.frame.width, nextPos, tagArray.last!.frame.width)
+    checkTagSize(tagArray.last!)
+    self.addSubview(tagArray.last!)
     
     if becomeFirstResponder {
-      tagArray.last.becomeFirstResponder()
+      tagArray.last?.becomeFirstResponder()
     }
   }
   
