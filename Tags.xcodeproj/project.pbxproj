@@ -7,12 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C5A74FA119A86EC600B451BD /* Tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A74FA019A86EC600B451BD /* Tags.swift */; };
+		C511F5D41A4DD5BB00A7C563 /* TagDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C511F5D31A4DD5BB00A7C563 /* TagDelegate.swift */; };
 		C5CF269B199FFA60008398A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CF269A199FFA60008398A7 /* AppDelegate.swift */; };
 		C5CF269D199FFA60008398A7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CF269C199FFA60008398A7 /* ViewController.swift */; };
 		C5CF26A0199FFA60008398A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5CF269E199FFA60008398A7 /* Main.storyboard */; };
 		C5CF26A2199FFA60008398A7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5CF26A1199FFA60008398A7 /* Images.xcassets */; };
-		C5CF26B919A005CE008398A7 /* Tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CF26B819A005CE008398A7 /* Tags.swift */; };
 		C5CF26EE19A034CE008398A7 /* TagSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CF26ED19A034CE008398A7 /* TagSpec.swift */; };
 		C5CF26F019A0350B008398A7 /* TagSpaceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CF26EF19A0350B008398A7 /* TagSpaceSpec.swift */; };
 /* End PBXBuildFile section */
@@ -49,7 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C5A74FA019A86EC600B451BD /* Tags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tags.swift; path = tags/lib/Tags.swift; sourceTree = SOURCE_ROOT; };
+		C511F5D31A4DD5BB00A7C563 /* TagDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagDelegate.swift; sourceTree = "<group>"; };
 		C5CF2695199FFA60008398A7 /* Tags.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tags.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5CF2699199FFA60008398A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5CF269A199FFA60008398A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -58,7 +57,6 @@
 		C5CF26A1199FFA60008398A7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C5CF26A7199FFA60008398A7 /* TagsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TagsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5CF26AC199FFA60008398A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C5CF26B819A005CE008398A7 /* Tags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tags.swift; sourceTree = "<group>"; };
 		C5CF26ED19A034CE008398A7 /* TagSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagSpec.swift; sourceTree = "<group>"; };
 		C5CF26EF19A0350B008398A7 /* TagSpaceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagSpaceSpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -126,7 +124,6 @@
 			children = (
 				C5CF26AB199FFA60008398A7 /* Supporting Files */,
 				C5CF26ED19A034CE008398A7 /* TagSpec.swift */,
-				C5A74FA019A86EC600B451BD /* Tags.swift */,
 				C5CF26EF19A0350B008398A7 /* TagSpaceSpec.swift */,
 			);
 			name = TagsTests;
@@ -144,7 +141,7 @@
 		C5CF26B719A005CE008398A7 /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				C5CF26B819A005CE008398A7 /* Tags.swift */,
+				C511F5D31A4DD5BB00A7C563 /* TagDelegate.swift */,
 			);
 			path = lib;
 			sourceTree = "<group>";
@@ -253,7 +250,7 @@
 			files = (
 				C5CF269D199FFA60008398A7 /* ViewController.swift in Sources */,
 				C5CF269B199FFA60008398A7 /* AppDelegate.swift in Sources */,
-				C5CF26B919A005CE008398A7 /* Tags.swift in Sources */,
+				C511F5D41A4DD5BB00A7C563 /* TagDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,7 +260,6 @@
 			files = (
 				C5CF26F019A0350B008398A7 /* TagSpaceSpec.swift in Sources */,
 				C5CF26EE19A034CE008398A7 /* TagSpec.swift in Sources */,
-				C5A74FA119A86EC600B451BD /* Tags.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,7 +334,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -374,7 +370,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

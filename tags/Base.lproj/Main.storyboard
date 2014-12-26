@@ -18,9 +18,6 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rKg-1b-cNO">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="59" id="VrF-Jr-vmp"/>
-                                </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="5" id="PnA-If-5zg">
                                     <size key="itemSize" width="71" height="27"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -38,38 +35,24 @@
                                         </view>
                                     </collectionViewCell>
                                 </cells>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="VrF-Jr-vmp"/>
-                                    </mask>
-                                </variation>
-                                <variation key="widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="VrF-Jr-vmp"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <outlet property="dataSource" destination="vXZ-lx-hvc" id="nym-UT-msz"/>
-                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="drH-UC-kw5"/>
-                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="rKg-1b-cNO" secondAttribute="trailing" id="NB6-5y-1k7"/>
-                            <constraint firstItem="rKg-1b-cNO" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="33" id="oAE-UQ-svj"/>
-                            <constraint firstItem="rKg-1b-cNO" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="pzU-rI-I4F"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="rKg-1b-cNO" secondAttribute="bottom" constant="488" id="so3-MI-haF"/>
+                            <constraint firstAttribute="trailing" secondItem="rKg-1b-cNO" secondAttribute="trailing" id="uyj-Hu-WfG"/>
+                            <constraint firstItem="rKg-1b-cNO" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="33" id="wwb-cB-wHI"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="rKg-1b-cNO" secondAttribute="bottom" constant="488" id="yOX-Ph-nZD"/>
+                            <constraint firstItem="rKg-1b-cNO" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="zqF-8X-aYt"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="rKg-1b-cNO"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="NB6-5y-1k7"/>
-                                <exclude reference="oAE-UQ-svj"/>
-                                <exclude reference="pzU-rI-I4F"/>
-                                <exclude reference="so3-MI-haF"/>
+                                <exclude reference="uyj-Hu-WfG"/>
+                                <exclude reference="wwb-cB-wHI"/>
+                                <exclude reference="zqF-8X-aYt"/>
+                                <exclude reference="yOX-Ph-nZD"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -77,10 +60,10 @@
                                 <include reference="rKg-1b-cNO"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="NB6-5y-1k7"/>
-                                <include reference="oAE-UQ-svj"/>
-                                <include reference="pzU-rI-I4F"/>
-                                <include reference="so3-MI-haF"/>
+                                <include reference="uyj-Hu-WfG"/>
+                                <include reference="wwb-cB-wHI"/>
+                                <include reference="zqF-8X-aYt"/>
+                                <include reference="yOX-Ph-nZD"/>
                             </mask>
                         </variation>
                     </view>
