@@ -44,12 +44,13 @@ protocol TagProtocol {
 
 class TagDelegate: TagProtocol {
   private var tags: [String] = [String]()
+  var currentIndex: Int = 0
   
   convenience init(tags: [String]) {
     self.init()
     self.tags = tags
   }
-
+  
   func setupDelegateAndDataSource(collectionView: UICollectionView) -> (delegate: TagCollectionViewDelegate, dataSource: TagDataSource) {
     let tagDelegate = TagCollectionViewDelegate()
     tagDelegate.delegate = self
@@ -71,22 +72,18 @@ class TagCollectionViewDelegate: NSObject, UICollectionViewDelegateFlowLayout {
   }
   
   func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    let test = delegate.getTags()
+    
     var stringSize = ""
     if indexPath.row < delegate.getTags().count {
       stringSize = delegate.getTags()[indexPath.row]
     }
-    if let setCell = collectionView.cellForItemAtIndexPath(indexPath) as? tagCell {
-      stringSize = setCell.textField.text
-    }
-    
     var size = CGSizeMake(StartingWidth, 20)
     if stringSize != "" {
       size = getStringSize(stringSize)
     }
-    
     return CGSizeMake(size.width + 10, 20)
   }
-
 }
 
 class TagDataSource: NSObject, UICollectionViewDataSource, UITextFieldDelegate {
@@ -116,13 +113,26 @@ class TagDataSource: NSObject, UICollectionViewDataSource, UITextFieldDelegate {
     return cell
   }
   
+  func textFieldDidBeginEditing(textField: UITextField) {
+    var cellIndex = textField.superview as UICollectionViewCell
+    let temp = collectionView.indexPathForCell(cellIndex)?.row
+    delegate.currentIndex = temp!
+  }
+  
   func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
     if countElements(string) > 0 {
       let lastCharacter = string.substringFromIndex(advance(string.endIndex, -1))
       
       if lastCharacter == " " {
-        delegate.tags.append("")
-        collectionView.insertItemsAtIndexPaths([NSIndexPath(forRow: delegate.getTags().count, inSection: 0)])
+        var idx = delegate.currentIndex+1
+        if delegate.currentIndex == delegate.tags.endIndex {
+          idx = delegate.tags.endIndex
+        }
+        delegate.tags.insert("", atIndex: idx)
+        let indexPath = NSIndexPath(forRow: idx, inSection: 0)
+        collectionView.insertItemsAtIndexPaths([indexPath])
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as tagCell
+        cell.textField.becomeFirstResponder()
         return false
       }
     }
@@ -130,7 +140,7 @@ class TagDataSource: NSObject, UICollectionViewDataSource, UITextFieldDelegate {
   }
   
   func tagTextChanged(textField: UITextField) {
-    if textField.text != "" {
+    if textField.text != "" && textField.text != " " {
       let pos : UITextPosition = textField.beginningOfDocument
       let pos2 : UITextPosition = textField.tokenizer.positionFromPosition(pos, toBoundary: .Word, inDirection: 0)!
       let range : UITextRange = textField.textRangeFromPosition(pos, toPosition: pos2)
@@ -143,12 +153,9 @@ class TagDataSource: NSObject, UICollectionViewDataSource, UITextFieldDelegate {
         collectionView.collectionViewLayout.invalidateLayout()
         width = resultFrame.size.width+12.0
       }
+      delegate.tags[delegate.currentIndex] = textField.text
       textField.frame = CGRectMake(rectHold.origin.x, rectHold.origin.y, width, resultFrame.size.height)
-      
-      //      if textField.frame.width < rectHold.width {
-      //        tagShrunk(textField)
-      //      }
-      //      checkTagSize(textField)
+      collectionView.scrollToItemAtIndexPath(NSIndexPath(forRow: delegate.currentIndex, inSection: 0), atScrollPosition: .Left, animated: true)
     }
   }
 }
