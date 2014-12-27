@@ -44,19 +44,23 @@ protocol TagProtocol {
 
 class TagDelegate: TagProtocol {
   private var tags: [String] = [String]()
+  private var tagDelegate: TagCollectionViewDelegate!
+  private var tagDataSource: TagDataSource!
   var currentIndex: Int = 0
   
   convenience init(tags: [String]) {
     self.init()
-    self.tags = tags
+    var temp = tags
+    temp.append("")
+    self.tags = temp
   }
   
   func setupDelegateAndDataSource(collectionView: UICollectionView) -> (delegate: TagCollectionViewDelegate, dataSource: TagDataSource) {
-    let tagDelegate = TagCollectionViewDelegate()
+    tagDelegate = TagCollectionViewDelegate()
     tagDelegate.delegate = self
-    let tagDatasource = TagDataSource(collectionView: collectionView)
-    tagDatasource.delegate = self
-    return (tagDelegate,tagDatasource)
+    tagDataSource = TagDataSource(collectionView: collectionView)
+    tagDataSource.delegate = self
+    return (tagDelegate, tagDataSource)
   }
   
   func getTags() -> [String] {
@@ -96,7 +100,7 @@ class TagDataSource: NSObject, UICollectionViewDataSource, UITextFieldDelegate {
   }
   
   func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return delegate.tags.count+1
+    return delegate.tags.count
   }
   
   func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -131,8 +135,14 @@ class TagDataSource: NSObject, UICollectionViewDataSource, UITextFieldDelegate {
         delegate.tags.insert("", atIndex: idx)
         let indexPath = NSIndexPath(forRow: idx, inSection: 0)
         collectionView.insertItemsAtIndexPaths([indexPath])
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as tagCell
-        cell.textField.becomeFirstResponder()
+        
+        UIView.animateWithDuration(0.2, animations: { () -> Void in
+          self.collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: false)
+        }, completion: { (complete) -> Void in
+          if let cell = self.collectionView.cellForItemAtIndexPath(indexPath) as? tagCell {
+            cell.textField.becomeFirstResponder()
+          }
+        })
         return false
       }
     }
@@ -155,7 +165,7 @@ class TagDataSource: NSObject, UICollectionViewDataSource, UITextFieldDelegate {
       }
       delegate.tags[delegate.currentIndex] = textField.text
       textField.frame = CGRectMake(rectHold.origin.x, rectHold.origin.y, width, resultFrame.size.height)
-      collectionView.scrollToItemAtIndexPath(NSIndexPath(forRow: delegate.currentIndex, inSection: 0), atScrollPosition: .Left, animated: true)
+      collectionView.scrollToItemAtIndexPath(NSIndexPath(forRow: delegate.currentIndex, inSection: 0), atScrollPosition: .CenteredHorizontally, animated: true)
     }
   }
 }
