@@ -19,9 +19,8 @@ class tagCell: UICollectionViewCell {
   var textField: UITextField!
   var text: String = ""
   
-  required init(coder aDecoder: NSCoder) {
+  required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
-    var test = bounds
     textField = UITextField(frame: bounds)
     textField.font = UIFont.systemFontOfSize(FontSize)
     textField.text = text
@@ -76,8 +75,6 @@ class TagCollectionViewDelegate: NSObject, UICollectionViewDelegateFlowLayout {
   }
   
   func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-    let test = delegate.getTags()
-    
     var stringSize = ""
     if indexPath.row < delegate.getTags().count {
       stringSize = delegate.getTags()[indexPath.row]
@@ -104,7 +101,7 @@ class TagDataSource: NSObject, UICollectionViewDataSource, UITextFieldDelegate {
   }
   
   func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-    let cell: tagCell = collectionView.dequeueReusableCellWithReuseIdentifier("tagCell", forIndexPath: indexPath) as tagCell
+    let cell: tagCell = collectionView.dequeueReusableCellWithReuseIdentifier("tagCell", forIndexPath: indexPath) as! tagCell
     cell.backgroundColor = UIColor.redColor()
     cell.textField.addTarget(self, action:"tagTextChanged:", forControlEvents: UIControlEvents.EditingChanged)
     cell.textField.delegate = self
@@ -118,13 +115,13 @@ class TagDataSource: NSObject, UICollectionViewDataSource, UITextFieldDelegate {
   }
   
   func textFieldDidBeginEditing(textField: UITextField) {
-    var cellIndex = textField.superview as UICollectionViewCell
+    let cellIndex = textField.superview as! UICollectionViewCell
     let temp = collectionView.indexPathForCell(cellIndex)?.row
     delegate.currentIndex = temp!
   }
   
   func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-    if countElements(string) > 0 {
+    if string.characters.count > 0 {
       let lastCharacter = string.substringFromIndex(advance(string.endIndex, -1))
       
       if lastCharacter == " " {
@@ -153,7 +150,7 @@ class TagDataSource: NSObject, UICollectionViewDataSource, UITextFieldDelegate {
     if textField.text != "" && textField.text != " " {
       let pos : UITextPosition = textField.beginningOfDocument
       let pos2 : UITextPosition = textField.tokenizer.positionFromPosition(pos, toBoundary: .Word, inDirection: 0)!
-      let range : UITextRange = textField.textRangeFromPosition(pos, toPosition: pos2)
+      let range : UITextRange = textField.textRangeFromPosition(pos, toPosition: pos2)!
       let resultFrame : CGRect = textField.firstRectForRange(range)
       
       let rectHold : CGRect = textField.frame
@@ -163,7 +160,7 @@ class TagDataSource: NSObject, UICollectionViewDataSource, UITextFieldDelegate {
         collectionView.collectionViewLayout.invalidateLayout()
         width = resultFrame.size.width+12.0
       }
-      delegate.tags[delegate.currentIndex] = textField.text
+      delegate.tags[delegate.currentIndex] = textField.text!
       textField.frame = CGRectMake(rectHold.origin.x, rectHold.origin.y, width, resultFrame.size.height)
       collectionView.scrollToItemAtIndexPath(NSIndexPath(forRow: delegate.currentIndex, inSection: 0), atScrollPosition: .CenteredHorizontally, animated: true)
     }

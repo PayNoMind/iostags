@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C511F5D41A4DD5BB00A7C563 /* TagDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C511F5D31A4DD5BB00A7C563 /* TagDelegate.swift */; };
+		C563CB4A1B63F60100F35987 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C563CB491B63F60100F35987 /* Launch Screen.storyboard */; };
 		C5CF269B199FFA60008398A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CF269A199FFA60008398A7 /* AppDelegate.swift */; };
 		C5CF269D199FFA60008398A7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CF269C199FFA60008398A7 /* ViewController.swift */; };
 		C5CF26A0199FFA60008398A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5CF269E199FFA60008398A7 /* Main.storyboard */; };
@@ -49,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		C511F5D31A4DD5BB00A7C563 /* TagDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagDelegate.swift; sourceTree = "<group>"; };
+		C563CB491B63F60100F35987 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		C5CF2695199FFA60008398A7 /* Tags.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tags.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5CF2699199FFA60008398A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5CF269A199FFA60008398A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				C5CF269E199FFA60008398A7 /* Main.storyboard */,
 				C5CF26A1199FFA60008398A7 /* Images.xcassets */,
 				C5CF2698199FFA60008398A7 /* Supporting Files */,
+				C563CB491B63F60100F35987 /* Launch Screen.storyboard */,
 			);
 			name = Tags;
 			path = tags;
@@ -193,6 +196,8 @@
 		C5CF268D199FFA60008398A7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "fluid-dynamics";
 				TargetAttributes = {
@@ -229,6 +234,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C563CB4A1B63F60100F35987 /* Launch Screen.storyboard in Resources */,
 				C5CF26A0199FFA60008398A7 /* Main.storyboard in Resources */,
 				C5CF26A2199FFA60008398A7 /* Images.xcassets in Resources */,
 			);
@@ -381,7 +387,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = tags/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Tags;
@@ -392,7 +397,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = tags/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Tags;

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C81f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8164.2" systemVersion="15A226f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8135.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,8 +20,13 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rKg-1b-cNO">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Svb-Vg-4FP"/>
+                                </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="5" id="PnA-If-5zg">
-                                    <size key="itemSize" width="71" height="27"/>
+                                    <size key="itemSize" width="71" height="30"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
@@ -29,30 +36,41 @@
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="71" height="27"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="71" height="30"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <animations/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <animations/>
                                     </collectionViewCell>
                                 </cells>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Svb-Vg-4FP"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="Svb-Vg-4FP"/>
+                                    </mask>
+                                </variation>
                             </collectionView>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="rKg-1b-cNO" secondAttribute="trailing" id="uyj-Hu-WfG"/>
-                            <constraint firstItem="rKg-1b-cNO" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="33" id="wwb-cB-wHI"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="rKg-1b-cNO" secondAttribute="bottom" constant="488" id="yOX-Ph-nZD"/>
-                            <constraint firstItem="rKg-1b-cNO" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="zqF-8X-aYt"/>
+                            <constraint firstItem="rKg-1b-cNO" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="55y-I9-bCv"/>
+                            <constraint firstItem="rKg-1b-cNO" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="33" id="eQX-2Y-M4m"/>
+                            <constraint firstItem="rKg-1b-cNO" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="eZB-Zh-37z"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="rKg-1b-cNO"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="uyj-Hu-WfG"/>
-                                <exclude reference="wwb-cB-wHI"/>
-                                <exclude reference="zqF-8X-aYt"/>
-                                <exclude reference="yOX-Ph-nZD"/>
+                                <exclude reference="55y-I9-bCv"/>
+                                <exclude reference="eQX-2Y-M4m"/>
+                                <exclude reference="eZB-Zh-37z"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -60,10 +78,9 @@
                                 <include reference="rKg-1b-cNO"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="uyj-Hu-WfG"/>
-                                <include reference="wwb-cB-wHI"/>
-                                <include reference="zqF-8X-aYt"/>
-                                <include reference="yOX-Ph-nZD"/>
+                                <include reference="55y-I9-bCv"/>
+                                <include reference="eQX-2Y-M4m"/>
+                                <include reference="eZB-Zh-37z"/>
                             </mask>
                         </variation>
                     </view>
