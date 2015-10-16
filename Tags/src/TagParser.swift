@@ -12,10 +12,10 @@ public struct TagContainer {
   public var isCommand: Bool = false
   public var type: CommandType?
   public var suggestedTypes: [String] {
-    let temp: [String] = CommandType.allValues.filter { (value) -> Bool in
+    let temp = CommandType.allValues.filter { (value) -> Bool in
       value.rawValue.hasPrefix(title)
-      }.map{ $0.rawValue }
-    return temp
+    }.map{ $0.rawValue }
+    return temp + otherTags
   }
   init(title: String, otherTags tags: [String]=[], commandType type: CommandType?=nil) {
     self.title = title
@@ -33,15 +33,14 @@ public class TagParser {
     return command.hasPrefix(commandPrefix)
   }
   private func handleCommands(command: String) -> TagContainer {
-    let command = String(command.characters.dropFirst())
+    let command = isCommand(command) ? String(command.characters.dropFirst()) : command
     let tags =  tagHandler.getTagsByPrefix(command)
     let type = CommandType(rawValue: command)
     return TagContainer(title: command, otherTags: tags, commandType: type)
   }
-  var currentContainer: TagContainer = TagContainer(title: "")
+  public var currentContainer: TagContainer = TagContainer(title: "")
   public func parse(text: String) -> TagContainer {
-    currentContainer = isCommand(text) ? handleCommands(text)
-                                        : TagContainer(title: text)
+    currentContainer = handleCommands(text)
     return currentContainer
   }
   init(tags: TagsInterface) {

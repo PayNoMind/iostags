@@ -167,7 +167,7 @@ extension TagDataSource: UICollectionViewDataSource {
       }
       let rectHold = textField.frame
 
-      var width : CGFloat = 20.0
+      var width = CGFloat(20.0)
       if resultFrame.size.width+12.0 > StartingWidth {
         collectionView.collectionViewLayout.invalidateLayout()
         width = resultFrame.size.width+12.0

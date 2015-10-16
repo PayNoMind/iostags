@@ -15,6 +15,7 @@
 		C53143971BD0F4B8006A8E48 /* TagsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143961BD0F4B8006A8E48 /* TagsInterface.swift */; settings = {ASSET_TAGS = (); }; };
 		C53143A01BD1034B006A8E48 /* MemoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531439E1BD1034B006A8E48 /* MemoryData.swift */; settings = {ASSET_TAGS = (); }; };
 		C53143A11BD1034B006A8E48 /* TagMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531439F1BD1034B006A8E48 /* TagMemory.swift */; settings = {ASSET_TAGS = (); }; };
+		C53143A31BD10717006A8E48 /* TagParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143A21BD10717006A8E48 /* TagParserTests.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +40,7 @@
 		C53143961BD0F4B8006A8E48 /* TagsInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsInterface.swift; sourceTree = "<group>"; };
 		C531439E1BD1034B006A8E48 /* MemoryData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryData.swift; sourceTree = "<group>"; };
 		C531439F1BD1034B006A8E48 /* TagMemory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagMemory.swift; sourceTree = "<group>"; };
+		C53143A21BD10717006A8E48 /* TagParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagParserTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 			children = (
 				C531439D1BD1034B006A8E48 /* Support */,
 				C531435A1BD0F1A6006A8E48 /* TagsInterfaceTests.swift */,
+				C53143A21BD10717006A8E48 /* TagParserTests.swift */,
 				C531435C1BD0F1A6006A8E48 /* Info.plist */,
 			);
 			path = TagsTests;
@@ -237,6 +240,7 @@
 				C531435B1BD0F1A6006A8E48 /* TagsInterfaceTests.swift in Sources */,
 				C53143A11BD1034B006A8E48 /* TagMemory.swift in Sources */,
 				C53143A01BD1034B006A8E48 /* MemoryData.swift in Sources */,
+				C53143A31BD10717006A8E48 /* TagParserTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
