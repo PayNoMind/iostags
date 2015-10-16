@@ -9,7 +9,12 @@
 /* Begin PBXBuildFile section */
 		C531434F1BD0F1A6006A8E48 /* Tags.h in Headers */ = {isa = PBXBuildFile; fileRef = C531434E1BD0F1A6006A8E48 /* Tags.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C53143561BD0F1A6006A8E48 /* Tags.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C531434B1BD0F1A6006A8E48 /* Tags.framework */; settings = {ASSET_TAGS = (); }; };
-		C531435B1BD0F1A6006A8E48 /* TagsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531435A1BD0F1A6006A8E48 /* TagsTests.swift */; };
+		C531435B1BD0F1A6006A8E48 /* TagsInterfaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531435A1BD0F1A6006A8E48 /* TagsInterfaceTests.swift */; };
+		C53143931BD0F2FD006A8E48 /* TagDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143921BD0F2FD006A8E48 /* TagDelegate.swift */; settings = {ASSET_TAGS = (); }; };
+		C53143951BD0F332006A8E48 /* TagParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143941BD0F332006A8E48 /* TagParser.swift */; settings = {ASSET_TAGS = (); }; };
+		C53143971BD0F4B8006A8E48 /* TagsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143961BD0F4B8006A8E48 /* TagsInterface.swift */; settings = {ASSET_TAGS = (); }; };
+		C53143991BD0FC68006A8E48 /* TagMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143981BD0FC68006A8E48 /* TagMemory.swift */; settings = {ASSET_TAGS = (); }; };
+		C531439C1BD0FCDD006A8E48 /* MemoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531439B1BD0FCDD006A8E48 /* MemoryData.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,8 +32,13 @@
 		C531434E1BD0F1A6006A8E48 /* Tags.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tags.h; sourceTree = "<group>"; };
 		C53143501BD0F1A6006A8E48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C53143551BD0F1A6006A8E48 /* TagsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TagsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C531435A1BD0F1A6006A8E48 /* TagsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsTests.swift; sourceTree = "<group>"; };
+		C531435A1BD0F1A6006A8E48 /* TagsInterfaceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsInterfaceTests.swift; sourceTree = "<group>"; };
 		C531435C1BD0F1A6006A8E48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C53143921BD0F2FD006A8E48 /* TagDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagDelegate.swift; sourceTree = "<group>"; };
+		C53143941BD0F332006A8E48 /* TagParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagParser.swift; sourceTree = "<group>"; };
+		C53143961BD0F4B8006A8E48 /* TagsInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsInterface.swift; sourceTree = "<group>"; };
+		C53143981BD0FC68006A8E48 /* TagMemory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagMemory.swift; sourceTree = "<group>"; };
+		C531439B1BD0FCDD006A8E48 /* MemoryData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				C531434E1BD0F1A6006A8E48 /* Tags.h */,
+				C53143911BD0F2FD006A8E48 /* src */,
 				C53143501BD0F1A6006A8E48 /* Info.plist */,
 			);
 			path = Tags;
@@ -80,10 +91,22 @@
 		C53143591BD0F1A6006A8E48 /* TagsTests */ = {
 			isa = PBXGroup;
 			children = (
-				C531435A1BD0F1A6006A8E48 /* TagsTests.swift */,
+				C531439B1BD0FCDD006A8E48 /* MemoryData.swift */,
+				C53143981BD0FC68006A8E48 /* TagMemory.swift */,
+				C531435A1BD0F1A6006A8E48 /* TagsInterfaceTests.swift */,
 				C531435C1BD0F1A6006A8E48 /* Info.plist */,
 			);
 			path = TagsTests;
+			sourceTree = "<group>";
+		};
+		C53143911BD0F2FD006A8E48 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				C53143921BD0F2FD006A8E48 /* TagDelegate.swift */,
+				C53143941BD0F332006A8E48 /* TagParser.swift */,
+				C53143961BD0F4B8006A8E48 /* TagsInterface.swift */,
+			);
+			path = src;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,6 +216,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C53143931BD0F2FD006A8E48 /* TagDelegate.swift in Sources */,
+				C53143951BD0F332006A8E48 /* TagParser.swift in Sources */,
+				C53143971BD0F4B8006A8E48 /* TagsInterface.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,7 +226,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C531435B1BD0F1A6006A8E48 /* TagsTests.swift in Sources */,
+				C531439C1BD0FCDD006A8E48 /* MemoryData.swift in Sources */,
+				C531435B1BD0F1A6006A8E48 /* TagsInterfaceTests.swift in Sources */,
+				C53143991BD0FC68006A8E48 /* TagMemory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,6 +403,7 @@
 				C53143611BD0F1A6006A8E48 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C53143621BD0F1A6006A8E48 /* Build configuration list for PBXNativeTarget "TagsTests" */ = {
 			isa = XCConfigurationList;
@@ -383,6 +412,7 @@
 				C53143641BD0F1A6006A8E48 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
