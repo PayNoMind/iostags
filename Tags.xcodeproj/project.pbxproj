@@ -16,6 +16,9 @@
 		C53143A01BD1034B006A8E48 /* MemoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531439E1BD1034B006A8E48 /* MemoryData.swift */; settings = {ASSET_TAGS = (); }; };
 		C53143A11BD1034B006A8E48 /* TagMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531439F1BD1034B006A8E48 /* TagMemory.swift */; settings = {ASSET_TAGS = (); }; };
 		C53143A31BD10717006A8E48 /* TagParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143A21BD10717006A8E48 /* TagParserTests.swift */; settings = {ASSET_TAGS = (); }; };
+		C53143A51BD10E78006A8E48 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143A41BD10E78006A8E48 /* TagCell.swift */; settings = {ASSET_TAGS = (); }; };
+		C53143AA1BD193D3006A8E48 /* SuggestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143A91BD193D3006A8E48 /* SuggestionView.swift */; settings = {ASSET_TAGS = (); }; };
+		C53143BE1BD41F39006A8E48 /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143BD1BD41F39006A8E48 /* TextFieldDelegate.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +44,9 @@
 		C531439E1BD1034B006A8E48 /* MemoryData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryData.swift; sourceTree = "<group>"; };
 		C531439F1BD1034B006A8E48 /* TagMemory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagMemory.swift; sourceTree = "<group>"; };
 		C53143A21BD10717006A8E48 /* TagParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagParserTests.swift; sourceTree = "<group>"; };
+		C53143A41BD10E78006A8E48 /* TagCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
+		C53143A91BD193D3006A8E48 /* SuggestionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestionView.swift; sourceTree = "<group>"; };
+		C53143BD1BD41F39006A8E48 /* TextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +113,9 @@
 				C53143921BD0F2FD006A8E48 /* TagDelegate.swift */,
 				C53143941BD0F332006A8E48 /* TagParser.swift */,
 				C53143961BD0F4B8006A8E48 /* TagsInterface.swift */,
+				C53143A41BD10E78006A8E48 /* TagCell.swift */,
+				C53143A91BD193D3006A8E48 /* SuggestionView.swift */,
+				C53143BD1BD41F39006A8E48 /* TextFieldDelegate.swift */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -227,6 +236,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C53143AA1BD193D3006A8E48 /* SuggestionView.swift in Sources */,
+				C53143A51BD10E78006A8E48 /* TagCell.swift in Sources */,
+				C53143BE1BD41F39006A8E48 /* TextFieldDelegate.swift in Sources */,
 				C53143931BD0F2FD006A8E48 /* TagDelegate.swift in Sources */,
 				C53143951BD0F332006A8E48 /* TagParser.swift in Sources */,
 				C53143971BD0F4B8006A8E48 /* TagsInterface.swift in Sources */,

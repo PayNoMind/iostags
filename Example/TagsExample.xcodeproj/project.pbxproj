@@ -23,6 +23,20 @@
 			remoteGlobalIDString = C531436D1BD0F230006A8E48;
 			remoteInfo = TagsExample;
 		};
+		C53143B91BD41B60006A8E48 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C53143B41BD41B60006A8E48 /* Tags.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C531434B1BD0F1A6006A8E48;
+			remoteInfo = Tags;
+		};
+		C53143BB1BD41B60006A8E48 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C53143B41BD41B60006A8E48 /* Tags.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C53143551BD0F1A6006A8E48;
+			remoteInfo = TagsTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +50,7 @@
 		C53143821BD0F230006A8E48 /* TagsExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TagsExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C53143861BD0F230006A8E48 /* TagsExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsExampleTests.swift; sourceTree = "<group>"; };
 		C53143881BD0F230006A8E48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C53143B41BD41B60006A8E48 /* Tags.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Tags.xcodeproj; path = ../Tags.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +74,7 @@
 		C53143651BD0F230006A8E48 = {
 			isa = PBXGroup;
 			children = (
+				C53143B41BD41B60006A8E48 /* Tags.xcodeproj */,
 				C53143701BD0F230006A8E48 /* TagsExample */,
 				C53143851BD0F230006A8E48 /* TagsExampleTests */,
 				C531436F1BD0F230006A8E48 /* Products */,
@@ -94,6 +110,15 @@
 				C53143881BD0F230006A8E48 /* Info.plist */,
 			);
 			path = TagsExampleTests;
+			sourceTree = "<group>";
+		};
+		C53143B51BD41B60006A8E48 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C53143BA1BD41B60006A8E48 /* Tags.framework */,
+				C53143BC1BD41B60006A8E48 /* TagsTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,6 +188,12 @@
 			mainGroup = C53143651BD0F230006A8E48;
 			productRefGroup = C531436F1BD0F230006A8E48 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = C53143B51BD41B60006A8E48 /* Products */;
+					ProjectRef = C53143B41BD41B60006A8E48 /* Tags.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				C531436D1BD0F230006A8E48 /* TagsExample */,
@@ -170,6 +201,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		C53143BA1BD41B60006A8E48 /* Tags.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Tags.framework;
+			remoteRef = C53143B91BD41B60006A8E48 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C53143BC1BD41B60006A8E48 /* TagsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = TagsTests.xctest;
+			remoteRef = C53143BB1BD41B60006A8E48 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		C531436C1BD0F230006A8E48 /* Resources */ = {
@@ -385,6 +433,7 @@
 				C531438D1BD0F230006A8E48 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C531438E1BD0F230006A8E48 /* Build configuration list for PBXNativeTarget "TagsExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -393,6 +442,7 @@
 				C53143901BD0F230006A8E48 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

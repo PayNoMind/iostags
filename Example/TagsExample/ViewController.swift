@@ -7,11 +7,16 @@
 //
 
 import UIKit
+import Tags
 
 class ViewController: UIViewController {
+  @IBOutlet var collection: UICollectionView!
+  private var collectionDelegate: TagCollectionViewDelegate!
+//  private var 
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    collection.delegate =
     // Do any additional setup after loading the view, typically from a nib.
   }
 
