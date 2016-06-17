@@ -21,9 +21,11 @@ class TagParserTests: XCTestCase {
   override func tearDown() {
     super.tearDown()
   }
+
   func testParser() {
     XCTAssertEqual(parser.parse("h").suggestedTypes, ["home"])
   }
+
   func testCommand() {
     XCTAssertEqual(parser.parse(":r").suggestedTypes, ["reminder"])
   }

@@ -7,18 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C508381F1D141B400025F67F /* CompletionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C508381D1D141B400025F67F /* CompletionCell.swift */; };
+		C50838201D141B400025F67F /* CompletionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C508381E1D141B400025F67F /* CompletionCell.xib */; };
+		C50838231D141C3F0025F67F /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50838221D141C3F0025F67F /* CollectionView.swift */; };
+		C50838261D141E820025F67F /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50838241D141E820025F67F /* TagCell.swift */; };
+		C50838271D141E820025F67F /* TagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C50838251D141E820025F67F /* TagCell.xib */; };
 		C531434F1BD0F1A6006A8E48 /* Tags.h in Headers */ = {isa = PBXBuildFile; fileRef = C531434E1BD0F1A6006A8E48 /* Tags.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C53143561BD0F1A6006A8E48 /* Tags.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C531434B1BD0F1A6006A8E48 /* Tags.framework */; settings = {ASSET_TAGS = (); }; };
+		C53143561BD0F1A6006A8E48 /* Tags.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C531434B1BD0F1A6006A8E48 /* Tags.framework */; };
 		C531435B1BD0F1A6006A8E48 /* TagsInterfaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531435A1BD0F1A6006A8E48 /* TagsInterfaceTests.swift */; };
-		C53143931BD0F2FD006A8E48 /* TagDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143921BD0F2FD006A8E48 /* TagDelegate.swift */; settings = {ASSET_TAGS = (); }; };
-		C53143951BD0F332006A8E48 /* TagParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143941BD0F332006A8E48 /* TagParser.swift */; settings = {ASSET_TAGS = (); }; };
-		C53143971BD0F4B8006A8E48 /* TagsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143961BD0F4B8006A8E48 /* TagsInterface.swift */; settings = {ASSET_TAGS = (); }; };
-		C53143A01BD1034B006A8E48 /* MemoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531439E1BD1034B006A8E48 /* MemoryData.swift */; settings = {ASSET_TAGS = (); }; };
-		C53143A11BD1034B006A8E48 /* TagMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531439F1BD1034B006A8E48 /* TagMemory.swift */; settings = {ASSET_TAGS = (); }; };
-		C53143A31BD10717006A8E48 /* TagParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143A21BD10717006A8E48 /* TagParserTests.swift */; settings = {ASSET_TAGS = (); }; };
-		C53143A51BD10E78006A8E48 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143A41BD10E78006A8E48 /* TagCell.swift */; settings = {ASSET_TAGS = (); }; };
-		C53143AA1BD193D3006A8E48 /* SuggestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143A91BD193D3006A8E48 /* SuggestionView.swift */; settings = {ASSET_TAGS = (); }; };
-		C53143BE1BD41F39006A8E48 /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143BD1BD41F39006A8E48 /* TextFieldDelegate.swift */; settings = {ASSET_TAGS = (); }; };
+		C53143931BD0F2FD006A8E48 /* TagDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143921BD0F2FD006A8E48 /* TagDelegate.swift */; };
+		C53143951BD0F332006A8E48 /* TagParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143941BD0F332006A8E48 /* TagParser.swift */; };
+		C53143971BD0F4B8006A8E48 /* TagsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143961BD0F4B8006A8E48 /* TagsInterface.swift */; };
+		C53143A01BD1034B006A8E48 /* MemoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531439E1BD1034B006A8E48 /* MemoryData.swift */; };
+		C53143A11BD1034B006A8E48 /* TagMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531439F1BD1034B006A8E48 /* TagMemory.swift */; };
+		C53143A31BD10717006A8E48 /* TagParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143A21BD10717006A8E48 /* TagParserTests.swift */; };
+		C53143AA1BD193D3006A8E48 /* SuggestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143A91BD193D3006A8E48 /* SuggestionView.swift */; };
+		C53143BE1BD41F39006A8E48 /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143BD1BD41F39006A8E48 /* TextFieldDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +36,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C508381D1D141B400025F67F /* CompletionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletionCell.swift; sourceTree = "<group>"; };
+		C508381E1D141B400025F67F /* CompletionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompletionCell.xib; sourceTree = "<group>"; };
+		C50838221D141C3F0025F67F /* CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
+		C50838241D141E820025F67F /* TagCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
+		C50838251D141E820025F67F /* TagCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagCell.xib; sourceTree = "<group>"; };
 		C531434B1BD0F1A6006A8E48 /* Tags.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Tags.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C531434E1BD0F1A6006A8E48 /* Tags.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tags.h; sourceTree = "<group>"; };
 		C53143501BD0F1A6006A8E48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -44,7 +53,6 @@
 		C531439E1BD1034B006A8E48 /* MemoryData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryData.swift; sourceTree = "<group>"; };
 		C531439F1BD1034B006A8E48 /* TagMemory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagMemory.swift; sourceTree = "<group>"; };
 		C53143A21BD10717006A8E48 /* TagParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagParserTests.swift; sourceTree = "<group>"; };
-		C53143A41BD10E78006A8E48 /* TagCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
 		C53143A91BD193D3006A8E48 /* SuggestionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestionView.swift; sourceTree = "<group>"; };
 		C53143BD1BD41F39006A8E48 /* TextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -68,6 +76,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C508381C1D141B260025F67F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				C50838241D141E820025F67F /* TagCell.swift */,
+				C50838251D141E820025F67F /* TagCell.xib */,
+				C508381D1D141B400025F67F /* CompletionCell.swift */,
+				C508381E1D141B400025F67F /* CompletionCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		C50838211D141C310025F67F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C50838221D141C3F0025F67F /* CollectionView.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		C53143411BD0F1A6006A8E48 = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +117,8 @@
 			isa = PBXGroup;
 			children = (
 				C531434E1BD0F1A6006A8E48 /* Tags.h */,
+				C50838211D141C310025F67F /* Extensions */,
+				C508381C1D141B260025F67F /* Cells */,
 				C53143911BD0F2FD006A8E48 /* src */,
 				C53143501BD0F1A6006A8E48 /* Info.plist */,
 			);
@@ -113,7 +142,6 @@
 				C53143921BD0F2FD006A8E48 /* TagDelegate.swift */,
 				C53143941BD0F332006A8E48 /* TagParser.swift */,
 				C53143961BD0F4B8006A8E48 /* TagsInterface.swift */,
-				C53143A41BD10E78006A8E48 /* TagCell.swift */,
 				C53143A91BD193D3006A8E48 /* SuggestionView.swift */,
 				C53143BD1BD41F39006A8E48 /* TextFieldDelegate.swift */,
 			);
@@ -219,6 +247,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C50838271D141E820025F67F /* TagCell.xib in Resources */,
+				C50838201D141B400025F67F /* CompletionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,11 +266,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C508381F1D141B400025F67F /* CompletionCell.swift in Sources */,
 				C53143AA1BD193D3006A8E48 /* SuggestionView.swift in Sources */,
-				C53143A51BD10E78006A8E48 /* TagCell.swift in Sources */,
 				C53143BE1BD41F39006A8E48 /* TextFieldDelegate.swift in Sources */,
 				C53143931BD0F2FD006A8E48 /* TagDelegate.swift in Sources */,
+				C50838261D141E820025F67F /* TagCell.swift in Sources */,
 				C53143951BD0F332006A8E48 /* TagParser.swift in Sources */,
+				C50838231D141C3F0025F67F /* CollectionView.swift in Sources */,
 				C53143971BD0F4B8006A8E48 /* TagsInterface.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

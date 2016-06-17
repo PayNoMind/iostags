@@ -10,21 +10,20 @@ import UIKit
 import Tags
 
 class ViewController: UIViewController {
-  @IBOutlet var collection: UICollectionView!
-  private var collectionDelegate: TagCollectionViewDelegate!
-//  private var 
+  @IBOutlet var collection: UICollectionView! {
+    didSet {
+      collection.delegate = collectionDelegate
+    }
+  }
+  private lazy var collectionDelegate: TagCollectionViewDelegate = {
+    let viewDelegate = TagCollectionViewDelegate()
+    return viewDelegate
+  }()
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    collection.delegate =
-    // Do any additional setup after loading the view, typically from a nib.
-  }
+    
 
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
   }
-
 
 }
-

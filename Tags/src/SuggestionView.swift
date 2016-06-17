@@ -8,10 +8,6 @@
 
 import UIKit
 
-private class CompletionCell: UICollectionViewCell {
-  @IBOutlet weak var label: UILabel!
-}
-
 private let StartingWidth = CGFloat(20.0)
 
 public class SuggestionView: UICollectionView {
@@ -30,24 +26,22 @@ public class SuggestionView: UICollectionView {
     self.parser = TagParser(tags: data)
     delegate = self
     dataSource = self
-    registerNib(UINib(nibName: "CompletionCell", bundle: nil), forCellWithReuseIdentifier: "completionCell")
+    registerNibWith(Title: String(CompletionCell), withBundle: NSBundle(forClass: self.dynamicType))
   }
 }
 
 extension SuggestionView: UICollectionViewDelegate {
-  public func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-    return true
-  }
   public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
     guard let cell = collectionView.cellForItemAtIndexPath(indexPath) as? CompletionCell, tf = editingTextField
       else { return }
-    tf.text = ":\(cell.label.text!)"
+    tf.text = cell.title
     tagTextChanged(tf)
   }
+
   private func tagTextChanged(textField: UITextField) {
-    guard !textField.text!.isEmpty && textField.text != " " else {
-      return
-    }
+    guard let text = textField.text
+      where !text.isEmpty && text != " "
+      else { return }
 
     let pos = textField.beginningOfDocument
     guard let pos2 = textField.tokenizer.positionFromPosition(pos, toBoundary: .Line, inDirection: 0)
@@ -75,10 +69,11 @@ extension SuggestionView: UICollectionViewDataSource {
   public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return parser.currentContainer.suggestedTypes.count
   }
+
   public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCellWithReuseIdentifier("completionCell", forIndexPath: indexPath)
+    let cell = collectionView.dequeueReusableCellWithReuseIdentifier(String(CompletionCell), forIndexPath: indexPath)
     if let cell = cell as? CompletionCell {
-      cell.label.text = parser.currentContainer.suggestedTypes[indexPath.row]
+      cell.title = parser.currentContainer.suggestedTypes[indexPath.row]
       cell.backgroundColor = UIColor.redColor()
     }
     return cell

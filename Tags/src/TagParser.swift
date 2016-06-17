@@ -32,17 +32,20 @@ public class TagParser {
   private func isCommand(command: String) -> Bool {
     return command.hasPrefix(commandPrefix)
   }
+
   private func handleCommands(command: String) -> TagContainer {
     let command = isCommand(command) ? String(command.characters.dropFirst()) : command
     let tags =  tagHandler.getTagsByPrefix(command)
     let type = CommandType(rawValue: command)
     return TagContainer(title: command, otherTags: tags, commandType: type)
   }
+
   public var currentContainer: TagContainer = TagContainer(title: "")
   public func parse(text: String) -> TagContainer {
     currentContainer = handleCommands(text)
     return currentContainer
   }
+
   init(tags: TagsInterface) {
     self.tagHandler = tags
   }

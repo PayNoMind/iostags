@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C50838151D1418F00025F67F /* Tags.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C53143BA1BD41B60006A8E48 /* Tags.framework */; };
+		C50838161D1418F00025F67F /* Tags.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C53143BA1BD41B60006A8E48 /* Tags.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C53143721BD0F230006A8E48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143711BD0F230006A8E48 /* AppDelegate.swift */; };
 		C53143741BD0F230006A8E48 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143731BD0F230006A8E48 /* ViewController.swift */; };
 		C53143771BD0F230006A8E48 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C53143751BD0F230006A8E48 /* Main.storyboard */; };
@@ -16,6 +18,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		C50838171D1418F00025F67F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C53143B41BD41B60006A8E48 /* Tags.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = C531434A1BD0F1A6006A8E48;
+			remoteInfo = Tags;
+		};
 		C53143831BD0F230006A8E48 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C53143661BD0F230006A8E48 /* Project object */;
@@ -39,6 +48,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		C50838191D1418F00025F67F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C50838161D1418F00025F67F /* Tags.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		C531436E1BD0F230006A8E48 /* TagsExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TagsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C53143711BD0F230006A8E48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C50838151D1418F00025F67F /* Tags.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,10 +155,12 @@
 				C531436A1BD0F230006A8E48 /* Sources */,
 				C531436B1BD0F230006A8E48 /* Frameworks */,
 				C531436C1BD0F230006A8E48 /* Resources */,
+				C50838191D1418F00025F67F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C50838181D1418F00025F67F /* PBXTargetDependency */,
 			);
 			name = TagsExample;
 			productName = TagsExample;
@@ -260,6 +286,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		C50838181D1418F00025F67F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Tags;
+			targetProxy = C50838171D1418F00025F67F /* PBXContainerItemProxy */;
+		};
 		C53143841BD0F230006A8E48 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C531436D1BD0F230006A8E48 /* TagsExample */;
@@ -372,6 +403,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = TagsExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ca.Fluiddynamics.TagsExample;
@@ -383,6 +415,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = TagsExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ca.Fluiddynamics.TagsExample;

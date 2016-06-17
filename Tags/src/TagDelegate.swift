@@ -7,6 +7,10 @@ public protocol TagProtocol {
 
 private let StartingWidth: CGFloat = 20.0
 
+enum Tags: String {
+  case Default = "Add Tag"
+}
+
 public class TagDelegate: TagProtocol {
   private var tags: [String] = [String]()
   private var tagDelegate: TagCollectionViewDelegate!
@@ -16,8 +20,14 @@ public class TagDelegate: TagProtocol {
   convenience init(tags: [String]) {
     self.init()
     var temp = tags
-    temp.append("Add Tag")
+    temp.append(Tags.Default.rawValue)
     self.tags = temp
+  }
+
+  func updateTags(tags: [String]) {
+    if tags.count > 0 {
+      self.tags = tags
+    }
   }
   
   func setupDelegateAndDataSource(collectionView: UICollectionView, interface: TagsInterface) -> (delegate: TagCollectionViewDelegate, dataSource: TagDataSource) {
@@ -27,9 +37,11 @@ public class TagDelegate: TagProtocol {
     tagDataSource.delegate = self
     return (tagDelegate, tagDataSource)
   }
+
   public func getTags() -> [String] {
     return tags
   }
+
   public func getTagAtIndex(index: Int) -> String? {
     guard index > tags.count else {
       return nil
@@ -38,10 +50,11 @@ public class TagDelegate: TagProtocol {
   }
 }
 
+
 public class TagCollectionViewDelegate: NSObject, UICollectionViewDelegateFlowLayout {
   var delegate: TagDelegate!
   
-  func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+  public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
     func getStringSize(string: String, withFontSize size: CGFloat) -> CGSize {
       return string.sizeWithAttributes([NSFontAttributeName: UIFont.systemFontOfSize(size)])
     }
@@ -49,36 +62,38 @@ public class TagCollectionViewDelegate: NSObject, UICollectionViewDelegateFlowLa
     let margin = CGFloat(10)
     let visibleCell = collectionView.visibleCells()[0] as? TagCell
     guard let sizeString = delegate.getTagAtIndex(indexPath.row) else {
-      return CGSizeMake(StartingWidth + margin, 20)
+      return CGSize(width: StartingWidth + margin, height: 20)
     }
-    let size = getStringSize(sizeString, withFontSize: (visibleCell?.textField.font!.pointSize)!)
-    return CGSizeMake(size.width + margin, 20)
+    let size = getStringSize(sizeString, withFontSize: (visibleCell?.textField.font?.pointSize)!)
+    return CGSize(width: size.width + margin, height: 20)
   }
 }
 
 class TagDataSource: NSObject {
-  private var currentTextField: UITextField?
   private var delegate: TagDelegate!
   private var collectionView: UICollectionView!
   private lazy var completionView: SuggestionView = {
     return SuggestionView()
   }()
+  private var textFieldDelegate = TagsCollectionTextFieldDelegate()
 
   convenience init(collectionView: UICollectionView, data: TagsInterface) {
     self.init()
     self.collectionView = collectionView
   }
+
   func updateSuggestions(tag: TagContainer) {
     if self.completionView.numberOfItemsInSection(0) != tag.suggestedTypes.count {
       completionView.performBatchUpdates({ () -> Void in
-        for var x=0; x<self.completionView.numberOfItemsInSection(0); x++ {
-          self.completionView.deleteItemsAtIndexPaths([NSIndexPath(forRow: x, inSection: 0)])
+        for idx in 0..<self.completionView.numberOfItemsInSection(0) {
+          self.completionView.deleteItemsAtIndexPaths([NSIndexPath(forRow: idx, inSection: 0)])
         }
-        for var x=0; x<tag.suggestedTypes.count; x++ {
-          self.completionView.insertItemsAtIndexPaths([NSIndexPath(forRow: x, inSection: 0)])
+
+        for idx in 0..<tag.suggestedTypes.count {
+          self.completionView.insertItemsAtIndexPaths([NSIndexPath(forRow: idx, inSection: 0)])
         }
-        }) { (complete) -> Void in
-          
+      }) { (complete) -> Void in
+
       }
     }
   }
@@ -88,6 +103,7 @@ extension TagDataSource: UICollectionViewDataSource {
   func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return delegate.tags.count
   }
+
   func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCellWithReuseIdentifier("tagCell", forIndexPath: indexPath)
     if let cell = cell as? TagCell {
@@ -96,12 +112,15 @@ extension TagDataSource: UICollectionViewDataSource {
     }
     return cell
   }
+
   private func setupTagCell(cell: TagCell, withTag tag: String) {
     cell.backgroundColor = UIColor.redColor()
-    cell.textField.addTarget(self, action:"tagTextChanged:", forControlEvents: .EditingChanged)
-    cell.textField.delegate = self
+    cell.textField.addTarget(self, action:#selector(TagDataSource.tagTextChanged), forControlEvents: .EditingChanged)
+    cell.textField.delegate = textFieldDelegate
+    cell.textField.inputAccessoryView = completionView
     cell.textField.text = tag
   }
+
   func tagTextChanged(textField: UITextField) {
     var resultFrame = CGRectZero
     if !textField.text!.isEmpty && textField.text != " " {
