@@ -46,7 +46,7 @@ public class TagParser {
     return currentContainer
   }
 
-  init(tags: TagsInterface) {
+  public init(tags: TagsInterface) {
     self.tagHandler = tags
   }
 }

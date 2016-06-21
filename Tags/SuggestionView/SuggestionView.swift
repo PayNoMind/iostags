@@ -3,7 +3,7 @@
 //  Tags
 //
 //  Created by Tom Clark on 2015-10-16.
-//  Copyright © 2015 Fluiddynamics. All rights reserved.
+//  Copyright © 2016 Fluiddynamics. All rights reserved.
 //
 
 import UIKit
@@ -13,17 +13,19 @@ private let StartingWidth = CGFloat(20.0)
 public class SuggestionView: UICollectionView {
   private var parser: TagParser!
   public var editingTextField: UITextField?
-  public var tagDelegate: TagDelegate!
-  
-  convenience init(data: TagsInterface) {
+//  public var tagDelegate: TagDelegate!
+
+  convenience public init(data: TagsInterface) {
     let _layout = UICollectionViewFlowLayout()
     _layout.scrollDirection = .Horizontal
     _layout.estimatedItemSize = CGSize(width: 100, height: 38)
     _layout.minimumInteritemSpacing = 10
 
-    self.init(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 40), collectionViewLayout: _layout)
+    let frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 40)
+    self.init(frame: frame, collectionViewLayout: _layout)
 
     self.parser = TagParser(tags: data)
+
     delegate = self
     dataSource = self
     registerNibWith(Title: String(CompletionCell), withBundle: NSBundle(forClass: self.dynamicType))
@@ -43,14 +45,14 @@ extension SuggestionView: UICollectionViewDelegate {
       where !text.isEmpty && text != " "
       else { return }
 
-    let pos = textField.beginningOfDocument
-    guard let pos2 = textField.tokenizer.positionFromPosition(pos, toBoundary: .Line, inDirection: 0)
-      else { return }
-
-    let range = textField.textRangeFromPosition(pos, toPosition: pos2)!
-    let resultFrame = textField.firstRectForRange(range)
-    let rectHold = textField.frame
-    let width = resultFrame.size.width+12.0 > StartingWidth ? CGFloat(20.0) : resultFrame.size.width+12.0
+//    let pos = textField.beginningOfDocument
+//    guard let pos2 = textField.tokenizer.positionFromPosition(pos, toBoundary: .Line, inDirection: 0)
+//      else { return }
+//
+//    let range = textField.textRangeFromPosition(pos, toPosition: pos2)!
+//    let resultFrame = textField.firstRectForRange(range)
+//    let rectHold = textField.frame
+//    let width = resultFrame.size.width+12.0 > StartingWidth ? CGFloat(20.0) : resultFrame.size.width+12.0
 
 
 //    collectionView.collectionViewLayout.invalidateLayout()
@@ -58,10 +60,8 @@ extension SuggestionView: UICollectionViewDelegate {
 
     //tagDelegate.getTagAtIndex(tagDelegate.currentIndex) = textField.text!
     //delegate.tags[delegate.currentIndex] = textField.text!
-    textField.frame = CGRectMake(rectHold.origin.x, rectHold.origin.y, width, resultFrame.size.height)
+//    textField.frame = CGRectMake(rectHold.origin.x, rectHold.origin.y, width, resultFrame.size.height)
     //collectionView.scrollToItemAtIndexPath(NSIndexPath(forRow: delegate.currentIndex, inSection: 0), atScrollPosition: .CenteredHorizontally, animated: true)
-
-
   }
 }
 

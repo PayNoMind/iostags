@@ -9,7 +9,7 @@
 import Foundation
 
 extension UICollectionView {
-  func registerNibWith(Title title: String, withBundle: NSBundle) {
+  public func registerNibWith(Title title: String, withBundle: NSBundle) {
     let nib = UINib(nibName: title, bundle: withBundle)
     self.registerNib(nib, forCellWithReuseIdentifier: title)
   }

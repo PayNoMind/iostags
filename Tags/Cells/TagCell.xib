@@ -6,14 +6,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="gmK-CR-KJx" customClass="TagCell" customModule="Priority" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="gmK-CR-KJx" customClass="TagCell" customModule="Tags" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="120" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="120" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j0R-pw-xMy">
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Tag Title" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="j0R-pw-xMy">
                         <rect key="frame" x="8" y="8" width="104" height="28"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="28" id="15c-IL-Mbz"/>
@@ -24,6 +24,7 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
+            <color key="backgroundColor" red="1" green="0.055564177690000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="j0R-pw-xMy" firstAttribute="leading" secondItem="gmK-CR-KJx" secondAttribute="leading" constant="8" id="Hay-uQ-q5N"/>
                 <constraint firstAttribute="trailing" secondItem="j0R-pw-xMy" secondAttribute="trailing" constant="8" id="Qad-NT-uyW"/>
