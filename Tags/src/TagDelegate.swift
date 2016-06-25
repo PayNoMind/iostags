@@ -5,8 +5,6 @@ public protocol TagProtocol {
   func getTagAtIndex(index: Int) -> String?
 }
 
-private let StartingWidth: CGFloat = 20.0
-
 enum Tags: String {
   case Default = "Add Tag"
 }
@@ -16,7 +14,7 @@ public class TagDelegate: NSObject {
   private weak var collectionView: UICollectionView?
 
   private lazy var suggestionView: SuggestionView = {
-    return SuggestionView(data: self)
+    return SuggestionView()
   }()
 
   private lazy var dataSource: CollectionArrayDataSource<String, TagCell> = {
@@ -74,7 +72,7 @@ extension TagDelegate: TagsInterface {
   public func getAllTags() -> Set<String> {
     return Set(tags)
   }
-  
+
   public func getTagsByPrefix(prefix: String) -> [String] {
     return tags.filter {
       return $0.hasPrefix(prefix)

@@ -1,0 +1,4 @@
+disabled_rules:
+  - line_length
+opt_in_rules: # some rules are only opt-in
+  - force_unwrapping

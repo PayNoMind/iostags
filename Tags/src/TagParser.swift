@@ -14,7 +14,7 @@ public struct TagContainer {
   public var suggestedTypes: [String] {
     let temp = CommandType.allValues.filter { (value) -> Bool in
       value.rawValue.hasPrefix(title)
-    }.map{ $0.rawValue }
+    }.map { $0.rawValue }
     return temp + otherTags
   }
   init(title: String, otherTags tags: [String]=[], commandType type: CommandType?=nil) {

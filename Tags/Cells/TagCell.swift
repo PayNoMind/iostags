@@ -54,7 +54,6 @@ extension TagCell: UITextFieldDelegate {
       insertNewTag?(self)
       return false
     }
-    
     return true
   }
 }
