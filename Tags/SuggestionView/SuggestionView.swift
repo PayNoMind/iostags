@@ -9,12 +9,18 @@
 import UIKit
 
 public class SuggestionView: UICollectionView {
-
-  private let startingWidth = CGFloat(20.0)
+  private lazy var suggestionDataSource: CollectionArrayDataSource<String, CompletionCell> = {
+    let ds = CollectionArrayDataSource<String, CompletionCell>(anArray: [self.tags], withCellIdentifier: String(CompletionCell), andCustomizeClosure: self.setupSuggestionCell)
+    return ds
+  }()
 
   public var editingTextField: UITextField?
-  public var elementPassing: (Void -> [String])?
-  public var getSuggestions: (String -> Void)?
+  public var tags: [String] = [] {
+    didSet {
+      self.reloadData()
+    }
+  }
+  public var setSuggesion: (String -> Void)?
 
   convenience public init() {
     let _layout = UICollectionViewFlowLayout()
@@ -27,8 +33,13 @@ public class SuggestionView: UICollectionView {
     self.init(frame: frame, collectionViewLayout: _layout)
 
     delegate = self
-    dataSource = self
+    dataSource = suggestionDataSource
     registerNibWith(Title: String(CompletionCell), withBundle: NSBundle(forClass: self.dynamicType))
+  }
+
+  private func setupSuggestionCell(cell: CompletionCell, item: String, path: NSIndexPath) {
+    cell.title = tags[path.row]
+    cell.backgroundColor = UIColor.redColor()
   }
 }
 
@@ -38,21 +49,6 @@ extension SuggestionView: UICollectionViewDelegate {
       else { return }
 
     tf.text = cell.title
-    getSuggestions?(cell.title)
-  }
-}
-
-extension SuggestionView: UICollectionViewDataSource {
-  public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return elementPassing?().count ?? 0
-  }
-
-  public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCellWithReuseIdentifier(String(CompletionCell), forIndexPath: indexPath)
-    if let cell = cell as? CompletionCell, elements = elementPassing {
-      cell.title = elements()[indexPath.row]
-      cell.backgroundColor = UIColor.redColor()
-    }
-    return cell
+    setSuggesion?(cell.title)
   }
 }

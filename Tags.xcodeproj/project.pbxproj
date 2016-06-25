@@ -29,6 +29,7 @@
 		C570E4E81D1E902900A947F1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C570E4E61D1E902900A947F1 /* Main.storyboard */; };
 		C570E4EA1D1E902900A947F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C570E4E91D1E902900A947F1 /* Assets.xcassets */; };
 		C570E4ED1D1E902900A947F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C570E4EB1D1E902900A947F1 /* LaunchScreen.storyboard */; };
+		C570E4F21D1E977B00A947F1 /* Tags.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C531434B1BD0F1A6006A8E48 /* Tags.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C570E4F21D1E977B00A947F1 /* Tags.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

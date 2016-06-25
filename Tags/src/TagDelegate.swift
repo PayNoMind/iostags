@@ -13,9 +13,8 @@ public class TagDelegate: NSObject {
   private var tags = ["Cheese Burger"]
   private weak var collectionView: UICollectionView?
 
-  private lazy var suggestionView: SuggestionView = {
-    return SuggestionView()
-  }()
+  private lazy var parser: TagParser = TagParser(tags: self)
+  private lazy var suggestionView: SuggestionView = SuggestionView()
 
   private lazy var dataSource: CollectionArrayDataSource<String, TagCell> = {
     let ds = CollectionArrayDataSource<String, TagCell>(anArray: [self.tags], withCellIdentifier: String(TagCell), andCustomizeClosure: self.customizeCell)
@@ -28,12 +27,16 @@ public class TagDelegate: NSObject {
     self.collectionView = collectionView
   }
 
+  private func getSuggestions(item: String) {
+    suggestionView.tags = parser.parse(item).suggestedTypes
+  }
+
   func customizeCell(cell: TagCell, item: String, path: NSIndexPath) {
     cell.tagTitle = item
     cell.insertNewTag = { cell in
 
-    guard let currentIndexPath = self.collectionView?.indexPathForCell(cell)
-      else { return }
+      guard let currentIndexPath = self.collectionView?.indexPathForCell(cell)
+        else { return }
 
       self.tags.append("")
       self.dataSource.updateData([self.tags])
@@ -52,7 +55,7 @@ public class TagDelegate: NSObject {
   @objc
   private func tagTextChanged(textField: UITextField) {
     if let tagText = textField.text where !tagText.characters.isEmpty {
-
+      getSuggestions(tagText)
     }
     collectionView?.collectionViewLayout.invalidateLayout()
   }
@@ -60,11 +63,12 @@ public class TagDelegate: NSObject {
 
 extension TagDelegate: UICollectionViewDelegateFlowLayout {
   public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-    if let cell = collectionView.cellForItemAtIndexPath(indexPath) as? TagCell, tagText = cell.textField.text, font = cell.textField.font {
-      let width = CellWidth.widthOf(Text: tagText, withFont: font)
-      return CGSize(width: width, height: collectionView.bounds.height)
-    }
-    return CGSize(width: 20, height: collectionView.bounds.height)
+    guard let cell = collectionView.cellForItemAtIndexPath(indexPath) as? TagCell,
+    tagText = cell.textField.text, font = cell.textField.font
+      else { return CGSize(width: 20, height: collectionView.bounds.height) }
+
+    let width = CellWidth.widthOf(Text: tagText, withFont: font)
+    return CGSize(width: width, height: collectionView.bounds.height)
   }
 }
 

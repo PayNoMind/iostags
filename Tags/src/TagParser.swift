@@ -6,28 +6,29 @@ public enum CommandType: String {
   static let allValues = [dueDate, reminder]
 }
 
-public struct TagContainer {
-  private var otherTags: [String]
-  public let title: String
-  public var isCommand: Bool = false
-  public var type: CommandType?
-  public var suggestedTypes: [String] {
-    let temp = CommandType.allValues.filter { (value) -> Bool in
-      value.rawValue.hasPrefix(title)
-    }.map { $0.rawValue }
-    return temp + otherTags
-  }
-  init(title: String, otherTags tags: [String]=[], commandType type: CommandType?=nil) {
-    self.title = title
-    self.type = type
-    self.otherTags = tags
-    self.isCommand = type != nil
-  }
-}
-
 public class TagParser {
   private let commandPrefix = ":"
   private var tagHandler: TagsInterface
+
+  public struct TagContainer {
+    private var otherTags: [String]
+    public let title: String
+    public var isCommand = false
+    public var type: CommandType?
+    public var suggestedTypes: [String] {
+      let temp = CommandType.allValues.filter { (value) -> Bool in
+        value.rawValue.hasPrefix(title)
+        }.map { $0.rawValue }
+      return temp + otherTags
+    }
+
+    init(title: String, otherTags tags: [String]=[], commandType type: CommandType?=nil) {
+      self.title = title
+      self.type = type
+      self.otherTags = tags
+      self.isCommand = type != nil
+    }
+  }
 
   private func isCommand(command: String) -> Bool {
     return command.hasPrefix(commandPrefix)
