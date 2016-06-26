@@ -22,11 +22,19 @@ class TagParserTests: XCTestCase {
     super.tearDown()
   }
 
-  func testParser() {
-    XCTAssertEqual(parser.parse("h").suggestedTypes, ["home"])
+  func testParse_getAllValuesWithLetter_ReturnsAllValuesMatchingLetter() {
+    XCTAssertEqual(parser.parse("h").map { $0.title }, ["home"])
   }
 
-  func testCommand() {
-    XCTAssertEqual(parser.parse(":r").suggestedTypes, ["reminder"])
+  func testParse_LetterThatIsUpperCaseLetter_ReturnsAllValuesMatchingLetter() {
+    XCTAssertEqual(parser.parse("H").map { $0.title }, ["home"])
+  }
+
+  func testParse_CommandCharacter_ReturnsAllCommands() {
+    XCTAssertEqual(Set(parser.parse(":").map { $0.title }), ["reminder", "duedate"])
+  }
+
+  func testParse_CommandThatMatchesLetter_ReturnsCommand() {
+    XCTAssertEqual(parser.parse(":r").map { $0.title }, ["reminder"])
   }
 }

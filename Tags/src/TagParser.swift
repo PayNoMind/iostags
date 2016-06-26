@@ -6,48 +6,84 @@ public enum CommandType: String {
   static let allValues = [dueDate, reminder]
 }
 
+extension String {
+  var isCommand: Bool {
+    let commandPrefix = ":"
+    return self.hasPrefix(commandPrefix)
+  }
+}
+
 public class TagParser {
-  private let commandPrefix = ":"
-  private var tagHandler: TagsInterface
+  private var tagHandler: TagsDataSource
 
   public struct TagContainer {
-    private var otherTags: [String]
     public let title: String
-    public var isCommand = false
-    public var type: CommandType?
-    public var suggestedTypes: [String] {
-      let temp = CommandType.allValues.filter { (value) -> Bool in
-        value.rawValue.hasPrefix(title)
-        }.map { $0.rawValue }
-      return temp + otherTags
+    public let type: CommandType?
+
+    public var isCommand: Bool {
+      return type != nil
     }
 
-    init(title: String, otherTags tags: [String]=[], commandType type: CommandType?=nil) {
+    init(title: String) {
       self.title = title
-      self.type = type
-      self.otherTags = tags
-      self.isCommand = type != nil
+      self.type = nil
+    }
+
+    init?(commandType: CommandType?) {
+      guard let commandType = commandType
+        else { return nil }
+
+      self.type = commandType
+      self.title = commandType.rawValue
     }
   }
 
-  private func isCommand(command: String) -> Bool {
-    return command.hasPrefix(commandPrefix)
+  private func removeCommandPrefix(command: String) -> String {
+    return command.isCommand ? String(command.characters.dropFirst()) : command
   }
 
-  private func handleCommands(command: String) -> TagContainer {
-    let command = isCommand(command) ? String(command.characters.dropFirst()) : command
-    let tags =  tagHandler.getTagsByPrefix(command)
-    let type = CommandType(rawValue: command)
-    return TagContainer(title: command, otherTags: tags, commandType: type)
+  private func getCommandBy(Name name: String) -> TagContainer? {
+    let type = CommandType.allValues.filter { value -> Bool in
+      value.rawValue.hasPrefix(name)
+    }.first
+
+    return TagContainer(commandType: type)
   }
 
-  public var currentContainer: TagContainer = TagContainer(title: "")
-  public func parse(text: String) -> TagContainer {
-    currentContainer = handleCommands(text)
-    return currentContainer
+  private func handleCommands(command: String) -> [TagContainer]? {
+    let command = removeCommandPrefix(command).lowercaseString
+
+    if command.isEmpty {
+      return CommandType.allValues.map {
+        TagContainer(commandType: $0)
+      }.flatMap { $0 }
+    }
+
+    if let command = getCommandBy(Name: command) {
+      return [command]
+    }
+
+    return nil
   }
 
-  public init(tags: TagsInterface) {
+  private func getTagsThatMatch(Text text: String) -> [TagContainer] {
+    let tags: [TagContainer] =  tagHandler.getTagsByPrefix(text.lowercaseString).map { tag -> TagContainer in
+      return TagContainer(title: tag)
+    }
+    return tags
+  }
+
+  public var currentTags = [TagContainer]()
+  public func parse(text: String) -> [TagContainer] {
+    if let tags = handleCommands(text) {
+      currentTags = tags
+    } else {
+      currentTags = getTagsThatMatch(Text: text)
+    }
+    return currentTags
+  }
+
+  public init(tags: TagsDataSource) {
     self.tagHandler = tags
   }
 }

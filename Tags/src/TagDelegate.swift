@@ -10,7 +10,7 @@ enum Tags: String {
 }
 
 public class TagDelegate: NSObject {
-  private var tags = ["Cheese Burger"]
+  private var tags = [String]()
   private weak var collectionView: UICollectionView?
 
   private lazy var parser: TagParser = TagParser(tags: self)
@@ -21,14 +21,22 @@ public class TagDelegate: NSObject {
     return ds
   }()
 
-  public convenience init(collectionView: UICollectionView) {
+  public convenience init(collectionView: UICollectionView, tags: [String]) {
     self.init()
+    self.tags = tags
     collectionView.dataSource = dataSource
     self.collectionView = collectionView
   }
 
   private func getSuggestions(item: String) {
-    suggestionView.tags = parser.parse(item).suggestedTypes
+    let items = parser.parse(item).map { tag -> String in
+      if let raw = tag.type?.rawValue where tag.isCommand {
+        return raw
+      }
+      return tag.title
+    }
+
+    suggestionView.tags = items
   }
 
   func customizeCell(cell: TagCell, item: String, path: NSIndexPath) {
@@ -72,7 +80,7 @@ extension TagDelegate: UICollectionViewDelegateFlowLayout {
   }
 }
 
-extension TagDelegate: TagsInterface {
+extension TagDelegate: TagsDataSource {
   public func getAllTags() -> Set<String> {
     return Set(tags)
   }

@@ -9,7 +9,7 @@
 import Foundation
 import Tags
 
-class TagMemory: TagsInterface {
+class TagMemory: TagsDataSource {
   func getTagsByPrefix(prefix: String) -> [String] {
     let tags = Array(MemoryData.tags)
     return tags.filter {

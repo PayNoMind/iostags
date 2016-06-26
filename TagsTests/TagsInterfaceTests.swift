@@ -10,7 +10,7 @@ import XCTest
 @testable import Tags
 
 class TagsInterfaceTests: XCTestCase {
-  var memory: TagsInterface!
+  var memory: TagsDataSource!
   override func setUp() {
     super.setUp()
     memory = TagMemory()
@@ -21,7 +21,7 @@ class TagsInterfaceTests: XCTestCase {
   }
 
   func testGettingAllTags() {
-    XCTAssertEqual(Set(["groceries", "home", "work", "stuff", "longstringthatislong"]), Set(memory.getAllTags()))
+    XCTAssertEqual(Set(["groceries", "home", "work", "stuff", "longstringthatislong", "day"]), Set(memory.getAllTags()))
   }
 
   func testGetTagsByPrefix() {

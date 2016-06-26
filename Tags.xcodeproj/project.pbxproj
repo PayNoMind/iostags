@@ -20,7 +20,7 @@
 		C531435B1BD0F1A6006A8E48 /* TagsInterfaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531435A1BD0F1A6006A8E48 /* TagsInterfaceTests.swift */; };
 		C53143931BD0F2FD006A8E48 /* TagDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143921BD0F2FD006A8E48 /* TagDelegate.swift */; };
 		C53143951BD0F332006A8E48 /* TagParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143941BD0F332006A8E48 /* TagParser.swift */; };
-		C53143971BD0F4B8006A8E48 /* TagsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143961BD0F4B8006A8E48 /* TagsInterface.swift */; };
+		C53143971BD0F4B8006A8E48 /* TagsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143961BD0F4B8006A8E48 /* TagsDataSource.swift */; };
 		C53143A01BD1034B006A8E48 /* MemoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531439E1BD1034B006A8E48 /* MemoryData.swift */; };
 		C53143A11BD1034B006A8E48 /* TagMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531439F1BD1034B006A8E48 /* TagMemory.swift */; };
 		C53143A31BD10717006A8E48 /* TagParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143A21BD10717006A8E48 /* TagParserTests.swift */; };
@@ -59,7 +59,7 @@
 		C531435C1BD0F1A6006A8E48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C53143921BD0F2FD006A8E48 /* TagDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagDelegate.swift; sourceTree = "<group>"; };
 		C53143941BD0F332006A8E48 /* TagParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagParser.swift; sourceTree = "<group>"; };
-		C53143961BD0F4B8006A8E48 /* TagsInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsInterface.swift; sourceTree = "<group>"; };
+		C53143961BD0F4B8006A8E48 /* TagsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsDataSource.swift; sourceTree = "<group>"; };
 		C531439E1BD1034B006A8E48 /* MemoryData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryData.swift; sourceTree = "<group>"; };
 		C531439F1BD1034B006A8E48 /* TagMemory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagMemory.swift; sourceTree = "<group>"; };
 		C53143A21BD10717006A8E48 /* TagParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagParserTests.swift; sourceTree = "<group>"; };
@@ -192,7 +192,7 @@
 			children = (
 				C53143921BD0F2FD006A8E48 /* TagDelegate.swift */,
 				C53143941BD0F332006A8E48 /* TagParser.swift */,
-				C53143961BD0F4B8006A8E48 /* TagsInterface.swift */,
+				C53143961BD0F4B8006A8E48 /* TagsDataSource.swift */,
 				C50838301D1940570025F67F /* CellWidth.swift */,
 			);
 			path = src;
@@ -387,7 +387,7 @@
 				C50838231D141C3F0025F67F /* CollectionView.swift in Sources */,
 				C50838381D1951C10025F67F /* CompletionCell.swift in Sources */,
 				C50838311D1940570025F67F /* CellWidth.swift in Sources */,
-				C53143971BD0F4B8006A8E48 /* TagsInterface.swift in Sources */,
+				C53143971BD0F4B8006A8E48 /* TagsDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

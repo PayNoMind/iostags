@@ -17,6 +17,7 @@ public class SuggestionView: UICollectionView {
   public var editingTextField: UITextField?
   public var tags: [String] = [] {
     didSet {
+      suggestionDataSource.updateData([tags])
       self.reloadData()
     }
   }

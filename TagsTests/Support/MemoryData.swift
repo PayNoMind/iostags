@@ -2,7 +2,7 @@ import Foundation
 
 class MemoryData {
   static let sharedInstance = MemoryData()
-  private var _tags: Set = ["groceries", "home", "work", "stuff", "longstringthatislong"]
+  private var _tags: Set = ["groceries", "home", "work", "stuff", "longstringthatislong", "day"]
 
   class var tags: Set<String> {
     get {
