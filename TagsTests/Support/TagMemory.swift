@@ -16,9 +16,11 @@ class TagMemory: TagsDataSource {
       $0.hasPrefix(prefix)
     }
   }
+
   func getAllTags() -> Set<String> {
     return MemoryData.tags
   }
+
   func insertTag(tag: String) {
     MemoryData.tags.insert(tag)
   }

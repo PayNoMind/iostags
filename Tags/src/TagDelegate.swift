@@ -13,10 +13,10 @@ public class TagDelegate: NSObject {
   private var tags = [String]()
   private weak var collectionView: UICollectionView?
 
-  private lazy var parser: TagParser = TagParser(tags: self)
+  private lazy var parser: TagParser = TagParser(tags: self.tagDataSource)
   private lazy var suggestionView: SuggestionView = SuggestionView()
 
-  private lazy var dataSource: CollectionArrayDataSource<String, TagCell> = {
+  private lazy var collectionDataSource: CollectionArrayDataSource<String, TagCell> = {
     let ds = CollectionArrayDataSource<String, TagCell>(anArray: [self.tags], withCellIdentifier: String(TagCell), andCustomizeClosure: self.customizeCell)
     return ds
   }()
@@ -24,9 +24,11 @@ public class TagDelegate: NSObject {
   public convenience init(collectionView: UICollectionView, tags: [String]) {
     self.init()
     self.tags = tags
-    collectionView.dataSource = dataSource
+    collectionView.dataSource = collectionDataSource
     self.collectionView = collectionView
   }
+
+  public var tagDataSource: TagsDataSource!
 
   private func getSuggestions(item: String) {
     let items = parser.parse(item).map { tag -> String in
@@ -47,7 +49,7 @@ public class TagDelegate: NSObject {
         else { return }
 
       self.tags.append("")
-      self.dataSource.updateData([self.tags])
+      self.collectionDataSource.updateData([self.tags])
 
       let newIndexPath = NSIndexPath(forRow: currentIndexPath.row+1, inSection: currentIndexPath.section)
       self.collectionView?.insertItemsAtIndexPaths([newIndexPath])
@@ -62,7 +64,7 @@ public class TagDelegate: NSObject {
 
   @objc
   private func tagTextChanged(textField: UITextField) {
-    if let tagText = textField.text where !tagText.characters.isEmpty {
+    if let tagText = textField.text {
       getSuggestions(tagText)
     }
     collectionView?.collectionViewLayout.invalidateLayout()
@@ -77,21 +79,5 @@ extension TagDelegate: UICollectionViewDelegateFlowLayout {
 
     let width = CellWidth.widthOf(Text: tagText, withFont: font)
     return CGSize(width: width, height: collectionView.bounds.height)
-  }
-}
-
-extension TagDelegate: TagsDataSource {
-  public func getAllTags() -> Set<String> {
-    return Set(tags)
-  }
-
-  public func getTagsByPrefix(prefix: String) -> [String] {
-    return tags.filter {
-      return $0.hasPrefix(prefix)
-    }
-  }
-
-  public func insertTag(tag: String) {
-    tags.append(tag)
   }
 }

@@ -38,8 +38,8 @@ public class TagParser {
     }
   }
 
-  private func removeCommandPrefix(command: String) -> String {
-    return command.isCommand ? String(command.characters.dropFirst()) : command
+  private func removeCommandPrefix(command: String) -> String? {
+    return command.isCommand ? String(command.characters.dropFirst()) : nil
   }
 
   private func getCommandBy(Name name: String) -> TagContainer? {
@@ -51,7 +51,8 @@ public class TagParser {
   }
 
   private func handleCommands(command: String) -> [TagContainer]? {
-    let command = removeCommandPrefix(command).lowercaseString
+    guard let command = removeCommandPrefix(command)
+      else { return nil }
 
     if command.isEmpty {
       return CommandType.allValues.map {
@@ -59,7 +60,7 @@ public class TagParser {
       }.flatMap { $0 }
     }
 
-    if let command = getCommandBy(Name: command) {
+    if let command = getCommandBy(Name: command.lowercaseString) {
       return [command]
     }
 
@@ -67,7 +68,7 @@ public class TagParser {
   }
 
   private func getTagsThatMatch(Text text: String) -> [TagContainer] {
-    let tags: [TagContainer] =  tagHandler.getTagsByPrefix(text.lowercaseString).map { tag -> TagContainer in
+    let tags: [TagContainer] = tagHandler.getTagsByPrefix(text.lowercaseString).map { tag -> TagContainer in
       return TagContainer(title: tag)
     }
     return tags

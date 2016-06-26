@@ -15,10 +15,29 @@ class ViewController: UIViewController {
       collection.registerNibWith(Title: String(TagCell), withBundle: NSBundle(identifier: "ca.Fluiddynamics.Tags")!)
 
       tagDelegate = TagDelegate(collectionView: self.collection, tags: ["CheeseBurger"])
+      tagDelegate.tagDataSource = self
       (collection.collectionViewLayout as? UICollectionViewFlowLayout)?.estimatedItemSize = CGSize(width: 60, height: 20)
       collection.delegate = tagDelegate
     }
   }
 
   private var tagDelegate: TagDelegate!
+
+  private var tags: Set = ["groceries", "home", "work", "stuff", "longstringthatislong", "day"]
+}
+
+extension ViewController: TagsDataSource {
+  func getTagsByPrefix(prefix: String) -> [String] {
+    return tags.filter {
+      $0.hasPrefix(prefix)
+    }
+  }
+
+  func getAllTags() -> Set<String> {
+    return tags
+  }
+
+  func insertTag(tag: String) {
+    tags.insert(tag)
+  }
 }
