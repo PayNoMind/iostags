@@ -1,10 +1,5 @@
 import UIKit
 
-public protocol TagProtocol {
-  func getTags() -> [String]
-  func getTagAtIndex(index: Int) -> String?
-}
-
 enum Tags: String {
   case Default = "Add Tag"
 }
@@ -14,7 +9,16 @@ public class TagDelegate: NSObject {
   private weak var collectionView: UICollectionView?
 
   private lazy var parser: TagParser = TagParser(tags: self.tagDataSource)
-  private lazy var suggestionView: SuggestionView = SuggestionView()
+  private lazy var suggestionView: SuggestionView = {
+    let sv = SuggestionView()
+    sv.setSuggestion = { selection in
+      if selection == CommandType.reminder.rawValue {
+        let datePicker = DatePickerController(nibName: String(DatePickerController), bundle: NSBundle(forClass: self.dynamicType))
+        self.ownerController.presentViewController(datePicker, animated: true, completion: nil)
+      }
+    }
+    return sv
+  }()
 
   private lazy var collectionDataSource: CollectionArrayDataSource<String, TagCell> = {
     let ds = CollectionArrayDataSource<String, TagCell>(anArray: [self.tags], withCellIdentifier: String(TagCell), andCustomizeClosure: self.customizeCell)
@@ -28,17 +32,13 @@ public class TagDelegate: NSObject {
     self.collectionView = collectionView
   }
 
+  public var ownerController: UIViewController!
+
   public var tagDataSource: TagsDataSource!
 
   private func getSuggestions(item: String) {
-    let items = parser.parse(item).map { tag -> String in
-      if let raw = tag.type?.rawValue where tag.isCommand {
-        return raw
-      }
-      return tag.title
-    }
-
-    suggestionView.tags = items
+    let items = parser.parse(item)
+    suggestionView.tags = items.map { $0.title }
   }
 
   func customizeCell(cell: TagCell, item: String, path: NSIndexPath) {

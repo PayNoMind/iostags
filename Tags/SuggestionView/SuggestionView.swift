@@ -14,14 +14,13 @@ public class SuggestionView: UICollectionView {
     return ds
   }()
 
-  public var editingTextField: UITextField?
   public var tags: [String] = [] {
     didSet {
       suggestionDataSource.updateData([tags])
       self.reloadData()
     }
   }
-  public var setSuggesion: (String -> Void)?
+  public var setSuggestion: (String -> Void)?
 
   convenience public init() {
     let _layout = UICollectionViewFlowLayout()
@@ -46,10 +45,9 @@ public class SuggestionView: UICollectionView {
 
 extension SuggestionView: UICollectionViewDelegate {
   public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-    guard let cell = collectionView.cellForItemAtIndexPath(indexPath) as? CompletionCell, tf = editingTextField
+    guard let cell = collectionView.cellForItemAtIndexPath(indexPath) as? CompletionCell
       else { return }
 
-    tf.text = cell.title
-    setSuggesion?(cell.title)
+    setSuggestion?(cell.title)
   }
 }

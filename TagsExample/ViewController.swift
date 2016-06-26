@@ -16,6 +16,7 @@ class ViewController: UIViewController {
 
       tagDelegate = TagDelegate(collectionView: self.collection, tags: ["CheeseBurger"])
       tagDelegate.tagDataSource = self
+      tagDelegate.ownerController = self
       (collection.collectionViewLayout as? UICollectionViewFlowLayout)?.estimatedItemSize = CGSize(width: 60, height: 20)
       collection.delegate = tagDelegate
     }
