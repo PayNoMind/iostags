@@ -13,7 +13,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="120" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Tag Title" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="j0R-pw-xMy">
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Tag Title" adjustsFontSizeToFit="NO" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="j0R-pw-xMy">
                         <rect key="frame" x="8" y="8" width="104" height="28"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="28" id="15c-IL-Mbz"/>

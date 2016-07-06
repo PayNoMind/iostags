@@ -9,23 +9,29 @@
 import UIKit
 
 class DatePickerController: UIViewController {
+  @IBOutlet private weak var picker: UIDatePicker!
+
+  var datePass: (NSDate -> Void)?
+
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
-
-    modalPresentationStyle = .Custom
-    transitioningDelegate = self
+    commonInit()
   }
 
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    commonInit()
+  }
 
+  private func commonInit() {
     modalPresentationStyle = .Custom
     transitioningDelegate = self
   }
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
-
+  func handleTap(sender: UITapGestureRecognizer) {
+    dismissViewControllerAnimated(true) { 
+      self.datePass?(self.picker.date)
+    }
   }
 }
 
@@ -40,6 +46,11 @@ class DatePresentationController: UIPresentationController {
     let view = UIView(frame: self.containerView!.bounds)
     view.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.6)
     view.alpha = 0.0
+
+    let gesture = UITapGestureRecognizer(target: self.presentedViewController, action: #selector(DatePickerController.handleTap))
+
+    view.addGestureRecognizer(gesture)
+
     return view
   }()
 

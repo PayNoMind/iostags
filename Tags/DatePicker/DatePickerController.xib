@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DatePickerController" customModule="Tags" customModuleProvider="target">
             <connections>
+                <outlet property="picker" destination="b6P-U6-5sJ" id="Fgr-Si-gLL"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

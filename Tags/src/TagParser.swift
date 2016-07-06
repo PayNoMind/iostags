@@ -1,8 +1,17 @@
 import Foundation
 
-public enum CommandType: String {
+protocol CommandProtocol {
+  var suggestionTitle: String { get }
+}
+
+public enum CommandType: String, CommandProtocol {
   case dueDate = "duedate"
   case reminder = "reminder"
+
+  var suggestionTitle: String {
+    return self.rawValue
+  }
+
   static let allValues = [dueDate, reminder]
 }
 
@@ -34,7 +43,7 @@ public class TagParser {
         else { return nil }
 
       self.type = commandType
-      self.title = commandType.rawValue
+      self.title = commandType.suggestionTitle
     }
   }
 
@@ -44,7 +53,7 @@ public class TagParser {
 
   private func getCommandBy(Name name: String) -> TagContainer? {
     let type = CommandType.allValues.filter { value -> Bool in
-      value.rawValue.hasPrefix(name)
+      value.suggestionTitle.hasPrefix(name)
     }.first
 
     return TagContainer(commandType: type)

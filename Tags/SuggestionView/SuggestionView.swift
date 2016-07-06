@@ -47,7 +47,6 @@ extension SuggestionView: UICollectionViewDelegate {
   public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
     guard let cell = collectionView.cellForItemAtIndexPath(indexPath) as? CompletionCell
       else { return }
-
     setSuggestion?(cell.title)
   }
 }

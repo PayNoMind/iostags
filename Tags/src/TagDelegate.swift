@@ -6,7 +6,9 @@ enum Tags: String {
 
 public class TagDelegate: NSObject {
   private var tags = [String]()
+
   private weak var collectionView: UICollectionView?
+  private weak var currentTextField: UITextField?
 
   private lazy var parser: TagParser = TagParser(tags: self.tagDataSource)
   private lazy var suggestionView: SuggestionView = {
@@ -14,6 +16,9 @@ public class TagDelegate: NSObject {
     sv.setSuggestion = { selection in
       if selection == CommandType.reminder.rawValue {
         let datePicker = DatePickerController(nibName: String(DatePickerController), bundle: NSBundle(forClass: self.dynamicType))
+
+        datePicker.datePass = self.dateSelected
+
         self.ownerController.presentViewController(datePicker, animated: true, completion: nil)
       }
     }
@@ -41,6 +46,11 @@ public class TagDelegate: NSObject {
     suggestionView.tags = items.map { $0.title }
   }
 
+  func dateSelected(date: NSDate) {
+    currentTextField?.text = date.description
+    collectionView?.collectionViewLayout.invalidateLayout()
+  }
+
   func customizeCell(cell: TagCell, item: String, path: NSIndexPath) {
     cell.tagTitle = item
     cell.insertNewTag = { cell in
@@ -60,6 +70,7 @@ public class TagDelegate: NSObject {
     }
     cell.textField.addTarget(self, action: #selector(TagDelegate.tagTextChanged), forControlEvents: .EditingChanged)
     cell.textField.inputAccessoryView = suggestionView
+    currentTextField = cell.textField
   }
 
   @objc
