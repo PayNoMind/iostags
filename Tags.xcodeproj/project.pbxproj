@@ -32,6 +32,8 @@
 		C570E4F21D1E977B00A947F1 /* Tags.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C531434B1BD0F1A6006A8E48 /* Tags.framework */; };
 		C570E4F61D20046800A947F1 /* DatePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C570E4F41D20046800A947F1 /* DatePickerController.swift */; };
 		C570E4F71D20046800A947F1 /* DatePickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C570E4F51D20046800A947F1 /* DatePickerController.xib */; };
+		C5C74BA21D37BEB700A369E7 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C74BA11D37BEB700A369E7 /* Reminder.swift */; };
+		C5C74BA41D37BED300A369E7 /* CommandProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C74BA31D37BED300A369E7 /* CommandProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +76,8 @@
 		C570E4EE1D1E902900A947F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C570E4F41D20046800A947F1 /* DatePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerController.swift; sourceTree = "<group>"; };
 		C570E4F51D20046800A947F1 /* DatePickerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerController.xib; sourceTree = "<group>"; };
+		C5C74BA11D37BEB700A369E7 /* Reminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
+		C5C74BA31D37BED300A369E7 /* CommandProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				C531434E1BD0F1A6006A8E48 /* Tags.h */,
+				C5C74BA01D37BE9400A369E7 /* Commands */,
 				C508382B1D1423400025F67F /* DataSource */,
 				C570E4F31D20044400A947F1 /* DatePicker */,
 				C50838211D141C310025F67F /* Extensions */,
@@ -232,6 +237,15 @@
 				C570E4F51D20046800A947F1 /* DatePickerController.xib */,
 			);
 			path = DatePicker;
+			sourceTree = "<group>";
+		};
+		C5C74BA01D37BE9400A369E7 /* Commands */ = {
+			isa = PBXGroup;
+			children = (
+				C5C74BA31D37BED300A369E7 /* CommandProtocol.swift */,
+				C5C74BA11D37BEB700A369E7 /* Reminder.swift */,
+			);
+			path = Commands;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -396,8 +410,10 @@
 			files = (
 				C50838341D1951A20025F67F /* SuggestionView.swift in Sources */,
 				C53143931BD0F2FD006A8E48 /* TagDelegate.swift in Sources */,
+				C5C74BA21D37BEB700A369E7 /* Reminder.swift in Sources */,
 				C508382D1D1423620025F67F /* CollectionViewDataSource.swift in Sources */,
 				C570E4F61D20046800A947F1 /* DatePickerController.swift in Sources */,
+				C5C74BA41D37BED300A369E7 /* CommandProtocol.swift in Sources */,
 				C50838261D141E820025F67F /* TagCell.swift in Sources */,
 				C53143951BD0F332006A8E48 /* TagParser.swift in Sources */,
 				C50838231D141C3F0025F67F /* CollectionView.swift in Sources */,
@@ -661,6 +677,7 @@
 				C570E4F01D1E902900A947F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

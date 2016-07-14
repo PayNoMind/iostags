@@ -10,6 +10,6 @@ import Foundation
 
 struct CellWidth {
   static func widthOf(Text text: String, withFont font: UIFont) -> CGFloat {
-    return text.sizeWithAttributes([NSFontAttributeName: font]).width + 25
+    return text.sizeWithAttributes([NSFontAttributeName: font]).width + 20
   }
 }

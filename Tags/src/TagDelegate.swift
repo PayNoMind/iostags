@@ -14,12 +14,16 @@ public class TagDelegate: NSObject {
   private lazy var suggestionView: SuggestionView = {
     let sv = SuggestionView()
     sv.setSuggestion = { selection in
-      if selection == CommandType.reminder.rawValue {
-        let datePicker = DatePickerController(nibName: String(DatePickerController), bundle: NSBundle(forClass: self.dynamicType))
 
-        datePicker.datePass = self.dateSelected
+      for command in self.parser.commands {
+        if command.suggestionTitle == selection && command.usesDatePicker {
+          let datePicker = DatePickerController(nibName: String(DatePickerController), bundle: NSBundle(forClass: self.dynamicType))
 
-        self.ownerController.presentViewController(datePicker, animated: true, completion: nil)
+          datePicker.datePass = self.dateSelected
+
+          self.ownerController.presentViewController(datePicker, animated: true, completion: nil)
+          break
+        }
       }
     }
     return sv

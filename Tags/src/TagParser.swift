@@ -1,20 +1,5 @@
 import Foundation
 
-protocol CommandProtocol {
-  var suggestionTitle: String { get }
-}
-
-public enum CommandType: String, CommandProtocol {
-  case dueDate = "duedate"
-  case reminder = "reminder"
-
-  var suggestionTitle: String {
-    return self.rawValue
-  }
-
-  static let allValues = [dueDate, reminder]
-}
-
 extension String {
   var isCommand: Bool {
     let commandPrefix = ":"
@@ -25,9 +10,11 @@ extension String {
 public class TagParser {
   private var tagHandler: TagsDataSource
 
+  private(set) var commands = [CommandProtocol]()
+
   public struct TagContainer {
     public let title: String
-    public let type: CommandType?
+    public let type: CommandProtocol?
 
     public var isCommand: Bool {
       return type != nil
@@ -38,7 +25,7 @@ public class TagParser {
       self.type = nil
     }
 
-    init?(commandType: CommandType?) {
+    init?(commandType: CommandProtocol?) {
       guard let commandType = commandType
         else { return nil }
 
@@ -52,7 +39,7 @@ public class TagParser {
   }
 
   private func getCommandBy(Name name: String) -> TagContainer? {
-    let type = CommandType.allValues.filter { value -> Bool in
+    let type = commands.filter { value -> Bool in
       value.suggestionTitle.hasPrefix(name)
     }.first
 
@@ -64,7 +51,7 @@ public class TagParser {
       else { return nil }
 
     if command.isEmpty {
-      return CommandType.allValues.map {
+      return commands.map {
         TagContainer(commandType: $0)
       }.flatMap { $0 }
     }
@@ -74,6 +61,15 @@ public class TagParser {
     }
 
     return nil
+  }
+
+  public func register(Command command: CommandProtocol) {
+    commands.append(command)
+  }
+
+  private func setupDefaultCommands() {
+    let command = Reminder()
+    self.register(Command: command)
   }
 
   private func getTagsThatMatch(Text text: String) -> [TagContainer] {
@@ -95,5 +91,6 @@ public class TagParser {
 
   public init(tags: TagsDataSource) {
     self.tagHandler = tags
+    setupDefaultCommands()
   }
 }

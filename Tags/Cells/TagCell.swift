@@ -1,6 +1,5 @@
 import UIKit
 
-@IBDesignable
 public class TagCell: UICollectionViewCell {
   @IBInspectable var cornerRadius: CGFloat = 5.0
   @IBInspectable var borderWidth: CGFloat = 0.5
