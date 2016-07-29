@@ -68,8 +68,10 @@ public class TagParser {
   }
 
   private func setupDefaultCommands() {
-    let command = Reminder()
-    self.register(Command: command)
+    let commands: [CommandProtocol] = [Reminder(), DueDate()]
+    for command in commands {
+      self.register(Command: command)
+    }
   }
 
   private func getTagsThatMatch(Text text: String) -> [TagContainer] {

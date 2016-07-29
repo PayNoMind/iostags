@@ -1,15 +1,20 @@
 import UIKit
 
 public class TagCell: UICollectionViewCell {
-  @IBInspectable var cornerRadius: CGFloat = 5.0
-  @IBInspectable var borderWidth: CGFloat = 0.5
+  @IBInspectable var cornerRadius = CGFloat(5.0)
+  @IBInspectable var borderWidth = CGFloat(0.5)
   @IBInspectable var borderColor = UIColor.blackColor().CGColor
+
+  @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
+  @IBOutlet weak var textTrailingConstraint: NSLayoutConstraint!
 
   @IBOutlet weak var textField: UITextField! {
     didSet {
       textField.delegate = self
     }
   }
+
+  private let newTagCell = " "
 
   var insertNewTag: (UICollectionViewCell -> Void)?
 
@@ -19,12 +24,24 @@ public class TagCell: UICollectionViewCell {
     }
   }
 
-  public override func preferredLayoutAttributesFittingAttributes(layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-    super.preferredLayoutAttributesFittingAttributes(layoutAttributes)
+  var cellWidth: CGFloat? {
     if let tagText = textField.text, font = textField.font where !tagText.isEmpty {
       let width = CellWidth.widthOf(Text: tagText, withFont: font)
-      layoutAttributes.frame.size.width = width
+
+      let widthSum = width + leadingConstraint.constant + textTrailingConstraint.constant + 5
+
+      return widthSum
     }
+    return nil
+  }
+
+  public override func preferredLayoutAttributesFittingAttributes(layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+    super.preferredLayoutAttributesFittingAttributes(layoutAttributes)
+    if let cellWidth = cellWidth {
+      layoutAttributes.bounds.size.width = cellWidth
+    }
+    textField.setNeedsDisplay()
+
     return layoutAttributes
   }
 
@@ -47,9 +64,7 @@ extension TagCell: UITextFieldDelegate {
     guard !string.characters.isEmpty
       else { return true }
 
-    let lastCharacter = string.substringFromIndex(string.endIndex.advancedBy(-1))
-
-    if lastCharacter == " " {
+    if string.hasSuffix(newTagCell) {
       insertNewTag?(self)
       return false
     }

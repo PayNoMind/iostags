@@ -11,7 +11,6 @@
 		C50838261D141E820025F67F /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50838241D141E820025F67F /* TagCell.swift */; };
 		C50838271D141E820025F67F /* TagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C50838251D141E820025F67F /* TagCell.xib */; };
 		C508382D1D1423620025F67F /* CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C508382C1D1423620025F67F /* CollectionViewDataSource.swift */; };
-		C50838311D1940570025F67F /* CellWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50838301D1940570025F67F /* CellWidth.swift */; };
 		C50838341D1951A20025F67F /* SuggestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50838331D1951A20025F67F /* SuggestionView.swift */; };
 		C50838381D1951C10025F67F /* CompletionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50838361D1951C10025F67F /* CompletionCell.swift */; };
 		C50838391D1951C10025F67F /* CompletionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C50838371D1951C10025F67F /* CompletionCell.xib */; };
@@ -34,6 +33,11 @@
 		C570E4F71D20046800A947F1 /* DatePickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C570E4F51D20046800A947F1 /* DatePickerController.xib */; };
 		C5C74BA21D37BEB700A369E7 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C74BA11D37BEB700A369E7 /* Reminder.swift */; };
 		C5C74BA41D37BED300A369E7 /* CommandProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C74BA31D37BED300A369E7 /* CommandProtocol.swift */; };
+		C5FE60151D47A3B700C2595D /* CellWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FE60141D47A3B700C2595D /* CellWidth.swift */; };
+		C5FE60171D47A3D400C2595D /* FormatDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FE60161D47A3D400C2595D /* FormatDate.swift */; };
+		C5FE60191D47A45B00C2595D /* FormatDateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FE60181D47A45B00C2595D /* FormatDateTests.swift */; };
+		C5FE601B1D47B78C00C2595D /* DueDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FE601A1D47B78C00C2595D /* DueDate.swift */; };
+		C5FE601D1D4B89A100C2595D /* CellWidthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FE601C1D4B89A100C2595D /* CellWidthTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,7 +55,6 @@
 		C50838241D141E820025F67F /* TagCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
 		C50838251D141E820025F67F /* TagCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagCell.xib; sourceTree = "<group>"; };
 		C508382C1D1423620025F67F /* CollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewDataSource.swift; sourceTree = "<group>"; };
-		C50838301D1940570025F67F /* CellWidth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellWidth.swift; sourceTree = "<group>"; };
 		C50838331D1951A20025F67F /* SuggestionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestionView.swift; sourceTree = "<group>"; };
 		C50838361D1951C10025F67F /* CompletionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletionCell.swift; sourceTree = "<group>"; };
 		C50838371D1951C10025F67F /* CompletionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompletionCell.xib; sourceTree = "<group>"; };
@@ -78,6 +81,11 @@
 		C570E4F51D20046800A947F1 /* DatePickerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerController.xib; sourceTree = "<group>"; };
 		C5C74BA11D37BEB700A369E7 /* Reminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 		C5C74BA31D37BED300A369E7 /* CommandProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandProtocol.swift; sourceTree = "<group>"; };
+		C5FE60141D47A3B700C2595D /* CellWidth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellWidth.swift; sourceTree = "<group>"; };
+		C5FE60161D47A3D400C2595D /* FormatDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormatDate.swift; sourceTree = "<group>"; };
+		C5FE60181D47A45B00C2595D /* FormatDateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormatDateTests.swift; sourceTree = "<group>"; };
+		C5FE601A1D47B78C00C2595D /* DueDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DueDate.swift; sourceTree = "<group>"; };
+		C5FE601C1D4B89A100C2595D /* CellWidthTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellWidthTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +187,7 @@
 				C570E4F31D20044400A947F1 /* DatePicker */,
 				C50838211D141C310025F67F /* Extensions */,
 				C50838321D1951A20025F67F /* SuggestionView */,
+				C5FE60131D47A3B700C2595D /* Util */,
 				C508381C1D141B260025F67F /* Cells */,
 				C53143911BD0F2FD006A8E48 /* src */,
 				C53143501BD0F1A6006A8E48 /* Info.plist */,
@@ -190,8 +199,10 @@
 			isa = PBXGroup;
 			children = (
 				C531439D1BD1034B006A8E48 /* Support */,
+				C5FE60181D47A45B00C2595D /* FormatDateTests.swift */,
 				C531435A1BD0F1A6006A8E48 /* TagsInterfaceTests.swift */,
 				C53143A21BD10717006A8E48 /* TagParserTests.swift */,
+				C5FE601C1D4B89A100C2595D /* CellWidthTests.swift */,
 				C531435C1BD0F1A6006A8E48 /* Info.plist */,
 			);
 			path = TagsTests;
@@ -203,7 +214,6 @@
 				C53143921BD0F2FD006A8E48 /* TagDelegate.swift */,
 				C53143941BD0F332006A8E48 /* TagParser.swift */,
 				C53143961BD0F4B8006A8E48 /* TagsDataSource.swift */,
-				C50838301D1940570025F67F /* CellWidth.swift */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -244,9 +254,20 @@
 			children = (
 				C5C74BA31D37BED300A369E7 /* CommandProtocol.swift */,
 				C5C74BA11D37BEB700A369E7 /* Reminder.swift */,
+				C5FE601A1D47B78C00C2595D /* DueDate.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
+		};
+		C5FE60131D47A3B700C2595D /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				C5FE60141D47A3B700C2595D /* CellWidth.swift */,
+				C5FE60161D47A3D400C2595D /* FormatDate.swift */,
+			);
+			name = Util;
+			path = Tags/Util;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -409,16 +430,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				C50838341D1951A20025F67F /* SuggestionView.swift in Sources */,
+				C5FE60171D47A3D400C2595D /* FormatDate.swift in Sources */,
 				C53143931BD0F2FD006A8E48 /* TagDelegate.swift in Sources */,
 				C5C74BA21D37BEB700A369E7 /* Reminder.swift in Sources */,
+				C5FE60151D47A3B700C2595D /* CellWidth.swift in Sources */,
 				C508382D1D1423620025F67F /* CollectionViewDataSource.swift in Sources */,
 				C570E4F61D20046800A947F1 /* DatePickerController.swift in Sources */,
 				C5C74BA41D37BED300A369E7 /* CommandProtocol.swift in Sources */,
+				C5FE601B1D47B78C00C2595D /* DueDate.swift in Sources */,
 				C50838261D141E820025F67F /* TagCell.swift in Sources */,
 				C53143951BD0F332006A8E48 /* TagParser.swift in Sources */,
 				C50838231D141C3F0025F67F /* CollectionView.swift in Sources */,
 				C50838381D1951C10025F67F /* CompletionCell.swift in Sources */,
-				C50838311D1940570025F67F /* CellWidth.swift in Sources */,
 				C53143971BD0F4B8006A8E48 /* TagsDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -427,7 +450,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5FE60191D47A45B00C2595D /* FormatDateTests.swift in Sources */,
 				C531435B1BD0F1A6006A8E48 /* TagsInterfaceTests.swift in Sources */,
+				C5FE601D1D4B89A100C2595D /* CellWidthTests.swift in Sources */,
 				C53143A11BD1034B006A8E48 /* TagMemory.swift in Sources */,
 				C53143A01BD1034B006A8E48 /* MemoryData.swift in Sources */,
 				C53143A31BD10717006A8E48 /* TagParserTests.swift in Sources */,

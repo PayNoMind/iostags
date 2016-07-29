@@ -51,7 +51,7 @@ public class TagDelegate: NSObject {
   }
 
   func dateSelected(date: NSDate) {
-    currentTextField?.text = date.description
+    currentTextField?.text = FormatDate.format(date)
     collectionView?.collectionViewLayout.invalidateLayout()
   }
 
@@ -92,7 +92,7 @@ extension TagDelegate: UICollectionViewDelegateFlowLayout {
     tagText = cell.textField.text, font = cell.textField.font
       else { return CGSize(width: 20, height: collectionView.bounds.height) }
 
-    let width = CellWidth.widthOf(Text: tagText, withFont: font)
+    let width = cell.cellWidth ?? CellWidth.widthOf(Text: tagText, withFont: font)
     return CGSize(width: width, height: collectionView.bounds.height)
   }
 }

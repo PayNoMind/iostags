@@ -29,7 +29,7 @@ class DatePickerController: UIViewController {
   }
 
   func handleTap(sender: UITapGestureRecognizer) {
-    dismissViewControllerAnimated(true) { 
+    dismissViewControllerAnimated(true) {
       self.datePass?(self.picker.date)
     }
   }
@@ -43,7 +43,7 @@ extension DatePickerController: UIViewControllerTransitioningDelegate {
 
 class DatePresentationController: UIPresentationController {
   lazy var dimmingView: UIView = {
-    let view = UIView(frame: self.containerView!.bounds)
+    let view = UIView(frame: self.containerView?.bounds ?? CGRect.zero)
     view.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.6)
     view.alpha = 0.0
 
@@ -56,7 +56,7 @@ class DatePresentationController: UIPresentationController {
 
   override func presentationTransitionWillBegin() {
     guard let containerView = containerView,
-      let presentedView = presentedView()
+      presentedView = presentedView()
       else { return }
 
     // Add the dimming view and the presented view to the heirarchy
@@ -66,17 +66,21 @@ class DatePresentationController: UIPresentationController {
 
     // Fade in the dimming view alongside the transition
     if let transitionCoordinator = self.presentingViewController.transitionCoordinator() {
-      transitionCoordinator.animateAlongsideTransition({(context: UIViewControllerTransitionCoordinatorContext!) -> Void in
+      transitionCoordinator.animateAlongsideTransition({ (context: UIViewControllerTransitionCoordinatorContext!) -> Void in
         self.dimmingView.alpha = 1.0
-        }, completion:nil)
+      }, completion:nil)
     }
   }
 
   override func frameOfPresentedViewInContainerView() -> CGRect {
-    var rect = self.containerView?.bounds
-    rect?.size.height = 200
-    rect?.origin.y = self.containerView!.bounds.midY - 200
+    let rectHeight = CGFloat(200.0)
 
-    return rect ?? CGRect.zero
+    if var rect = self.containerView?.bounds {
+      rect.size.height = rectHeight
+      rect.origin.y = (self.containerView?.bounds ?? CGRect.zero).midY - rectHeight
+      return rect
+    }
+
+    return CGRect.zero
   }
 }
