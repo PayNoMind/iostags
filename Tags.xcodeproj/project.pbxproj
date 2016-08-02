@@ -38,6 +38,9 @@
 		C5FE60191D47A45B00C2595D /* FormatDateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FE60181D47A45B00C2595D /* FormatDateTests.swift */; };
 		C5FE601B1D47B78C00C2595D /* DueDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FE601A1D47B78C00C2595D /* DueDate.swift */; };
 		C5FE601D1D4B89A100C2595D /* CellWidthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FE601C1D4B89A100C2595D /* CellWidthTests.swift */; };
+		C5FE60201D4B9B6500C2595D /* InputPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FE601F1D4B9B6500C2595D /* InputPresentationController.swift */; };
+		C5FE60241D4B9DB300C2595D /* TextEntryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FE60221D4B9DB300C2595D /* TextEntryController.swift */; };
+		C5FE60251D4B9DB300C2595D /* TextEntryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5FE60231D4B9DB300C2595D /* TextEntryController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +89,9 @@
 		C5FE60181D47A45B00C2595D /* FormatDateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormatDateTests.swift; sourceTree = "<group>"; };
 		C5FE601A1D47B78C00C2595D /* DueDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DueDate.swift; sourceTree = "<group>"; };
 		C5FE601C1D4B89A100C2595D /* CellWidthTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellWidthTests.swift; sourceTree = "<group>"; };
+		C5FE601F1D4B9B6500C2595D /* InputPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputPresentationController.swift; sourceTree = "<group>"; };
+		C5FE60221D4B9DB300C2595D /* TextEntryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEntryController.swift; sourceTree = "<group>"; };
+		C5FE60231D4B9DB300C2595D /* TextEntryController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextEntryController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,9 +192,11 @@
 				C508382B1D1423400025F67F /* DataSource */,
 				C570E4F31D20044400A947F1 /* DatePicker */,
 				C50838211D141C310025F67F /* Extensions */,
+				C5FE601E1D4B9B4D00C2595D /* InputPresentation */,
 				C50838321D1951A20025F67F /* SuggestionView */,
-				C5FE60131D47A3B700C2595D /* Util */,
 				C508381C1D141B260025F67F /* Cells */,
+				C5FE60211D4B9D8B00C2595D /* TextEntry */,
+				C5FE60131D47A3B700C2595D /* Util */,
 				C53143911BD0F2FD006A8E48 /* src */,
 				C53143501BD0F1A6006A8E48 /* Info.plist */,
 			);
@@ -268,6 +276,23 @@
 			name = Util;
 			path = Tags/Util;
 			sourceTree = SOURCE_ROOT;
+		};
+		C5FE601E1D4B9B4D00C2595D /* InputPresentation */ = {
+			isa = PBXGroup;
+			children = (
+				C5FE601F1D4B9B6500C2595D /* InputPresentationController.swift */,
+			);
+			path = InputPresentation;
+			sourceTree = "<group>";
+		};
+		C5FE60211D4B9D8B00C2595D /* TextEntry */ = {
+			isa = PBXGroup;
+			children = (
+				C5FE60221D4B9DB300C2595D /* TextEntryController.swift */,
+				C5FE60231D4B9DB300C2595D /* TextEntryController.xib */,
+			);
+			path = TextEntry;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -386,6 +411,7 @@
 				C570E4F71D20046800A947F1 /* DatePickerController.xib in Resources */,
 				C50838391D1951C10025F67F /* CompletionCell.xib in Resources */,
 				C50838271D141E820025F67F /* TagCell.xib in Resources */,
+				C5FE60251D4B9DB300C2595D /* TextEntryController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,8 +467,10 @@
 				C50838261D141E820025F67F /* TagCell.swift in Sources */,
 				C53143951BD0F332006A8E48 /* TagParser.swift in Sources */,
 				C50838231D141C3F0025F67F /* CollectionView.swift in Sources */,
+				C5FE60201D4B9B6500C2595D /* InputPresentationController.swift in Sources */,
 				C50838381D1951C10025F67F /* CompletionCell.swift in Sources */,
 				C53143971BD0F4B8006A8E48 /* TagsDataSource.swift in Sources */,
+				C5FE60241D4B9DB300C2595D /* TextEntryController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

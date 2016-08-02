@@ -19,7 +19,7 @@ public class TagDelegate: NSObject {
         if command.suggestionTitle == selection && command.usesDatePicker {
           let datePicker = DatePickerController(nibName: String(DatePickerController), bundle: NSBundle(forClass: self.dynamicType))
 
-          datePicker.datePass = self.dateSelected
+          datePicker.textPass = self.passText
 
           self.ownerController.presentViewController(datePicker, animated: true, completion: nil)
           break
@@ -50,8 +50,8 @@ public class TagDelegate: NSObject {
     suggestionView.tags = items.map { $0.title }
   }
 
-  func dateSelected(date: NSDate) {
-    currentTextField?.text = FormatDate.format(date)
+  func passText(text: String) {
+    currentTextField?.text = text
     collectionView?.collectionViewLayout.invalidateLayout()
   }
 
@@ -87,6 +87,11 @@ public class TagDelegate: NSObject {
 }
 
 extension TagDelegate: UICollectionViewDelegateFlowLayout {
+  public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    let textEntry = TextEntryController(nibName: String(TextEntryController), bundle: NSBundle(forClass: self.dynamicType))
+    self.ownerController.presentViewController(textEntry, animated: true, completion: nil)
+  }
+
   public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
     guard let cell = collectionView.cellForItemAtIndexPath(indexPath) as? TagCell,
     tagText = cell.textField.text, font = cell.textField.font

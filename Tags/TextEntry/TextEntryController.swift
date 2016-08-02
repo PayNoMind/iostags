@@ -1,15 +1,21 @@
 //
-//  DatePickerController.swift
+//  TextEntryController.swift
 //  Tags
 //
-//  Created by Tom Clark on 2016-06-26.
+//  Created by Tom Clark on 2016-07-29.
 //  Copyright © 2016 Fluiddynamics. All rights reserved.
 //
 
 import UIKit
 
-class DatePickerController: UIViewController {
-  @IBOutlet private weak var picker: UIDatePicker!
+class TextEntryController: UIViewController {
+  @IBOutlet private weak var textInput: UITextField!
+
+  var text: String? {
+    didSet {
+      self.textInput.text = text
+    }
+  }
 
   var textPass: (String -> Void)?
 
@@ -28,15 +34,21 @@ class DatePickerController: UIViewController {
     transitioningDelegate = self
   }
 
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+    textInput.becomeFirstResponder()
+  }
+
   func handleTap(sender: UITapGestureRecognizer) {
     dismissViewControllerAnimated(true) {
-      let text = FormatDate.format(self.picker.date)
-      self.textPass?(text)
+      if let inputText = self.textInput.text {
+        self.textPass?(inputText)
+      }
     }
   }
 }
 
-extension DatePickerController: UIViewControllerTransitioningDelegate {
+extension TextEntryController: UIViewControllerTransitioningDelegate {
   func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
     return InputPresentationController(presentedViewController: presented, presentingViewController: presenting)
   }
