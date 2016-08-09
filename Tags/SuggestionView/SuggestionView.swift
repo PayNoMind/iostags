@@ -9,18 +9,18 @@
 import UIKit
 
 public class SuggestionView: UICollectionView {
-  private lazy var suggestionDataSource: CollectionArrayDataSource<String, CompletionCell> = {
-    let ds = CollectionArrayDataSource<String, CompletionCell>(anArray: [self.tags], withCellIdentifier: String(CompletionCell), andCustomizeClosure: self.setupSuggestionCell)
+  private lazy var suggestionDataSource: CollectionArrayDataSource<TagContainer, CompletionCell> = {
+    let ds = CollectionArrayDataSource<TagParser.TagContainer, CompletionCell>(anArray: [self.suggestions], withCellIdentifier: String(CompletionCell), andCustomizeClosure: self.setupSuggestionCell)
     return ds
   }()
 
-  public var tags: [String] = [] {
+  public var suggestions: [TagContainer] = [] {
     didSet {
-      suggestionDataSource.updateData([tags])
+      suggestionDataSource.updateData([suggestions])
       self.reloadData()
     }
   }
-  public var setSuggestion: (String -> Void)?
+  public var setSuggestion: (TagContainer -> Void)?
 
   convenience public init() {
     let _layout = UICollectionViewFlowLayout()
@@ -37,8 +37,9 @@ public class SuggestionView: UICollectionView {
     registerNibWith(Title: String(CompletionCell), withBundle: NSBundle(forClass: self.dynamicType))
   }
 
-  private func setupSuggestionCell(cell: CompletionCell, item: String, path: NSIndexPath) {
-    cell.title = tags[path.row]
+  private func setupSuggestionCell(cell: CompletionCell, item: TagContainer, path: NSIndexPath) {
+    cell.title = suggestions[path.row].title
+    cell.tagContainer = item
     cell.backgroundColor = UIColor.redColor()
   }
 }
@@ -47,6 +48,6 @@ extension SuggestionView: UICollectionViewDelegate {
   public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
     guard let cell = collectionView.cellForItemAtIndexPath(indexPath) as? CompletionCell
       else { return }
-    setSuggestion?(cell.title)
+    setSuggestion?(cell.tagContainer)
   }
 }

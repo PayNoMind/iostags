@@ -11,6 +11,8 @@ import UIKit
 class CompletionCell: UICollectionViewCell {
   @IBOutlet private weak var suggestedLabel: UILabel!
 
+  var tagContainer: TagContainer = TagContainer(title: "")
+
   var title = "" {
     didSet {
       suggestedLabel.text = title

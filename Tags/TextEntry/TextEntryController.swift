@@ -8,8 +8,24 @@
 
 import UIKit
 
+protocol TextEntryProtocol {
+  func getSuggestions(_: [String]) -> Void
+}
+
 class TextEntryController: UIViewController {
-  @IBOutlet private weak var textInput: UITextField!
+  @IBOutlet private weak var textInput: UITextField! {
+    didSet {
+      textInput.inputAccessoryView = suggestionView
+    }
+  }
+  private lazy var datePicker: UIDatePicker = {
+    let datePicker = UIDatePicker()
+    return datePicker
+  }()
+
+  private lazy var suggestionView: SuggestionView = SuggestionView()
+
+  var suggestions: ((String, ([TagParser.TagContainer] -> Void)) -> Void)?
 
   var text: String? {
     didSet {
@@ -32,6 +48,28 @@ class TextEntryController: UIViewController {
   private func commonInit() {
     modalPresentationStyle = .Custom
     transitioningDelegate = self
+  }
+
+  @objc
+  func tagTextChanged(textField: UITextField) {
+    if let tagText = textField.text {
+      suggestions?(tagText) { suggestions in
+        self.suggestionView.suggestions = suggestions
+      }
+    }
+  }
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+
+    suggestionView.setSuggestion = { selection in
+      if let command = selection.type where command.usesDatePicker {
+        self.textInput.inputView = self.datePicker
+        self.textInput.reloadInputViews()
+      }
+    }
+
+    textInput.addTarget(self, action: #selector(tagTextChanged), forControlEvents: .EditingChanged)
   }
 
   override func viewDidAppear(animated: Bool) {

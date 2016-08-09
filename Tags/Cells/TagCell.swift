@@ -5,30 +5,27 @@ public class TagCell: UICollectionViewCell {
   @IBInspectable var borderWidth = CGFloat(0.5)
   @IBInspectable var borderColor = UIColor.blackColor().CGColor
 
+
   @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
-  @IBOutlet weak var textTrailingConstraint: NSLayoutConstraint!
+  @IBOutlet weak var trailingConstraint: NSLayoutConstraint!
 
-  @IBOutlet weak var textField: UITextField! {
-    didSet {
-      textField.delegate = self
-    }
-  }
+  @IBOutlet weak var tagLabel: UILabel!
 
-  private let newTagCell = " "
+  private let newTagCommand = " "
 
   var insertNewTag: (UICollectionViewCell -> Void)?
 
   public var tagTitle: String = "" {
     didSet {
-      textField.text = tagTitle
+      tagLabel.text = tagTitle
     }
   }
 
   var cellWidth: CGFloat? {
-    if let tagText = textField.text, font = textField.font where !tagText.isEmpty {
+    if let tagText = tagLabel.text, font = tagLabel.font where !tagText.isEmpty {
       let width = CellWidth.widthOf(Text: tagText, withFont: font)
 
-      let widthSum = width + leadingConstraint.constant + textTrailingConstraint.constant + 5
+      let widthSum = width + leadingConstraint.constant + trailingConstraint.constant + 5
 
       return widthSum
     }
@@ -40,7 +37,7 @@ public class TagCell: UICollectionViewCell {
     if let cellWidth = cellWidth {
       layoutAttributes.bounds.size.width = cellWidth
     }
-    textField.setNeedsDisplay()
+    tagLabel.setNeedsDisplay()
 
     return layoutAttributes
   }
@@ -64,7 +61,7 @@ extension TagCell: UITextFieldDelegate {
     guard !string.characters.isEmpty
       else { return true }
 
-    if string.hasSuffix(newTagCell) {
+    if string.hasSuffix(newTagCommand) {
       insertNewTag?(self)
       return false
     }

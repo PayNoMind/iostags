@@ -7,6 +7,8 @@ extension String {
   }
 }
 
+public typealias TagContainer = TagParser.TagContainer
+
 public class TagParser {
   private var tagHandler: TagsDataSource
 

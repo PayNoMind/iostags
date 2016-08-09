@@ -13,28 +13,27 @@
                 <rect key="frame" x="0.0" y="0.0" width="120" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Tag Title" textAlignment="center" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="j0R-pw-xMy">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tag Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mAa-M9-qHm">
                         <rect key="frame" x="8" y="8" width="104" height="28"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="28" id="15c-IL-Mbz"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits"/>
-                    </textField>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <color key="backgroundColor" red="1" green="0.055564177690000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="j0R-pw-xMy" firstAttribute="leading" secondItem="gmK-CR-KJx" secondAttribute="leading" constant="8" id="Hay-uQ-q5N"/>
-                <constraint firstAttribute="trailing" secondItem="j0R-pw-xMy" secondAttribute="trailing" constant="8" id="Qad-NT-uyW"/>
-                <constraint firstItem="j0R-pw-xMy" firstAttribute="centerY" secondItem="gmK-CR-KJx" secondAttribute="centerY" id="RT8-mp-pTP"/>
+                <constraint firstAttribute="bottom" secondItem="mAa-M9-qHm" secondAttribute="bottom" constant="8" id="6B3-hl-lu6"/>
+                <constraint firstAttribute="trailing" secondItem="mAa-M9-qHm" secondAttribute="trailing" constant="8" id="DLR-mB-lXS"/>
+                <constraint firstItem="mAa-M9-qHm" firstAttribute="top" secondItem="gmK-CR-KJx" secondAttribute="top" constant="8" id="PX9-Yl-Cjg"/>
+                <constraint firstItem="mAa-M9-qHm" firstAttribute="leading" secondItem="gmK-CR-KJx" secondAttribute="leading" constant="8" id="Tmp-r6-liz"/>
             </constraints>
             <size key="customSize" width="120" height="44"/>
             <connections>
-                <outlet property="leadingConstraint" destination="Hay-uQ-q5N" id="4O9-Qe-nvx"/>
-                <outlet property="textField" destination="j0R-pw-xMy" id="ObS-ua-F2y"/>
-                <outlet property="textTrailingConstraint" destination="Qad-NT-uyW" id="BDg-De-RRl"/>
+                <outlet property="leadingConstraint" destination="Tmp-r6-liz" id="kQn-bU-5oA"/>
+                <outlet property="tagLabel" destination="mAa-M9-qHm" id="Y7u-ee-ynz"/>
+                <outlet property="trailingConstraint" destination="DLR-mB-lXS" id="lEL-1L-Xks"/>
             </connections>
             <point key="canvasLocation" x="682" y="460"/>
         </collectionViewCell>

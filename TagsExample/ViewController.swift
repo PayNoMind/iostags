@@ -12,17 +12,13 @@ import Tags
 class ViewController: UIViewController {
   @IBOutlet var collection: UICollectionView! {
     didSet {
-      collection.registerNibWith(Title: String(TagCell), withBundle: NSBundle(identifier: "ca.Fluiddynamics.Tags")!)
-
-      tagDelegate = TagDelegate(collectionView: self.collection, tags: ["CheeseBurger"])
-      tagDelegate.tagDataSource = self
-      tagDelegate.ownerController = self
-      (collection.collectionViewLayout as? UICollectionViewFlowLayout)?.estimatedItemSize = CGSize(width: 60, height: 20)
-      collection.delegate = tagDelegate
+      collection.setupCollectionAsTagView(tagDelegate, withDataSource: self, andOwner: self)
     }
   }
 
-  private var tagDelegate: TagDelegate!
+  private lazy var tagDelegate: TagDelegate = {
+    return TagDelegate(collectionView: self.collection, tags: ["CheeseBurger"])
+  }()
 
   private var tags: Set = ["groceries", "home", "work", "stuff", "longstringthatislong", "day"]
 }

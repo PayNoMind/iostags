@@ -29,8 +29,6 @@
 		C570E4EA1D1E902900A947F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C570E4E91D1E902900A947F1 /* Assets.xcassets */; };
 		C570E4ED1D1E902900A947F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C570E4EB1D1E902900A947F1 /* LaunchScreen.storyboard */; };
 		C570E4F21D1E977B00A947F1 /* Tags.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C531434B1BD0F1A6006A8E48 /* Tags.framework */; };
-		C570E4F61D20046800A947F1 /* DatePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C570E4F41D20046800A947F1 /* DatePickerController.swift */; };
-		C570E4F71D20046800A947F1 /* DatePickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C570E4F51D20046800A947F1 /* DatePickerController.xib */; };
 		C5C74BA21D37BEB700A369E7 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C74BA11D37BEB700A369E7 /* Reminder.swift */; };
 		C5C74BA41D37BED300A369E7 /* CommandProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C74BA31D37BED300A369E7 /* CommandProtocol.swift */; };
 		C5FE60151D47A3B700C2595D /* CellWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FE60141D47A3B700C2595D /* CellWidth.swift */; };
@@ -41,6 +39,7 @@
 		C5FE60201D4B9B6500C2595D /* InputPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FE601F1D4B9B6500C2595D /* InputPresentationController.swift */; };
 		C5FE60241D4B9DB300C2595D /* TextEntryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FE60221D4B9DB300C2595D /* TextEntryController.swift */; };
 		C5FE60251D4B9DB300C2595D /* TextEntryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5FE60231D4B9DB300C2595D /* TextEntryController.xib */; };
+		C5FE60281D509EAB00C2595D /* CollectionSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FE60271D509EAB00C2595D /* CollectionSetup.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,8 +79,6 @@
 		C570E4E91D1E902900A947F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C570E4EC1D1E902900A947F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C570E4EE1D1E902900A947F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C570E4F41D20046800A947F1 /* DatePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerController.swift; sourceTree = "<group>"; };
-		C570E4F51D20046800A947F1 /* DatePickerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerController.xib; sourceTree = "<group>"; };
 		C5C74BA11D37BEB700A369E7 /* Reminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 		C5C74BA31D37BED300A369E7 /* CommandProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandProtocol.swift; sourceTree = "<group>"; };
 		C5FE60141D47A3B700C2595D /* CellWidth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellWidth.swift; sourceTree = "<group>"; };
@@ -92,6 +89,7 @@
 		C5FE601F1D4B9B6500C2595D /* InputPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputPresentationController.swift; sourceTree = "<group>"; };
 		C5FE60221D4B9DB300C2595D /* TextEntryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEntryController.swift; sourceTree = "<group>"; };
 		C5FE60231D4B9DB300C2595D /* TextEntryController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextEntryController.xib; sourceTree = "<group>"; };
+		C5FE60271D509EAB00C2595D /* CollectionSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionSetup.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,9 +186,9 @@
 			isa = PBXGroup;
 			children = (
 				C531434E1BD0F1A6006A8E48 /* Tags.h */,
+				C5FE60261D509E9800C2595D /* CollectionSetup */,
 				C5C74BA01D37BE9400A369E7 /* Commands */,
 				C508382B1D1423400025F67F /* DataSource */,
-				C570E4F31D20044400A947F1 /* DatePicker */,
 				C50838211D141C310025F67F /* Extensions */,
 				C5FE601E1D4B9B4D00C2595D /* InputPresentation */,
 				C50838321D1951A20025F67F /* SuggestionView */,
@@ -248,15 +246,6 @@
 			path = TagsExample;
 			sourceTree = "<group>";
 		};
-		C570E4F31D20044400A947F1 /* DatePicker */ = {
-			isa = PBXGroup;
-			children = (
-				C570E4F41D20046800A947F1 /* DatePickerController.swift */,
-				C570E4F51D20046800A947F1 /* DatePickerController.xib */,
-			);
-			path = DatePicker;
-			sourceTree = "<group>";
-		};
 		C5C74BA01D37BE9400A369E7 /* Commands */ = {
 			isa = PBXGroup;
 			children = (
@@ -292,6 +281,14 @@
 				C5FE60231D4B9DB300C2595D /* TextEntryController.xib */,
 			);
 			path = TextEntry;
+			sourceTree = "<group>";
+		};
+		C5FE60261D509E9800C2595D /* CollectionSetup */ = {
+			isa = PBXGroup;
+			children = (
+				C5FE60271D509EAB00C2595D /* CollectionSetup.swift */,
+			);
+			path = CollectionSetup;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -408,7 +405,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C570E4F71D20046800A947F1 /* DatePickerController.xib in Resources */,
 				C50838391D1951C10025F67F /* CompletionCell.xib in Resources */,
 				C50838271D141E820025F67F /* TagCell.xib in Resources */,
 				C5FE60251D4B9DB300C2595D /* TextEntryController.xib in Resources */,
@@ -456,12 +452,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C50838341D1951A20025F67F /* SuggestionView.swift in Sources */,
+				C5FE60281D509EAB00C2595D /* CollectionSetup.swift in Sources */,
 				C5FE60171D47A3D400C2595D /* FormatDate.swift in Sources */,
 				C53143931BD0F2FD006A8E48 /* TagDelegate.swift in Sources */,
 				C5C74BA21D37BEB700A369E7 /* Reminder.swift in Sources */,
 				C5FE60151D47A3B700C2595D /* CellWidth.swift in Sources */,
 				C508382D1D1423620025F67F /* CollectionViewDataSource.swift in Sources */,
-				C570E4F61D20046800A947F1 /* DatePickerController.swift in Sources */,
 				C5C74BA41D37BED300A369E7 /* CommandProtocol.swift in Sources */,
 				C5FE601B1D47B78C00C2595D /* DueDate.swift in Sources */,
 				C50838261D141E820025F67F /* TagCell.swift in Sources */,
