@@ -8,63 +8,63 @@
 
 import UIKit
 
-public class CollectionArrayDataSource<T, U: UICollectionViewCell>: NSObject, UICollectionViewDataSource {
-  public typealias CustomizeClosure = (U, T, NSIndexPath) -> Void
+open class CollectionArrayDataSource<T, U: UICollectionViewCell>: NSObject, UICollectionViewDataSource {
+  public typealias CustomizeClosure = (U, T, IndexPath) -> Void
 
-  private var dataArray: [[T]]
-  private var cellIdentifier: String
-  private var customizeCellClosure: CustomizeClosure
+  fileprivate var dataArray: [[T]]
+  fileprivate var cellIdentifier: String
+  fileprivate var customizeCellClosure: CustomizeClosure
 
-  var numberOfItemsClosure: ((section: Int) -> Int)?
-  var cellIDClosure: (NSIndexPath -> String)?
-  var supplementryID: (Void -> String)?
-  var customizeSupplementryViewClosure: ((UICollectionReusableView, NSIndexPath) -> ())?
+  var numberOfItemsClosure: ((_ section: Int) -> Int)?
+  var cellIDClosure: ((IndexPath) -> String)?
+  var supplementryID: ((Void) -> String)?
+  var customizeSupplementryViewClosure: ((UICollectionReusableView, IndexPath) -> ())?
 
-  public init(anArray dataArray: [[T]], withCellIdentifier cellIdentifier: String, andCustomizeClosure customizeCellClosure: CustomizeClosure) {
+  public init(anArray dataArray: [[T]], withCellIdentifier cellIdentifier: String, andCustomizeClosure customizeCellClosure: @escaping CustomizeClosure) {
     self.dataArray = dataArray
     self.cellIdentifier = cellIdentifier
     self.customizeCellClosure = customizeCellClosure
     super.init()
   }
 
-  func updateData(dataArray: [[T]]) {
+  func updateData(_ dataArray: [[T]]) {
     self.dataArray = dataArray
   }
 
-  private func itemAtIndexPath(indexPath: NSIndexPath) -> T? {
+  fileprivate func itemAtIndexPath(_ indexPath: IndexPath) -> T? {
     guard indexPath.section < dataArray.count && indexPath.row < dataArray[indexPath.section].count
       else { return nil }
 
     return dataArray[indexPath.section][indexPath.row]
   }
 
-  public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+  open func numberOfSections(in collectionView: UICollectionView) -> Int {
     return dataArray.count
   }
 
-  public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+  open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     guard let number = numberOfItemsClosure
       else { return dataArray[section].count }
-    return number(section: section)
+    return number(section)
   }
 
-  public func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+  open func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
     let id = supplementryID?() ?? ""
-    let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: id, forIndexPath: indexPath)
+    let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: id, for: indexPath)
     customizeSupplementryViewClosure?(view, indexPath)
     return view
   }
 
-  private func getCellId(indexPath: NSIndexPath) -> String {
+  fileprivate func getCellId(_ indexPath: IndexPath) -> String {
     guard let id = cellIDClosure
       else { return cellIdentifier }
     return id(indexPath)
   }
 
-  public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCellWithReuseIdentifier(getCellId(indexPath), forIndexPath: indexPath)
+  open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: getCellId(indexPath), for: indexPath)
     guard let item = itemAtIndexPath(indexPath),
-      newCell = cell as? U
+      let newCell = cell as? U
       else { return cell }
     customizeCellClosure(newCell, item, indexPath)
     return cell

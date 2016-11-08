@@ -40,6 +40,7 @@
 		C5FE60241D4B9DB300C2595D /* TextEntryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FE60221D4B9DB300C2595D /* TextEntryController.swift */; };
 		C5FE60251D4B9DB300C2595D /* TextEntryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5FE60231D4B9DB300C2595D /* TextEntryController.xib */; };
 		C5FE60281D509EAB00C2595D /* CollectionSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FE60271D509EAB00C2595D /* CollectionSetup.swift */; };
+		C5FE7E651D6A2DEC006816E7 /* BarButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FE7E641D6A2DEC006816E7 /* BarButtonHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		C5FE60221D4B9DB300C2595D /* TextEntryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEntryController.swift; sourceTree = "<group>"; };
 		C5FE60231D4B9DB300C2595D /* TextEntryController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextEntryController.xib; sourceTree = "<group>"; };
 		C5FE60271D509EAB00C2595D /* CollectionSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionSetup.swift; sourceTree = "<group>"; };
+		C5FE7E641D6A2DEC006816E7 /* BarButtonHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarButtonHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,6 +263,7 @@
 			children = (
 				C5FE60141D47A3B700C2595D /* CellWidth.swift */,
 				C5FE60161D47A3D400C2595D /* FormatDate.swift */,
+				C5FE7E641D6A2DEC006816E7 /* BarButtonHelper.swift */,
 			);
 			name = Util;
 			path = Tags/Util;
@@ -371,12 +374,14 @@
 				TargetAttributes = {
 					C531434A1BD0F1A6006A8E48 = {
 						CreatedOnToolsVersion = 7.0.1;
+						LastSwiftMigration = 0810;
 					};
 					C53143541BD0F1A6006A8E48 = {
 						CreatedOnToolsVersion = 7.0.1;
 					};
 					C570E4DF1D1E902900A947F1 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0810;
 					};
 				};
 			};
@@ -463,6 +468,7 @@
 				C50838261D141E820025F67F /* TagCell.swift in Sources */,
 				C53143951BD0F332006A8E48 /* TagParser.swift in Sources */,
 				C50838231D141C3F0025F67F /* CollectionView.swift in Sources */,
+				C5FE7E651D6A2DEC006816E7 /* BarButtonHelper.swift in Sources */,
 				C5FE60201D4B9B6500C2595D /* InputPresentationController.swift in Sources */,
 				C50838381D1951C10025F67F /* CompletionCell.swift in Sources */,
 				C53143971BD0F4B8006A8E48 /* TagsDataSource.swift in Sources */,
@@ -624,6 +630,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ca.Fluiddynamics.Tags;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -640,6 +647,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ca.Fluiddynamics.Tags;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -673,6 +681,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.SnapFashion.TagsExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -686,6 +695,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.SnapFashion.TagsExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

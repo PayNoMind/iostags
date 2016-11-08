@@ -9,8 +9,8 @@
 import UIKit
 
 extension UICollectionView {
-  public func setupCollectionAsTagView(tagDelegate: TagDelegate, withDataSource dataSource: TagsDataSource, andOwner owner: UIViewController) {
-    self.registerNibWith(Title: String(TagCell), withBundle: NSBundle(identifier: "ca.Fluiddynamics.Tags")!)
+  public func setupCollectionAsTagView(_ tagDelegate: TagDelegate, withDataSource dataSource: TagsDataSource, andOwner owner: UIViewController) {
+    self.registerNibWith(Title: String(TagCell), withBundle: Bundle(identifier: "ca.Fluiddynamics.Tags")!)
 
     tagDelegate.tagDataSource = dataSource
     tagDelegate.ownerController = owner

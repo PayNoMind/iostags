@@ -9,10 +9,10 @@ extension String {
 
 public typealias TagContainer = TagParser.TagContainer
 
-public class TagParser {
-  private var tagHandler: TagsDataSource
+open class TagParser {
+  fileprivate var tagHandler: TagsDataSource
 
-  private(set) var commands = [CommandProtocol]()
+  fileprivate(set) var commands = [CommandProtocol]()
 
   public struct TagContainer {
     public let title: String
@@ -36,11 +36,11 @@ public class TagParser {
     }
   }
 
-  private func removeCommandPrefix(command: String) -> String? {
+  fileprivate func removeCommandPrefix(_ command: String) -> String? {
     return command.isCommand ? String(command.characters.dropFirst()) : nil
   }
 
-  private func getCommandBy(Name name: String) -> TagContainer? {
+  fileprivate func getCommandBy(Name name: String) -> TagContainer? {
     let type = commands.filter { value -> Bool in
       value.suggestionTitle.hasPrefix(name)
     }.first
@@ -48,7 +48,7 @@ public class TagParser {
     return TagContainer(commandType: type)
   }
 
-  private func handleCommands(command: String) -> [TagContainer]? {
+  fileprivate func handleCommands(_ command: String) -> [TagContainer]? {
     guard let command = removeCommandPrefix(command)
       else { return nil }
 
@@ -58,33 +58,33 @@ public class TagParser {
       }.flatMap { $0 }
     }
 
-    if let command = getCommandBy(Name: command.lowercaseString) {
+    if let command = getCommandBy(Name: command.lowercased()) {
       return [command]
     }
 
     return nil
   }
 
-  public func register(Command command: CommandProtocol) {
+  open func register(Command command: CommandProtocol) {
     commands.append(command)
   }
 
-  private func setupDefaultCommands() {
+  fileprivate func setupDefaultCommands() {
     let commands: [CommandProtocol] = [Reminder(), DueDate()]
     for command in commands {
       self.register(Command: command)
     }
   }
 
-  private func getTagsThatMatch(Text text: String) -> [TagContainer] {
-    let tags: [TagContainer] = tagHandler.getTagsByPrefix(text.lowercaseString).map { tag -> TagContainer in
+  fileprivate func getTagsThatMatch(Text text: String) -> [TagContainer] {
+    let tags: [TagContainer] = tagHandler.getTagsByPrefix(text.lowercased()).map { tag -> TagContainer in
       return TagContainer(title: tag)
     }
     return tags
   }
 
-  public var currentTags = [TagContainer]()
-  public func parse(text: String) -> [TagContainer] {
+  open var currentTags = [TagContainer]()
+  open func parse(_ text: String) -> [TagContainer] {
     if let tags = handleCommands(text) {
       currentTags = tags
     } else {

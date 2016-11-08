@@ -9,12 +9,12 @@
 import Foundation
 
 class InputPresentationController: UIPresentationController {
-  private lazy var dimmingView: UIView = {
+  fileprivate lazy var dimmingView: UIView = {
     let view = UIView(frame: self.containerView?.bounds ?? CGRect.zero)
     view.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.6)
     view.alpha = 0.0
 
-    let gesture = UITapGestureRecognizer(target: self.presentedViewController, action: #selector(DatePickerController.handleTap))
+    let gesture = UITapGestureRecognizer(target: self.presentedViewController, action: #selector(TextEntryController.handleTap))
 
     view.addGestureRecognizer(gesture)
 
@@ -23,7 +23,7 @@ class InputPresentationController: UIPresentationController {
 
   override func presentationTransitionWillBegin() {
     guard let containerView = containerView,
-      presentedView = presentedView()
+      let presentedView = presentedView
       else { return }
 
     // Add the dimming view and the presented view to the heirarchy
@@ -32,15 +32,15 @@ class InputPresentationController: UIPresentationController {
     containerView.addSubview(presentedView)
 
     // Fade in the dimming view alongside the transition
-    if let transitionCoordinator = self.presentingViewController.transitionCoordinator() {
-      transitionCoordinator.animateAlongsideTransition({ (context: UIViewControllerTransitionCoordinatorContext!) -> Void in
+    if let transitionCoordinator = self.presentingViewController.transitionCoordinator {
+      transitionCoordinator.animate(alongsideTransition: { (context: UIViewControllerTransitionCoordinatorContext!) -> Void in
         self.dimmingView.alpha = 1.0
       }, completion:nil)
     }
   }
 
-  override func frameOfPresentedViewInContainerView() -> CGRect {
-    let rectHeight = presentedViewController is DatePickerController ? CGFloat(200.0) : CGFloat(100)
+  override var frameOfPresentedViewInContainerView : CGRect {
+    let rectHeight = CGFloat(100)
 
     if var rect = self.containerView?.bounds {
       rect.size.height = rectHeight

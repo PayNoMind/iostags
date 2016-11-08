@@ -4,19 +4,19 @@ enum Tags: String {
   case Default = "Add Tag"
 }
 
-public class TagDelegate: NSObject {
-  private var tags = [String]()
+open class TagDelegate: NSObject {
+  fileprivate var tags = [String]()
 
-  private weak var collectionView: UICollectionView?
-  private weak var currentCell: TagCell?
+  fileprivate weak var collectionView: UICollectionView?
+  fileprivate weak var currentCell: TagCell?
 
-  private lazy var parser: TagParser = TagParser(tags: self.tagDataSource)
+  fileprivate lazy var parser: TagParser = TagParser(tags: self.tagDataSource)
 
-  private lazy var collectionDataSource: CollectionArrayDataSource<String, TagCell> = {
-    return CollectionArrayDataSource<String, TagCell>(anArray: [self.tags], withCellIdentifier: String(TagCell), andCustomizeClosure: self.customizeCell)
+  fileprivate lazy var collectionDataSource: CollectionArrayDataSource<String, TagCell> = {
+    return CollectionArrayDataSource<String, TagCell>(anArray: [self.tags as! Array<_>], withCellIdentifier: String(TagCell), andCustomizeClosure: self.customizeCell)
   }()
 
-  private var textEntryController: TextEntryController? {
+  fileprivate var textEntryController: TextEntryController? {
     didSet {
       textEntryController?.suggestions = getSuggestions
     }
@@ -29,56 +29,56 @@ public class TagDelegate: NSObject {
     self.collectionView = collectionView
   }
 
-  public var ownerController: UIViewController!
+  open var ownerController: UIViewController!
 
-  public var tagDataSource: TagsDataSource!
+  open var tagDataSource: TagsDataSource!
 
-  private func getSuggestions(item: String, closure: [TagParser.TagContainer] -> Void) {
+  fileprivate func getSuggestions(_ item: String, closure: ([TagParser.TagContainer]) -> Void) {
     let items = parser.parse(item)
     closure(items)
   }
 
-  private func passText(text: String) {
+  fileprivate func passText(_ text: String) {
     currentCell?.tagTitle = text
     collectionView?.collectionViewLayout.invalidateLayout()
   }
 
-  private func customizeCell(cell: TagCell, item: String, path: NSIndexPath) {
+  fileprivate func customizeCell(_ cell: TagCell, item: String, path: IndexPath) {
     cell.tagTitle = item
     cell.insertNewTag = { cell in
 
-      guard let currentIndexPath = self.collectionView?.indexPathForCell(cell)
+      guard let currentIndexPath = self.collectionView?.indexPath(for: cell)
         else { return }
 
       self.tags.append("")
       self.collectionDataSource.updateData([self.tags])
 
-      let newIndexPath = NSIndexPath(forRow: currentIndexPath.row+1, inSection: currentIndexPath.section)
-      self.collectionView?.insertItemsAtIndexPaths([newIndexPath])
+      let newIndexPath = IndexPath(row: currentIndexPath.row+1, section: currentIndexPath.section)
+      self.collectionView?.insertItems(at: [newIndexPath])
     }
     currentCell = cell
   }
 }
 
 extension TagDelegate: UICollectionViewDelegateFlowLayout {
-  public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-    guard let cell = collectionView.cellForItemAtIndexPath(indexPath) as? TagCell
+  public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    guard let cell = collectionView.cellForItem(at: indexPath) as? TagCell
       else { return }
 
-    textEntryController = TextEntryController(nibName: String(TextEntryController), bundle: NSBundle(forClass: self.dynamicType))
+    textEntryController = TextEntryController(nibName: String(TextEntryController), bundle: Bundle(for: type(of: self)))
 
     textEntryController?.textPass = passText
 
     if let textEntry = textEntryController {
-      self.ownerController.presentViewController(textEntry, animated: true) {
+      self.ownerController.present(textEntry, animated: true) {
         textEntry.text = cell.tagTitle
       }
     }
   }
 
-  public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-    guard let cell = collectionView.cellForItemAtIndexPath(indexPath) as? TagCell,
-    tagText = cell.tagLabel.text, font = cell.tagLabel.font
+  public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    guard let cell = collectionView.cellForItem(at: indexPath) as? TagCell,
+    let tagText = cell.tagLabel.text, let font = cell.tagLabel.font
       else { return CGSize(width: 20, height: collectionView.bounds.height) }
 
     let width = cell.cellWidth ?? CellWidth.widthOf(Text: tagText, withFont: font)

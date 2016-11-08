@@ -11,18 +11,18 @@ import Foundation
 class SingleFormatter {
   static let sharedInstance = SingleFormatter()
 
-  var formatter: NSDateFormatter
+  var formatter: DateFormatter
 
-  private init() {
-    formatter = NSDateFormatter()
-    formatter.dateStyle = .MediumStyle
+  fileprivate init() {
+    formatter = DateFormatter()
+    formatter.dateStyle = .medium
   }
 }
 
 struct FormatDate {
   static let formatter = SingleFormatter()
 
-  static func format(date: NSDate) -> String {
-    return formatter.formatter.stringFromDate(date)
+  static func format(_ date: Date) -> String {
+    return formatter.formatter.string(from: date)
   }
 }

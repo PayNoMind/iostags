@@ -16,15 +16,15 @@ class ViewController: UIViewController {
     }
   }
 
-  private lazy var tagDelegate: TagDelegate = {
+  fileprivate lazy var tagDelegate: TagDelegate = {
     return TagDelegate(collectionView: self.collection, tags: ["CheeseBurger"])
   }()
 
-  private var tags: Set = ["groceries", "home", "work", "stuff", "longstringthatislong", "day"]
+  fileprivate var tags: Set = ["groceries", "home", "work", "stuff", "longstringthatislong", "day"]
 }
 
 extension ViewController: TagsDataSource {
-  func getTagsByPrefix(prefix: String) -> [String] {
+  func getTagsByPrefix(_ prefix: String) -> [String] {
     return tags.filter {
       $0.hasPrefix(prefix)
     }
@@ -34,7 +34,7 @@ extension ViewController: TagsDataSource {
     return tags
   }
 
-  func insertTag(tag: String) {
+  func insertTag(_ tag: String) {
     tags.insert(tag)
   }
 }
