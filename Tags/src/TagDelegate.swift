@@ -13,7 +13,7 @@ open class TagDelegate: NSObject {
   fileprivate lazy var parser: TagParser = TagParser(tags: self.tagDataSource)
 
   fileprivate lazy var collectionDataSource: CollectionArrayDataSource<String, TagCell> = {
-    return CollectionArrayDataSource<String, TagCell>(anArray: [self.tags as! Array<_>], withCellIdentifier: String(TagCell), andCustomizeClosure: self.customizeCell)
+    return CollectionArrayDataSource<String, TagCell>(anArray: [self.tags], withCellIdentifier: String(describing: TagCell.self), andCustomizeClosure: self.customizeCell)
   }()
 
   fileprivate var textEntryController: TextEntryController? {
@@ -65,7 +65,7 @@ extension TagDelegate: UICollectionViewDelegateFlowLayout {
     guard let cell = collectionView.cellForItem(at: indexPath) as? TagCell
       else { return }
 
-    textEntryController = TextEntryController(nibName: String(TextEntryController), bundle: Bundle(for: type(of: self)))
+    textEntryController = TextEntryController(nibName: String(describing: TextEntryController.self), bundle: Bundle(for: type(of: self)))
 
     textEntryController?.textPass = passText
 

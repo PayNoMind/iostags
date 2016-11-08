@@ -10,7 +10,7 @@ import UIKit
 
 open class SuggestionView: UICollectionView {
   fileprivate lazy var suggestionDataSource: CollectionArrayDataSource<TagContainer, CompletionCell> = {
-    let ds = CollectionArrayDataSource<TagParser.TagContainer, CompletionCell>(anArray: [self.suggestions as! Array<_>], withCellIdentifier: String(CompletionCell), andCustomizeClosure: self.setupSuggestionCell)
+    let ds = CollectionArrayDataSource<TagParser.TagContainer, CompletionCell>(anArray: [self.suggestions], withCellIdentifier: String(describing: CompletionCell.self), andCustomizeClosure: self.setupSuggestionCell)
     return ds
   }()
 
@@ -34,7 +34,7 @@ open class SuggestionView: UICollectionView {
 
     delegate = self
     dataSource = suggestionDataSource
-    registerNibWith(Title: String(CompletionCell), withBundle: Bundle(for: type(of: self)))
+    registerNibWith(Title: String(describing: CompletionCell.self), withBundle: Bundle(for: type(of: self)))
   }
 
   fileprivate func setupSuggestionCell(_ cell: CompletionCell, item: TagContainer, path: IndexPath) {
