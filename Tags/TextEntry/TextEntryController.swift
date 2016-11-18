@@ -13,9 +13,11 @@ protocol TextEntryProtocol {
 }
 
 class TextEntryController: UIViewController {
-  @IBOutlet fileprivate weak var textInput: UITextField! {
+  @IBOutlet fileprivate weak var textInput: UITextView! {
     didSet {
       self.presentSuggestionView()
+      textInput.layer.cornerRadius = 20.0
+      textInput.delegate = self
     }
   }
   fileprivate lazy var datePicker: UIDatePicker = {
@@ -36,8 +38,11 @@ class TextEntryController: UIViewController {
   var suggestions: ((String, (([TagParser.TagContainer]) -> Void)) -> Void)?
 
   var text: String? {
-    didSet {
-      self.textInput.text = text
+    set {
+      self.textInput.text = newValue
+    }
+    get {
+      return self.textInput.text
     }
   }
 
@@ -56,6 +61,7 @@ class TextEntryController: UIViewController {
   fileprivate func commonInit() {
     modalPresentationStyle = .custom
     transitioningDelegate = self
+    view.layer.cornerRadius = 20.0
   }
 
   @objc
@@ -69,18 +75,8 @@ class TextEntryController: UIViewController {
     textInput.text = saveText
   }
 
-  @objc
-  func tagTextChanged(_ textField: UITextField) {
-    if let tagText = textField.text {
-      suggestions?(tagText) { suggestions in
-        self.suggestionView.suggestions = suggestions
-      }
-    }
-  }
-
   override func viewDidLoad() {
     super.viewDidLoad()
-
     suggestionView.setSuggestion = { selection in
       if let command = selection.type, command.usesDatePicker {
         self.presentDatePicker()
@@ -89,8 +85,6 @@ class TextEntryController: UIViewController {
         self.textInput.text = FormatDate.format(date)
       }
     }
-
-    textInput.addTarget(self, action: #selector(tagTextChanged), for: .editingChanged)
   }
 
   override func viewDidAppear(_ animated: Bool) {
@@ -126,6 +120,16 @@ class TextEntryController: UIViewController {
     dismiss(animated: true) {
       if let inputText = self.textInput.text {
         self.textPass?(inputText)
+      }
+    }
+  }
+}
+
+extension TextEntryController: UITextViewDelegate {
+  func textViewDidChange(_ textView: UITextView) {
+    if let tagText = textView.text {
+      suggestions?(tagText) { suggestions in
+        self.suggestionView.suggestions = suggestions
       }
     }
   }

@@ -31,6 +31,7 @@
 		C570E4F21D1E977B00A947F1 /* Tags.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C531434B1BD0F1A6006A8E48 /* Tags.framework */; };
 		C5C74BA21D37BEB700A369E7 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C74BA11D37BEB700A369E7 /* Reminder.swift */; };
 		C5C74BA41D37BED300A369E7 /* CommandProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C74BA31D37BED300A369E7 /* CommandProtocol.swift */; };
+		C5F1BE4B1DDEE26800070CB8 /* Tags.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C531434B1BD0F1A6006A8E48 /* Tags.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C5FE60151D47A3B700C2595D /* CellWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FE60141D47A3B700C2595D /* CellWidth.swift */; };
 		C5FE60171D47A3D400C2595D /* FormatDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FE60161D47A3D400C2595D /* FormatDate.swift */; };
 		C5FE60191D47A45B00C2595D /* FormatDateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FE60181D47A45B00C2595D /* FormatDateTests.swift */; };
@@ -51,7 +52,28 @@
 			remoteGlobalIDString = C531434A1BD0F1A6006A8E48;
 			remoteInfo = Tags;
 		};
+		C5F1BE4C1DDEE26800070CB8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C53143421BD0F1A6006A8E48 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C531434A1BD0F1A6006A8E48;
+			remoteInfo = Tags;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C5F1BE4E1DDEE26800070CB8 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C5F1BE4B1DDEE26800070CB8 /* Tags.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C50838221D141C3F0025F67F /* CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
@@ -352,10 +374,12 @@
 				C570E4DC1D1E902900A947F1 /* Sources */,
 				C570E4DD1D1E902900A947F1 /* Frameworks */,
 				C570E4DE1D1E902900A947F1 /* Resources */,
+				C5F1BE4E1DDEE26800070CB8 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C5F1BE4D1DDEE26800070CB8 /* PBXTargetDependency */,
 			);
 			name = TagsExample;
 			productName = TagsExample;
@@ -369,11 +393,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = Fluiddynamics;
 				TargetAttributes = {
 					C531434A1BD0F1A6006A8E48 = {
 						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = 5AFPAAM6LN;
 						LastSwiftMigration = 0810;
 					};
 					C53143541BD0F1A6006A8E48 = {
@@ -381,6 +406,7 @@
 					};
 					C570E4DF1D1E902900A947F1 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 5AFPAAM6LN;
 						LastSwiftMigration = 0810;
 					};
 				};
@@ -506,6 +532,11 @@
 			target = C531434A1BD0F1A6006A8E48 /* Tags */;
 			targetProxy = C53143571BD0F1A6006A8E48 /* PBXContainerItemProxy */;
 		};
+		C5F1BE4D1DDEE26800070CB8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C531434A1BD0F1A6006A8E48 /* Tags */;
+			targetProxy = C5F1BE4C1DDEE26800070CB8 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -541,8 +572,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -589,8 +622,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -610,6 +645,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -620,7 +656,9 @@
 		C53143601BD0F1A6006A8E48 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 5AFPAAM6LN;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -637,7 +675,9 @@
 		C53143611BD0F1A6006A8E48 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 5AFPAAM6LN;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -674,8 +714,10 @@
 		C570E4EF1D1E902900A947F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
+				DEVELOPMENT_TEAM = 5AFPAAM6LN;
 				INFOPLIST_FILE = TagsExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -688,8 +730,10 @@
 		C570E4F01D1E902900A947F1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
+				DEVELOPMENT_TEAM = 5AFPAAM6LN;
 				INFOPLIST_FILE = TagsExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
