@@ -1,7 +1,7 @@
 import UIKit
 
 enum Tags: String {
-  case Default = "Add Tag"
+  case defaultName = "Add Tag"
 }
 
 open class TagDelegate: NSObject {
@@ -62,17 +62,18 @@ open class TagDelegate: NSObject {
 
 extension TagDelegate: UICollectionViewDelegateFlowLayout {
   public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    guard let cell = collectionView.cellForItem(at: indexPath) as? TagCell
-      else { return }
+//    guard let cell = collectionView.cellForItem(at: indexPath) as? TagCell
+//      else { return }
 
-    textEntryController = TextEntryController(nibName: String(describing: TextEntryController.self), bundle: Bundle(for: type(of: self)))
+    let sb = UIStoryboard(name: "TagPresentation", bundle: Bundle.tagBundle)
+    let root = sb.instantiateInitialViewController() as? UINavigationController
+    textEntryController = root?.topViewController as? TextEntryController
 
     textEntryController?.textPass = passText
 
-    if let textEntry = textEntryController {
-      self.ownerController.present(textEntry, animated: true) {
-        textEntry.text = cell.tagTitle
-      }
+    if let rv = root, let textEntry = textEntryController {
+      textEntry.tags = self.tags
+      self.ownerController.present(rv, animated: true, completion: nil)
     }
   }
 

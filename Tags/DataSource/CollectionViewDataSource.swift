@@ -17,8 +17,8 @@ open class CollectionArrayDataSource<T, U: UICollectionViewCell>: NSObject, UICo
 
   var numberOfItemsClosure: ((_ section: Int) -> Int)?
   var cellIDClosure: ((IndexPath) -> String)?
-  var supplementryID: ((Void) -> String)?
-  var customizeSupplementryViewClosure: ((UICollectionReusableView, IndexPath) -> ())?
+  var supplementryID: (() -> String)?
+  var customizeSupplementryViewClosure: ((UICollectionReusableView, IndexPath) -> Void)?
 
   public init(anArray dataArray: [[T]], withCellIdentifier cellIdentifier: String, andCustomizeClosure customizeCellClosure: @escaping CustomizeClosure) {
     self.dataArray = dataArray

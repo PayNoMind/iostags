@@ -6,7 +6,7 @@
 //  Copyright © 2016 Fluiddynamics. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension UICollectionView {
   public func registerNibWith(Title title: String, withBundle bundle: Bundle?) {

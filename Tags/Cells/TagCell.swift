@@ -1,10 +1,9 @@
 import UIKit
 
 open class TagCell: UICollectionViewCell {
-  @IBInspectable var cornerRadius = CGFloat(5.0)
-  @IBInspectable var borderWidth = CGFloat(0.5)
-  @IBInspectable var borderColor = UIColor.black.cgColor
-
+  @IBInspectable var cornerRadius: CGFloat = CGFloat(5.0)
+  @IBInspectable var borderWidth: CGFloat = CGFloat(0.5)
+  @IBInspectable var borderColor: UIColor = .black
 
   @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
   @IBOutlet weak var trailingConstraint: NSLayoutConstraint!
@@ -46,13 +45,13 @@ open class TagCell: UICollectionViewCell {
     super.init(coder: aDecoder)
     layer.cornerRadius = cornerRadius
     layer.borderWidth = borderWidth
-    layer.borderColor = borderColor
+    layer.borderColor = borderColor.cgColor
   }
 }
 
 extension TagCell: UITextFieldDelegate {
   public func textFieldDidBeginEditing(_ textField: UITextField) {
-    if textField.text == Tags.Default.rawValue {
+    if textField.text == Tags.defaultName.rawValue {
       textField.text = ""
     }
   }

@@ -42,6 +42,6 @@ import UIKit
 
 struct CellWidth {
   static func widthOf(Text text: String, withFont font: UIFont) -> CGFloat {
-    return text.size(attributes: [NSFontAttributeName: font]).width
+    return text.size(withAttributes: [NSAttributedStringKey.font: font]).width
   }
 }

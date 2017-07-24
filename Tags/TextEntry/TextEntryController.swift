@@ -8,18 +8,22 @@
 
 import UIKit
 
-protocol TextEntryProtocol {
-  func getSuggestions(_: [String]) -> Void
+@objc protocol TextEntryProtocol {
+  func getSuggestions(_: [String])
 }
 
 class TextEntryController: UIViewController {
-  @IBOutlet fileprivate weak var textInput: UITextView! {
+  @IBOutlet private weak var tagTable: UITableView! {
     didSet {
-      self.presentSuggestionView()
-      textInput.layer.cornerRadius = 20.0
-      textInput.delegate = self
+      self.tagTable.registerNibWith(Title: TagTitleCell.nameString, withBundle: Bundle.tagBundle)
+      self.tagTable.dataSource = self.tableDataSource
     }
   }
+  private lazy var tableDataSource: TableArrayDataSource<String> = {
+    let temp = TableArrayDataSource<String>(anArray: [], withCellIdentifier: TagTitleCell.nameString, andCustomizeClosure: self.setupCell)
+    return temp
+  }()
+
   fileprivate lazy var datePicker: UIDatePicker = {
     let datePicker = UIDatePicker()
     return datePicker
@@ -33,35 +37,24 @@ class TextEntryController: UIViewController {
   }()
   fileprivate lazy var suggestionView: SuggestionView = SuggestionView()
 
+  fileprivate var currentTextField: UITextField?
+
+  fileprivate let addTag = "Add Tag"
   fileprivate var saveText = ""
 
   var suggestions: ((String, (([TagParser.TagContainer]) -> Void)) -> Void)?
 
-  var text: String? {
-    set {
-      self.textInput.text = newValue
-    }
-    get {
-      return self.textInput.text
+  var tags: [String] = [] {
+    didSet {
+      self.set(Tags: self.tags)
     }
   }
 
   var textPass: ((String) -> Void)?
 
-  required init?(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
-    commonInit()
-  }
-
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    commonInit()
-  }
-
-  fileprivate func commonInit() {
-    modalPresentationStyle = .custom
-    transitioningDelegate = self
-    view.layer.cornerRadius = 20.0
+  private func set(Tags tags: [String]) {
+    let final: [String] = [addTag] + tags
+    tableDataSource.updateData([final])
   }
 
   @objc
@@ -71,72 +64,95 @@ class TextEntryController: UIViewController {
 
   @objc
   func cancel(_ button: UIBarButtonItem) {
-    presentSuggestionView()
-    textInput.text = saveText
+//    presentSuggestionView()
+//    textInput.text = saveText
+  }
+
+  @IBAction func close(_ sender: UIBarButtonItem) {
+    //      if let inputText = self.textInput.text {
+    //        self.textPass?(inputText)
+    //      }
+
+    self.dismiss(animated: true, completion: nil)
   }
 
   override func viewDidLoad() {
     super.viewDidLoad()
     suggestionView.setSuggestion = { selection in
       if let command = selection.type, command.usesDatePicker {
-        self.presentDatePicker()
+        self.presentDatePicker(textField: self.currentTextField)
 
         let date = self.datePicker.date
-        self.textInput.text = FormatDate.format(date)
+//        self.textInput.text = FormatDate.format(date)
       }
     }
   }
 
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
-    textInput.becomeFirstResponder()
+  fileprivate func setupCell(cell: UITableViewCell, item: String, path: IndexPath) {
+    let tempcell = cell as? TagTitleCell
+    tempcell?.tagTitle = item
+    tempcell?.fieldDelegate = self
   }
 
-  fileprivate func presentSuggestionView() {
-    let shouldReset = textInput.inputAccessoryView != nil
-
-    textInput.inputView = nil
-
-    textInput.inputAccessoryView = suggestionView
-
+  fileprivate func presentSuggestionView(_ textField: UITextField) {
+    let shouldReset = textField.inputAccessoryView != nil
+    textField.inputView = nil
+    textField.inputAccessoryView = suggestionView
     resetInputViews(shouldReset)
   }
 
   fileprivate func resetInputViews(_ reset: Bool) {
     if reset {
-      textInput.reloadInputViews()
+//      textInput.reloadInputViews()
     }
   }
 
-  fileprivate func presentDatePicker() {
-    saveText = textInput.text ?? ""
+  fileprivate func presentDatePicker(textField: UITextField?) {
+    saveText = textField?.text ?? ""
 
-    textInput.inputView = self.datePicker
-    textInput.inputAccessoryView = self.datePickerToolbar
-    textInput.reloadInputViews()
+    textField?.inputView = self.datePicker
+    textField?.inputAccessoryView = self.datePickerToolbar
+    textField?.reloadInputViews()
   }
 
-  func handleTap(_ sender: UITapGestureRecognizer) {
+  @objc func handleTap(_ sender: UITapGestureRecognizer) {
     dismiss(animated: true) {
-      if let inputText = self.textInput.text {
-        self.textPass?(inputText)
-      }
+//      if let inputText = self.textInput.text {
+//        self.textPass?(inputText)
+//      }
     }
   }
 }
 
-extension TextEntryController: UITextViewDelegate {
-  func textViewDidChange(_ textView: UITextView) {
-    if let tagText = textView.text {
-      suggestions?(tagText) { suggestions in
-        self.suggestionView.suggestions = suggestions
-      }
+extension TextEntryController: UITextFieldDelegate {
+  func textFieldDidBeginEditing(_ textField: UITextField) {
+    currentTextField = textField
+    saveText = textField.text ?? ""
+    if textField.text == addTag {
+      textField.text = ""
     }
+    presentSuggestionView(textField)
   }
-}
 
-extension TextEntryController: UIViewControllerTransitioningDelegate {
-  func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-    return InputPresentationController(presentedViewController: presented, presenting: presenting)
+  func textFieldDidEndEditing(_ textField: UITextField) {
+    currentTextField = nil
+    if textField.text?.isEmpty ?? false {
+      textField.text = saveText
+    }
+    saveText = ""
+  }
+
+  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    let tagText = NSString(string: textField.text ?? "").replacingCharacters(in: range, with: string)
+
+    suggestions?(tagText) { suggestions in
+      self.suggestionView.suggestions = suggestions
+    }
+    return true
+  }
+
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    textField.resignFirstResponder()
+    return true
   }
 }
