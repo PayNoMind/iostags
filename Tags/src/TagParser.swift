@@ -44,7 +44,6 @@ open class TagParser {
     let type = commands.filter { value -> Bool in
       value.suggestionTitle.hasPrefix(name)
     }.first
-
     return TagContainer(commandType: type)
   }
 
@@ -61,7 +60,6 @@ open class TagParser {
     if let command = getCommandBy(Name: command.lowercased()) {
       return [command]
     }
-
     return nil
   }
 

@@ -38,38 +38,24 @@ open class TagDelegate: NSObject {
     closure(items)
   }
 
-  fileprivate func passText(_ text: String) {
-    currentCell?.tagTitle = text
-    collectionView?.collectionViewLayout.invalidateLayout()
+  fileprivate func passText(_ text: [String]) {
+    self.collectionDataSource.updateData([text])
+    self.collectionView?.reloadData()
   }
 
   fileprivate func customizeCell(_ cell: TagCell, item: String, path: IndexPath) {
     cell.tagTitle = item
-    cell.insertNewTag = { cell in
-
-      guard let currentIndexPath = self.collectionView?.indexPath(for: cell)
-        else { return }
-
-      self.tags.append("")
-      self.collectionDataSource.updateData([self.tags])
-
-      let newIndexPath = IndexPath(row: currentIndexPath.row+1, section: currentIndexPath.section)
-      self.collectionView?.insertItems(at: [newIndexPath])
-    }
     currentCell = cell
   }
 }
 
 extension TagDelegate: UICollectionViewDelegateFlowLayout {
   public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//    guard let cell = collectionView.cellForItem(at: indexPath) as? TagCell
-//      else { return }
-
     let sb = UIStoryboard(name: "TagPresentation", bundle: Bundle.tagBundle)
     let root = sb.instantiateInitialViewController() as? UINavigationController
     textEntryController = root?.topViewController as? TextEntryController
 
-    textEntryController?.textPass = passText
+    textEntryController?.tagPassBack = passText
 
     if let rv = root, let textEntry = textEntryController {
       textEntry.tags = self.tags

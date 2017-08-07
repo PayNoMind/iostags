@@ -20,7 +20,7 @@ enum BarButtonHelper {
     case .done(let target):
       return UIBarButtonItem(title: "Done", style: .plain, target: target, action: #selector(TextEntryController.done))
     case .flexibleSpace:
-      return UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: Selector(""))
+      return UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
     }
   }
 }

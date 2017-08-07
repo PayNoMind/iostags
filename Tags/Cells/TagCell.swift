@@ -10,10 +10,6 @@ open class TagCell: UICollectionViewCell {
 
   @IBOutlet weak var tagLabel: UILabel!
 
-  fileprivate let newTagCommand = " "
-
-  var insertNewTag: ((UICollectionViewCell) -> Void)?
-
   open var tagTitle: String = "" {
     didSet {
       tagLabel.text = tagTitle
@@ -46,24 +42,5 @@ open class TagCell: UICollectionViewCell {
     layer.cornerRadius = cornerRadius
     layer.borderWidth = borderWidth
     layer.borderColor = borderColor.cgColor
-  }
-}
-
-extension TagCell: UITextFieldDelegate {
-  public func textFieldDidBeginEditing(_ textField: UITextField) {
-    if textField.text == Tags.defaultName.rawValue {
-      textField.text = ""
-    }
-  }
-
-  public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-    guard !string.characters.isEmpty
-      else { return true }
-
-    if string.hasSuffix(newTagCommand) {
-      insertNewTag?(self)
-      return false
-    }
-    return true
   }
 }

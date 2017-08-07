@@ -8,10 +8,6 @@
 
 import UIKit
 
-@objc protocol TextEntryProtocol {
-  func getSuggestions(_: [String])
-}
-
 class TextEntryController: UIViewController {
   @IBOutlet private weak var tagTable: UITableView! {
     didSet {
@@ -24,14 +20,10 @@ class TextEntryController: UIViewController {
     return temp
   }()
 
-  fileprivate lazy var datePicker: UIDatePicker = {
-    let datePicker = UIDatePicker()
-    return datePicker
-  }()
+  fileprivate lazy var datePicker: UIDatePicker = UIDatePicker()
   fileprivate lazy var datePickerToolbar: UIToolbar = {
     let toolBarFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 35)
     let toolbar = UIToolbar(frame: toolBarFrame)
-
     toolbar.items = ([.cancel(self), .flexibleSpace, .done(self)] as [BarButtonHelper]).map { $0.button }
     return toolbar
   }()
@@ -43,14 +35,13 @@ class TextEntryController: UIViewController {
   fileprivate var saveText = ""
 
   var suggestions: ((String, (([TagParser.TagContainer]) -> Void)) -> Void)?
+  var tagPassBack: (([String]) -> Void)?
 
   var tags: [String] = [] {
     didSet {
       self.set(Tags: self.tags)
     }
   }
-
-  var textPass: ((String) -> Void)?
 
   private func set(Tags tags: [String]) {
     let final: [String] = [addTag] + tags
@@ -59,20 +50,20 @@ class TextEntryController: UIViewController {
 
   @objc
   func done(_ button: UIBarButtonItem) {
-    print("done")
+    self.currentTextField?.resignFirstResponder()
+    saveText = ""
   }
 
   @objc
   func cancel(_ button: UIBarButtonItem) {
-//    presentSuggestionView()
-//    textInput.text = saveText
+    if let ctf = currentTextField {
+      presentSuggestionView(ctf)
+    }
+    currentTextField?.text = saveText
   }
 
   @IBAction func close(_ sender: UIBarButtonItem) {
-    //      if let inputText = self.textInput.text {
-    //        self.textPass?(inputText)
-    //      }
-
+    self.tagPassBack?(self.tags)
     self.dismiss(animated: true, completion: nil)
   }
 
@@ -83,7 +74,7 @@ class TextEntryController: UIViewController {
         self.presentDatePicker(textField: self.currentTextField)
 
         let date = self.datePicker.date
-//        self.textInput.text = FormatDate.format(date)
+        self.currentTextField?.text = FormatDate.format(date)
       }
     }
   }
@@ -103,24 +94,23 @@ class TextEntryController: UIViewController {
 
   fileprivate func resetInputViews(_ reset: Bool) {
     if reset {
-//      textInput.reloadInputViews()
+      currentTextField?.reloadInputViews()
     }
   }
 
   fileprivate func presentDatePicker(textField: UITextField?) {
     saveText = textField?.text ?? ""
+    self.datePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
 
     textField?.inputView = self.datePicker
     textField?.inputAccessoryView = self.datePickerToolbar
     textField?.reloadInputViews()
   }
 
-  @objc func handleTap(_ sender: UITapGestureRecognizer) {
-    dismiss(animated: true) {
-//      if let inputText = self.textInput.text {
-//        self.textPass?(inputText)
-//      }
-    }
+  @objc
+  func dateChanged(datePicker: UIDatePicker) {
+    let date = datePicker.date
+    self.currentTextField?.text = FormatDate.format(date)
   }
 }
 
@@ -135,10 +125,15 @@ extension TextEntryController: UITextFieldDelegate {
   }
 
   func textFieldDidEndEditing(_ textField: UITextField) {
-    currentTextField = nil
-    if textField.text?.isEmpty ?? false {
+    if textField.text?.isEmpty ?? true {
       textField.text = saveText
+    } else {
+      tags.insert(currentTextField?.text ?? "", at: 0)
+      tags.insert(addTag, at: 0)
+      tableDataSource.updateData([tags])
+      tagTable.reloadData()
     }
+    currentTextField = nil
     saveText = ""
   }
 
