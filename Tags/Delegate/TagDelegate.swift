@@ -1,9 +1,5 @@
 import UIKit
 
-enum Tags: String {
-  case defaultName = "Add Tag"
-}
-
 open class TagDelegate: NSObject {
   fileprivate var tags = [String]()
 
@@ -39,8 +35,20 @@ open class TagDelegate: NSObject {
   }
 
   fileprivate func passText(_ text: [String]) {
+    self.tagDataSource.insertTags(Set<String>(text))
     self.collectionDataSource.updateData([text])
     self.collectionView?.reloadData()
+  }
+
+  open func updateTags(tags: [String]) {
+    self.tags = tags + (tags.isEmpty ? [Tag.addTag.value] : [])
+    collectionDataSource.updateData([self.tags])
+  }
+
+  open func getTags() -> [String] {
+    return tags.filter {
+      return $0 != Tag.addTag.value
+    }
   }
 
   fileprivate func customizeCell(_ cell: TagCell, item: String, path: IndexPath) {

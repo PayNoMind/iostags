@@ -6,7 +6,7 @@ class MemoryData {
 
   class var tags: Set<String> {
     get {
-    return sharedInstance._tags
+      return sharedInstance._tags
     }
     set {
       sharedInstance._tags = newValue

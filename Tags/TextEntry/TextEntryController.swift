@@ -31,7 +31,6 @@ class TextEntryController: UIViewController {
 
   fileprivate var currentTextField: UITextField?
 
-  fileprivate let addTag = "Add Tag"
   fileprivate var saveText = ""
 
   var suggestions: ((String, (([TagParser.TagContainer]) -> Void)) -> Void)?
@@ -44,7 +43,7 @@ class TextEntryController: UIViewController {
   }
 
   private func set(Tags tags: [String]) {
-    let final: [String] = [addTag] + tags
+    let final: [String] = [Tag.addTag.value] + (tags.contains(Tag.addTag.value) ? [] : tags)
     tableDataSource.updateData([final])
   }
 
@@ -63,7 +62,10 @@ class TextEntryController: UIViewController {
   }
 
   @IBAction func close(_ sender: UIBarButtonItem) {
-    self.tagPassBack?(self.tags)
+    let final = self.tags.filter {
+      $0 != Tag.addTag.value
+    }
+    self.tagPassBack?(final)
     self.dismiss(animated: true, completion: nil)
   }
 
@@ -118,7 +120,7 @@ extension TextEntryController: UITextFieldDelegate {
   func textFieldDidBeginEditing(_ textField: UITextField) {
     currentTextField = textField
     saveText = textField.text ?? ""
-    if textField.text == addTag {
+    if textField.text == Tag.addTag.value {
       textField.text = ""
     }
     presentSuggestionView(textField)
@@ -129,7 +131,7 @@ extension TextEntryController: UITextFieldDelegate {
       textField.text = saveText
     } else {
       tags.insert(currentTextField?.text ?? "", at: 0)
-      tags.insert(addTag, at: 0)
+      tags.insert(Tag.addTag.value, at: 0)
       tableDataSource.updateData([tags])
       tagTable.reloadData()
     }
