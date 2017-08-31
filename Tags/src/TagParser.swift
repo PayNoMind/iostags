@@ -1,12 +1,5 @@
 import Foundation
 
-extension String {
-  var isCommand: Bool {
-    let commandPrefix = ":"
-    return self.hasPrefix(commandPrefix)
-  }
-}
-
 public typealias TagContainer = TagParser.TagContainer
 
 open class TagParser {
@@ -75,7 +68,7 @@ open class TagParser {
   }
 
   fileprivate func getTagsThatMatch(Text text: String) -> [TagContainer] {
-    let tags: [TagContainer] = tagHandler.getTagsByPrefix(text.lowercased()).map { tag -> TagContainer in
+    let tags: [TagContainer] = tagHandler.getTagsBy(Prefix: text.lowercased()).map { tag -> TagContainer in
       return TagContainer(title: tag)
     }
     return tags

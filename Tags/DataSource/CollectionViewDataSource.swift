@@ -31,7 +31,7 @@ open class CollectionArrayDataSource<T, U: UICollectionViewCell>: NSObject, UICo
     self.dataArray = dataArray
   }
 
-  fileprivate func itemAtIndexPath(_ indexPath: IndexPath) -> T? {
+  private func itemAtIndexPath(_ indexPath: IndexPath) -> T? {
     guard indexPath.section < dataArray.count && indexPath.row < dataArray[indexPath.section].count
       else { return nil }
 
@@ -55,7 +55,7 @@ open class CollectionArrayDataSource<T, U: UICollectionViewCell>: NSObject, UICo
     return view
   }
 
-  fileprivate func getCellId(_ indexPath: IndexPath) -> String {
+  private func getCellId(_ indexPath: IndexPath) -> String {
     guard let id = cellIDClosure
       else { return cellIdentifier }
     return id(indexPath)

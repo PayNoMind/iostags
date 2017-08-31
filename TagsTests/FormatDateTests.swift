@@ -11,13 +11,13 @@ import XCTest
 
 class FormatDateTests: XCTestCase {
   func testFormat_currentDateFormatIsMediumStyle_returnsCorrectlyFormatedString() {
-    let currentDate = NSDate()
+    let currentDate = Date()
 
-    let localFormatter = NSDateFormatter()
-    localFormatter.dateStyle = .MediumStyle
+    let localFormatter = DateFormatter()
+    localFormatter.dateStyle = .medium
 
     let format = FormatDate.format(currentDate)
 
-    XCTAssertEqual(format, localFormatter.stringFromDate(currentDate))
+    XCTAssertEqual(format, localFormatter.string(from: currentDate))
   }
 }

@@ -11,7 +11,7 @@ import XCTest
 
 class CellWidthTests: XCTestCase {
   func standardFont() -> UIFont {
-    return UIFont.systemFontOfSize(14.0)
+    return UIFont.systemFont(ofSize: 14.0)
   }
 
   func testCellWidth_shortTextWithStandardFont_returns34() {
@@ -19,7 +19,7 @@ class CellWidthTests: XCTestCase {
 
     let cellWidth = CellWidth.widthOf(Text: "short", withFont: font)
 
-    XCTAssertEqualWithAccuracy(cellWidth, 34, accuracy: 0.1)
+    XCTAssertEqual(cellWidth, 34, accuracy: 0.1)
   }
 
   func testCellWidth_longTextWithStanderFont_returns66() {
@@ -27,6 +27,6 @@ class CellWidthTests: XCTestCase {
 
     let cellWidth = CellWidth.widthOf(Text: "shorttexts", withFont: font)
 
-    XCTAssertEqualWithAccuracy(cellWidth, 66, accuracy: 0.5)
+    XCTAssertEqual(cellWidth, 66, accuracy: 0.5)
   }
 }

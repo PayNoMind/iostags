@@ -1,26 +1,25 @@
 import UIKit
 
 open class TagDelegate: NSObject {
-  fileprivate var tags = [String]()
-
   fileprivate weak var collectionView: UICollectionView?
-  fileprivate weak var currentCell: TagCell?
 
   fileprivate lazy var parser: TagParser = TagParser(tags: self.tagDataSource)
 
-  fileprivate lazy var collectionDataSource: CollectionArrayDataSource<String, TagCell> = {
-    return CollectionArrayDataSource<String, TagCell>(anArray: [self.tags], withCellIdentifier: String(describing: TagCell.self), andCustomizeClosure: self.customizeCell)
+  fileprivate lazy var collectionDataSource: CollectionArrayDataSource<Tag, TagCell> = {
+    return CollectionArrayDataSource<Tag, TagCell>(anArray: [self.tags], withCellIdentifier: String(describing: TagCell.self), andCustomizeClosure: self.customizeCell)
   }()
 
-  fileprivate var textEntryController: TextEntryController? {
+  private var textEntryController: TextEntryController? {
     didSet {
       textEntryController?.suggestions = getSuggestions
     }
   }
 
+  private var tags = [Tag]()
+
   public convenience init(collectionView: UICollectionView, tags: [String]) {
     self.init()
-    self.tags = tags
+    self.tags = tags.map { Tag.tag($0) }
     collectionView.dataSource = collectionDataSource
     self.collectionView = collectionView
   }
@@ -29,31 +28,34 @@ open class TagDelegate: NSObject {
 
   open var tagDataSource: TagsDataSource!
 
-  fileprivate func getSuggestions(_ item: String, closure: ([TagParser.TagContainer]) -> Void) {
+  private func getSuggestions(_ item: String, closure: ([TagParser.TagContainer]) -> Void) {
     let items = parser.parse(item)
     closure(items)
   }
 
   fileprivate func passText(_ text: [String]) {
-    self.tagDataSource.insertTags(Set<String>(text))
-    self.collectionDataSource.updateData([text])
+    let tags = text.map { Tag.tag($0) }
+
+    self.updateTags(tags: tags)
     self.collectionView?.reloadData()
   }
 
-  open func updateTags(tags: [String]) {
-    self.tags = tags + (tags.isEmpty ? [Tag.addTag.value] : [])
+  open func updateTags(tags: [Tag]) {
+    let tagsAsStrings = Set(tags.map { $0.value })
+
+    self.tagDataSource.insert(Tags: tagsAsStrings)
+    self.tags = tags + (tags.isEmpty ? [Tag.addTag] : [])
     collectionDataSource.updateData([self.tags])
   }
 
-  open func getTags() -> [String] {
+  open func getTags() -> [Tag] {
     return tags.filter {
-      return $0 != Tag.addTag.value
+      return $0 != Tag.addTag
     }
   }
 
-  fileprivate func customizeCell(_ cell: TagCell, item: String, path: IndexPath) {
-    cell.tagTitle = item
-    currentCell = cell
+  fileprivate func customizeCell(_ cell: TagCell, item: Tag, path: IndexPath) {
+    cell.tagTitle = item.value
   }
 }
 
@@ -66,7 +68,7 @@ extension TagDelegate: UICollectionViewDelegateFlowLayout {
     textEntryController?.tagPassBack = passText
 
     if let rv = root, let textEntry = textEntryController {
-      textEntry.tags = self.tags
+      textEntry.tags = self.tags.map { $0.value }
       self.ownerController.present(rv, animated: true, completion: nil)
     }
   }

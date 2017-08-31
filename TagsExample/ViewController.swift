@@ -15,19 +15,36 @@ class ViewController: UIViewController {
       collection.setupCollectionAsTagView(tagDelegate, withDataSource: self, andOwner: self)
     }
   }
+  @IBOutlet weak var tagList: UITextView!
 
   fileprivate lazy var tagDelegate: TagDelegate = {
     return TagDelegate(collectionView: self.collection, tags: ["CheeseBurger"])
   }()
 
   fileprivate var tags: Set = ["groceries", "home", "work", "stuff", "longstringthatislong", "day"]
+
+  override func viewDidAppear(_ animated: Bool) {
+    tagList.text = tags.joined(separator: ",\n")
+
+    print("\(tagDelegate.getTags())")
+  }
 }
 
 extension ViewController: TagsDataSource {
-  func getTagsByPrefix(_ prefix: String) -> [String] {
+  func getTagsBy(Prefix prefix: String) -> [String] {
     return tags.filter {
       $0.hasPrefix(prefix)
     }
+  }
+
+  func insert(Tags tags: Set<String>) {
+    for tag in tags {
+      self.tags.insert(tag)
+    }
+  }
+
+  func insert(Tag tag: String) {
+    tags.insert(tag)
   }
 
   func getAllTags() -> Set<String> {

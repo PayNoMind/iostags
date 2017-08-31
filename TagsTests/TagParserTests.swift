@@ -30,10 +30,10 @@ class TagParserTests: XCTestCase {
     XCTAssertEqual(parser.parse("H").map { $0.title }, ["home"])
   }
 
-  func testParse_AddLetterThenRemove_ReturnsEmptyArray() {
-    parser.parse("h")
-    XCTAssertEqual(parser.parse("").map { $0.title }, [])
-  }
+//  func testParse_AddLetterThenRemove_ReturnsEmptyArray() {
+//    parser.parse("h")
+//    XCTAssertEqual(parser.parse("").map { $0.title }, [])
+//  }
 
   func testParse_CommandCharacter_ReturnsAllCommands() {
     XCTAssertEqual(Set(parser.parse(":").map { $0.title }), ["reminder", "duedate"])

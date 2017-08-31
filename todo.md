@@ -1,0 +1,2 @@
+- [ ] convert date to proper text
+- [ ] add notification to app

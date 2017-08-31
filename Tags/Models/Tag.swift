@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum Tag {
+public enum Tag {
   case addTag
   case tag(String)
 
@@ -19,5 +19,15 @@ enum Tag {
     case .tag(let title):
       return title
     }
+  }
+}
+
+extension Tag: Hashable {
+  public var hashValue: Int {
+    return self.value.hashValue &* 16777619
+  }
+
+  static public func ==(lh: Tag, rh: Tag) -> Bool {
+    return lh.value == rh.value
   }
 }

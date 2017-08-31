@@ -24,7 +24,6 @@
 		C53143561BD0F1A6006A8E48 /* Tags.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C531434B1BD0F1A6006A8E48 /* Tags.framework */; };
 		C531435B1BD0F1A6006A8E48 /* TagsInterfaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531435A1BD0F1A6006A8E48 /* TagsInterfaceTests.swift */; };
 		C53143951BD0F332006A8E48 /* TagParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143941BD0F332006A8E48 /* TagParser.swift */; };
-		C53143971BD0F4B8006A8E48 /* TagsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143961BD0F4B8006A8E48 /* TagsDataSource.swift */; };
 		C53143A01BD1034B006A8E48 /* MemoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531439E1BD1034B006A8E48 /* MemoryData.swift */; };
 		C53143A11BD1034B006A8E48 /* TagMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531439F1BD1034B006A8E48 /* TagMemory.swift */; };
 		C53143A31BD10717006A8E48 /* TagParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143A21BD10717006A8E48 /* TagParserTests.swift */; };
@@ -36,6 +35,8 @@
 		C570E4ED1D1E902900A947F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C570E4EB1D1E902900A947F1 /* LaunchScreen.storyboard */; };
 		C570E4F21D1E977B00A947F1 /* Tags.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C531434B1BD0F1A6006A8E48 /* Tags.framework */; };
 		C586FE121EECC17A005137BE /* TableViewArrayDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C586FE111EECC0D3005137BE /* TableViewArrayDatasource.swift */; };
+		C58E05BE1F51A97100D41CCE /* TagsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58E05BD1F51A97100D41CCE /* TagsDataSource.swift */; };
+		C58E05C01F51A9CF00D41CCE /* String+IsCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58E05BF1F51A9CF00D41CCE /* String+IsCommand.swift */; };
 		C5C74BA21D37BEB700A369E7 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C74BA11D37BEB700A369E7 /* Reminder.swift */; };
 		C5C74BA41D37BED300A369E7 /* CommandProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C74BA31D37BED300A369E7 /* CommandProtocol.swift */; };
 		C5D3B7B61F4EF20700D7E74D /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D3B7B51F4EF20700D7E74D /* Tag.swift */; };
@@ -102,7 +103,6 @@
 		C531435A1BD0F1A6006A8E48 /* TagsInterfaceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsInterfaceTests.swift; sourceTree = "<group>"; };
 		C531435C1BD0F1A6006A8E48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C53143941BD0F332006A8E48 /* TagParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagParser.swift; sourceTree = "<group>"; };
-		C53143961BD0F4B8006A8E48 /* TagsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsDataSource.swift; sourceTree = "<group>"; };
 		C531439E1BD1034B006A8E48 /* MemoryData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryData.swift; sourceTree = "<group>"; };
 		C531439F1BD1034B006A8E48 /* TagMemory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagMemory.swift; sourceTree = "<group>"; };
 		C53143A21BD10717006A8E48 /* TagParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagParserTests.swift; sourceTree = "<group>"; };
@@ -115,6 +115,8 @@
 		C570E4EC1D1E902900A947F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C570E4EE1D1E902900A947F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C586FE111EECC0D3005137BE /* TableViewArrayDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewArrayDatasource.swift; sourceTree = "<group>"; };
+		C58E05BD1F51A97100D41CCE /* TagsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsDataSource.swift; sourceTree = "<group>"; };
+		C58E05BF1F51A9CF00D41CCE /* String+IsCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+IsCommand.swift"; sourceTree = "<group>"; };
 		C5C74BA11D37BEB700A369E7 /* Reminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 		C5C74BA31D37BED300A369E7 /* CommandProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandProtocol.swift; sourceTree = "<group>"; };
 		C5D3B7B51F4EF20700D7E74D /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				C5307B881F25A30D003EC2F6 /* TableView+Register.swift */,
 				C5307B8A1F25A439003EC2F6 /* UIView+ObjectName.swift */,
 				C5307B8C1F25AE2A003EC2F6 /* Bundle+Tags.swift */,
+				C58E05BF1F51A9CF00D41CCE /* String+IsCommand.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 		C508382B1D1423400025F67F /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
+				C58E05BD1F51A97100D41CCE /* TagsDataSource.swift */,
 				C508382C1D1423620025F67F /* CollectionViewDataSource.swift */,
 				C586FE111EECC0D3005137BE /* TableViewArrayDatasource.swift */,
 			);
@@ -270,7 +274,6 @@
 			isa = PBXGroup;
 			children = (
 				C53143941BD0F332006A8E48 /* TagParser.swift */,
-				C53143961BD0F4B8006A8E48 /* TagsDataSource.swift */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -508,7 +511,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint lint --path \"Tags\"\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint lint --path \"Tags\" --config \"../.swiftlint.yml\"\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -517,9 +520,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C58E05C01F51A9CF00D41CCE /* String+IsCommand.swift in Sources */,
 				C50838341D1951A20025F67F /* SuggestionView.swift in Sources */,
 				C5FE60281D509EAB00C2595D /* CollectionSetup.swift in Sources */,
 				C5FE60171D47A3D400C2595D /* FormatDate.swift in Sources */,
+				C58E05BE1F51A97100D41CCE /* TagsDataSource.swift in Sources */,
 				C55BCABF1F518AF3001FA158 /* TagDelegate.swift in Sources */,
 				C5307B8B1F25A439003EC2F6 /* UIView+ObjectName.swift in Sources */,
 				C5C74BA21D37BEB700A369E7 /* Reminder.swift in Sources */,
@@ -537,7 +542,6 @@
 				C50838231D141C3F0025F67F /* CollectionView+Register.swift in Sources */,
 				C5FE7E651D6A2DEC006816E7 /* BarButtonHelper.swift in Sources */,
 				C50838381D1951C10025F67F /* CompletionCell.swift in Sources */,
-				C53143971BD0F4B8006A8E48 /* TagsDataSource.swift in Sources */,
 				C5FE60241D4B9DB300C2595D /* TextEntryController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -644,7 +648,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -695,7 +699,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -754,6 +758,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ca.Fluiddynamics.TagsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -764,6 +769,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ca.Fluiddynamics.TagsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -775,7 +781,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				DEVELOPMENT_TEAM = 5AFPAAM6LN;
 				INFOPLIST_FILE = TagsExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.SnapFashion.TagsExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -792,7 +798,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				DEVELOPMENT_TEAM = 5AFPAAM6LN;
 				INFOPLIST_FILE = TagsExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.SnapFashion.TagsExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -10,7 +10,7 @@ import Foundation
 import Tags
 
 class TagMemory: TagsDataSource {
-  func getTagsByPrefix(prefix: String) -> [String] {
+  func getTagsBy(Prefix prefix: String) -> [String] {
     let tags = Array(MemoryData.tags)
     return tags.filter {
       $0.hasPrefix(prefix)
@@ -21,7 +21,13 @@ class TagMemory: TagsDataSource {
     return MemoryData.tags
   }
 
-  func insertTag(tag: String) {
+  func insert(Tag tag: String) {
     MemoryData.tags.insert(tag)
+  }
+
+  func insert(Tags tags: Set<String>) {
+    for tag in tags {
+      self.insert(Tag: tag)
+    }
   }
 }
