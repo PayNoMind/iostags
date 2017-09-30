@@ -20,6 +20,7 @@
 		C5307B8B1F25A439003EC2F6 /* UIView+ObjectName.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5307B8A1F25A439003EC2F6 /* UIView+ObjectName.swift */; };
 		C5307B8D1F25AE2A003EC2F6 /* Bundle+Tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5307B8C1F25AE2A003EC2F6 /* Bundle+Tags.swift */; };
 		C5307B901F25B168003EC2F6 /* TagPresentation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5307B8F1F25B168003EC2F6 /* TagPresentation.storyboard */; };
+		C5313C5E1F586FA800029021 /* Array+Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5313C5D1F586FA800029021 /* Array+Set.swift */; };
 		C531434F1BD0F1A6006A8E48 /* Tags.h in Headers */ = {isa = PBXBuildFile; fileRef = C531434E1BD0F1A6006A8E48 /* Tags.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C53143561BD0F1A6006A8E48 /* Tags.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C531434B1BD0F1A6006A8E48 /* Tags.framework */; };
 		C531435B1BD0F1A6006A8E48 /* TagsInterfaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531435A1BD0F1A6006A8E48 /* TagsInterfaceTests.swift */; };
@@ -96,6 +97,7 @@
 		C5307B8A1F25A439003EC2F6 /* UIView+ObjectName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ObjectName.swift"; sourceTree = "<group>"; };
 		C5307B8C1F25AE2A003EC2F6 /* Bundle+Tags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Tags.swift"; sourceTree = "<group>"; };
 		C5307B8F1F25B168003EC2F6 /* TagPresentation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TagPresentation.storyboard; sourceTree = "<group>"; };
+		C5313C5D1F586FA800029021 /* Array+Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Set.swift"; sourceTree = "<group>"; };
 		C531434B1BD0F1A6006A8E48 /* Tags.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Tags.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C531434E1BD0F1A6006A8E48 /* Tags.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tags.h; sourceTree = "<group>"; };
 		C53143501BD0F1A6006A8E48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				C5307B8A1F25A439003EC2F6 /* UIView+ObjectName.swift */,
 				C5307B8C1F25AE2A003EC2F6 /* Bundle+Tags.swift */,
 				C58E05BF1F51A9CF00D41CCE /* String+IsCommand.swift */,
+				C5313C5D1F586FA800029021 /* Array+Set.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -528,6 +531,7 @@
 				C55BCABF1F518AF3001FA158 /* TagDelegate.swift in Sources */,
 				C5307B8B1F25A439003EC2F6 /* UIView+ObjectName.swift in Sources */,
 				C5C74BA21D37BEB700A369E7 /* Reminder.swift in Sources */,
+				C5313C5E1F586FA800029021 /* Array+Set.swift in Sources */,
 				C5D3B7B61F4EF20700D7E74D /* Tag.swift in Sources */,
 				C5FE60151D47A3B700C2595D /* CellWidth.swift in Sources */,
 				C508382D1D1423620025F67F /* CollectionViewDataSource.swift in Sources */,

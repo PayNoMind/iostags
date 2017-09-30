@@ -12,7 +12,7 @@ public enum Tag {
   case addTag
   case tag(String)
 
-  var value: String {
+  public var value: String {
     switch self {
     case .addTag:
       return "Add Tag"
@@ -27,7 +27,7 @@ extension Tag: Hashable {
     return self.value.hashValue &* 16777619
   }
 
-  static public func ==(lh: Tag, rh: Tag) -> Bool {
-    return lh.value == rh.value
+  static public func == (left: Tag, right: Tag) -> Bool {
+    return left.value == right.value
   }
 }

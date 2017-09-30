@@ -34,43 +34,43 @@ open class TagDelegate: NSObject {
   }
 
   fileprivate func passText(_ text: [String]) {
-    let tags = text.map { Tag.tag($0) }
-
-    self.updateTags(tags: tags)
+    self.update(Tags: text.toTagArray)
     self.collectionView?.reloadData()
   }
 
-  open func updateTags(tags: [Tag]) {
-    let tagsAsStrings = Set(tags.map { $0.value })
-
-    self.tagDataSource.insert(Tags: tagsAsStrings)
+  open func update(Tags tags: [Tag]) {
+    self.tagDataSource.insert(Tags: tags.toStringSet)
     self.tags = tags + (tags.isEmpty ? [Tag.addTag] : [])
     collectionDataSource.updateData([self.tags])
   }
 
-  open func getTags() -> [Tag] {
+  open func getTags() -> Set<Tag> {
     return tags.filter {
       return $0 != Tag.addTag
-    }
+    }.toSet
   }
 
   fileprivate func customizeCell(_ cell: TagCell, item: Tag, path: IndexPath) {
     cell.tagTitle = item.value
   }
-}
 
-extension TagDelegate: UICollectionViewDelegateFlowLayout {
-  public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+  open func tapCellAndCollection() {
     let sb = UIStoryboard(name: "TagPresentation", bundle: Bundle.tagBundle)
     let root = sb.instantiateInitialViewController() as? UINavigationController
-    textEntryController = root?.topViewController as? TextEntryController
 
+    textEntryController = root?.topViewController as? TextEntryController
     textEntryController?.tagPassBack = passText
 
     if let rv = root, let textEntry = textEntryController {
       textEntry.tags = self.tags.map { $0.value }
       self.ownerController.present(rv, animated: true, completion: nil)
     }
+  }
+}
+
+extension TagDelegate: UICollectionViewDelegateFlowLayout {
+  public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    self.tapCellAndCollection()
   }
 
   public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
