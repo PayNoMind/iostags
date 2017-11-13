@@ -17,12 +17,12 @@ class TagTitleCell: UITableViewCell {
     }
   }
 
-  var tagTitle: String {
+  var tagValue: Tag {
     set {
-      titleField.text = newValue
+      titleField.text = newValue.value
     }
     get {
-      return titleField.text ?? ""
+      return Tag.tag(titleField.text ?? "")
     }
   }
 

@@ -28,16 +28,6 @@ open class TagDelegate: NSObject {
 
   open var tagDataSource: TagsDataSource!
 
-  private func getSuggestions(_ item: String, closure: ([TagParser.TagContainer]) -> Void) {
-    let items = parser.parse(item)
-    closure(items)
-  }
-
-  fileprivate func passText(_ text: [String]) {
-    self.update(Tags: text.toTagArray)
-    self.collectionView?.reloadData()
-  }
-
   open func update(Tags tags: [Tag]) {
     self.tagDataSource.insert(Tags: tags.toStringSet)
     self.tags = tags + (tags.isEmpty ? [Tag.addTag] : [])
@@ -50,10 +40,6 @@ open class TagDelegate: NSObject {
     }.toSet
   }
 
-  fileprivate func customizeCell(_ cell: TagCell, item: Tag, path: IndexPath) {
-    cell.tagTitle = item.value
-  }
-
   open func tapCellAndCollection() {
     let sb = UIStoryboard(name: "TagPresentation", bundle: Bundle.tagBundle)
     let root = sb.instantiateInitialViewController() as? UINavigationController
@@ -62,9 +48,23 @@ open class TagDelegate: NSObject {
     textEntryController?.tagPassBack = passText
 
     if let rv = root, let textEntry = textEntryController {
-      textEntry.tags = self.tags.map { $0.value }
+      textEntry.tags = tags
       self.ownerController.present(rv, animated: true, completion: nil)
     }
+  }
+
+  private func getSuggestions(_ item: String, closure: ([TagParser.TagContainer]) -> Void) {
+    let items = parser.parse(item)
+    closure(items)
+  }
+
+  private func passText(_ tags: [Tag]) {
+    self.update(Tags: tags)
+    self.collectionView?.reloadData()
+  }
+
+  private func customizeCell(_ cell: TagCell, item: Tag, path: IndexPath) {
+    cell.tagTitle = item.value
   }
 }
 

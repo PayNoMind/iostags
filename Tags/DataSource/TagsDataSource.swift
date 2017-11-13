@@ -5,4 +5,5 @@ public protocol TagsDataSource {
   func getTagsBy(Prefix prefix: String) -> [String]
   func insert(Tag tag: String)
   func insert(Tags tags: Set<String>)
+  func deleteTag(Tag tag: String)
 }
