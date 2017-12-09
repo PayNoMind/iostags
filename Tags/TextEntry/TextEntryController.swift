@@ -21,29 +21,28 @@ class TextEntryController: UIViewController {
     toolbar.items = ([.cancel(self), .flexibleSpace, .done(self)] as [BarButtonHelper]).map { $0.button }
     return toolbar
   }()
-  private lazy var suggestionView: SuggestionView = SuggestionView()
-  private var currentTextField: UITextField?
-  private var saveText = ""
+  private lazy var suggestionView: SuggestionView = SuggestionView(suggestion: self.setSuggestion)
+  private var currentTextField: UITextField? {
+    return UIResponder.first as? UITextField
+  }
 
-  var suggestions: ((String, (([TagParser.TagContainer]) -> Void)) -> Void)?
+  var suggestions: ((String, (([Tag]) -> Void)) -> Void)?
   var tagPassBack: (([Tag]) -> Void)?
 
-  var tags: [Tag] = [] {
+  var tags: TagContainer = TagContainer(tags: []) {
     didSet {
-      self.set(Tags: self.tags)
+      self.tags.set = self.set
     }
   }
 
   private func set(Tags tags: [Tag]) {
-    let final: [Tag] = [Tag.addTag] + (tags.contains(Tag.addTag) ? [] : tags)
-    tableDataSource.updateData([final])
+    tableDataSource.updateData([tags])
   }
 
   // Data Picker Buttons
   @objc
   func done(_ button: UIBarButtonItem) {
-    self.currentTextField?.resignFirstResponder()
-    saveText = ""
+    currentTextField?.resignFirstResponder()
   }
 
   @objc
@@ -51,67 +50,61 @@ class TextEntryController: UIViewController {
     if let ctf = currentTextField {
       presentSuggestionView(ctf)
     }
-    currentTextField?.text = saveText
   }
   // End Data Picker Buttons
 
   @IBAction func close(_ sender: UIBarButtonItem) {
     if let text = currentTextField?.text, text != "" {
-      tags.insert(Tag.tag(text), at: 0)
+      tags.insert(Tag: Tag.tag(text))
     }
 
-    let final = removeAddTag()
+    let final = self.tags.removeAddTag()
     self.tagPassBack?(final)
     self.dismiss(animated: true, completion: nil)
   }
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    suggestionView.setSuggestion = { selection in
-      if let command = selection.type, command.usesDatePicker {
-        self.presentDatePicker(textField: self.currentTextField)
-
-        let date = self.datePicker.date
-        self.currentTextField?.text = FormatDate.format(date)
-      }
-    }
-  }
-
-  fileprivate func removeAddTag() -> [Tag] {
-    return self.tags.filter { $0 != Tag.addTag }
-  }
-
-  fileprivate func setupCell(cell: UITableViewCell, item: Tag, path: IndexPath) {
+  private func setupCell(cell: UITableViewCell, item: Tag, path: IndexPath) {
     (cell as? TagTitleCell)?.tagValue = item
     (cell as? TagTitleCell)?.fieldDelegate = self
   }
 
-  fileprivate func presentSuggestionView(_ textField: UITextField) {
+  private func presentSuggestionView(_ textField: UITextField) {
     let shouldReset = textField.inputAccessoryView != nil
     textField.inputView = nil
     textField.inputAccessoryView = suggestionView
     resetInputViews(shouldReset)
   }
 
-  fileprivate func resetInputViews(_ reset: Bool) {
+  private func presentDatePicker(textField: UITextField?) {
+    self.datePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
+
+    textField?.inputView = self.datePicker
+    textField?.inputAccessoryView = self.datePickerToolbar
+    resetInputViews(true)
+  }
+
+  private func resetInputViews(_ reset: Bool) {
     if reset {
       currentTextField?.reloadInputViews()
     }
   }
 
-  fileprivate func presentDatePicker(textField: UITextField?) {
-    saveText = textField?.text ?? ""
-    self.datePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
-
-    textField?.inputView = self.datePicker
-    textField?.inputAccessoryView = self.datePickerToolbar
-    textField?.reloadInputViews()
+  private func setSuggestion(ByTag tag: Tag) {
+    var text = ""
+    if let command = tag.command, command.usesDatePicker {
+      self.presentDatePicker(textField: self.currentTextField)
+      let date = self.datePicker.date
+      text = FormatDate.format(date)
+    } else {
+      text = tag.value
+    }
+    currentTextField?.text = text
   }
 
   @objc
   func dateChanged(datePicker: UIDatePicker) {
     let date = datePicker.date
-    self.currentTextField?.text = FormatDate.format(date)
+    currentTextField?.text = FormatDate.format(date)
   }
 }
 
@@ -119,13 +112,8 @@ class TextEntryController: UIViewController {
 extension TextEntryController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
     let action = UIContextualAction(style: .destructive, title: "Remove") { (_, _, success) in
-
-      self.tags.remove(at: indexPath.row-1)
-      self.set(Tags: self.tags)
-      tableView.beginUpdates()
-      tableView.deleteRows(at: [indexPath], with: .automatic)
-      tableView.endUpdates()
-
+      self.tags.remove(AtIndex: indexPath.row-1)
+      self.tableDataSource.removeItemAt(IndexPath: indexPath)
       success(true)
     }
     action.backgroundColor = .red
@@ -134,33 +122,30 @@ extension TextEntryController: UITableViewDelegate {
 }
 
 extension TextEntryController: UITextFieldDelegate {
+  private func getIndex(FromTextField textField: UITextField) -> IndexPath? {
+    let point = textField.convert(textField.frame.origin, to: self.tagTable)
+    return self.tagTable.indexPathForRow(at: point)
+  }
+
   func textFieldDidBeginEditing(_ textField: UITextField) {
-    currentTextField = textField
-    saveText = textField.text ?? ""
-    if textField.text == Tag.addTag.value {
-      textField.text = ""
+    if let index = getIndex(FromTextField: textField) {
+      tags.startEditing(AtIndex: index.row)
+      presentSuggestionView(textField)
     }
-    presentSuggestionView(textField)
   }
 
   func textFieldDidEndEditing(_ textField: UITextField) {
-    if textField.text?.isEmpty ?? true {
-      textField.text = saveText
-    } else {
-      self.tags = removeAddTag()
-      let tag = Tag.tag(textField.text ?? "")
-      tags.insert(tag, at: 0)
-      tags.insert(Tag.addTag, at: 0)
-      set(Tags: self.tags)
-      tableDataSource.updateData([tags])
+    if let index = getIndex(FromTextField: textField) {
+      self.tags.doneEditing(AtIndex: index.row)
+    }
+    if !(textField.text?.isEmpty ?? false) {
       tagTable.reloadData()
     }
-    currentTextField = nil
-    saveText = ""
   }
 
   func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
     let tagText = NSString(string: textField.text ?? "").replacingCharacters(in: range, with: string)
+    self.tags.currentTag = Tag.tag(tagText)
     suggestions?(tagText) { suggestions in
       self.suggestionView.suggestions = suggestions
     }

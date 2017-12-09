@@ -11,6 +11,7 @@ import Foundation
 public enum Tag {
   case addTag
   case tag(String)
+  case command(String, CommandProtocol?)
 
   public var value: String {
     switch self {
@@ -18,6 +19,26 @@ public enum Tag {
       return "Add Tag"
     case .tag(let title):
       return title
+    case .command(let data):
+      return data.0
+    }
+  }
+
+  public var command: CommandProtocol? {
+    switch self {
+    case .command(let data):
+      return data.1
+    default:
+      return nil
+    }
+  }
+
+  public var isCommand: Bool {
+    switch self {
+    case .command:
+      return true
+    default:
+      return false
     }
   }
 }

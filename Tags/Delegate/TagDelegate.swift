@@ -48,12 +48,12 @@ open class TagDelegate: NSObject {
     textEntryController?.tagPassBack = passText
 
     if let rv = root, let textEntry = textEntryController {
-      textEntry.tags = tags
+      textEntry.tags = TagContainer(tags: tags)
       self.ownerController.present(rv, animated: true, completion: nil)
     }
   }
 
-  private func getSuggestions(_ item: String, closure: ([TagParser.TagContainer]) -> Void) {
+  private func getSuggestions(_ item: String, closure: ([Tag]) -> Void) {
     let items = parser.parse(item)
     closure(items)
   }

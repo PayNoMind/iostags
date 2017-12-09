@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     return TagDelegate(collectionView: self.collection, tags: ["CheeseBurger"])
   }()
 
-  fileprivate var tags: Set = ["groceries", "home", "work", "stuff", "longstringthatislong", "day"]
+  private var tags: Set = ["groceries", "CheeseBurger", "home", "work", "stuff", "longstringthatislong", "day"]
 
   override func viewDidAppear(_ animated: Bool) {
     tagList.text = tags.joined(separator: ",\n")
@@ -31,9 +31,13 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: TagsDataSource {
+  func deleteTag(Tag tag: String) {
+    tags.remove(tag)
+  }
+
   func getTagsBy(Prefix prefix: String) -> [String] {
     return tags.filter {
-      $0.hasPrefix(prefix)
+      $0.lowercased().hasPrefix(prefix)
     }
   }
 

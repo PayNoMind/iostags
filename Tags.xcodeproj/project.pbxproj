@@ -24,10 +24,12 @@
 		C531434F1BD0F1A6006A8E48 /* Tags.h in Headers */ = {isa = PBXBuildFile; fileRef = C531434E1BD0F1A6006A8E48 /* Tags.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C53143561BD0F1A6006A8E48 /* Tags.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C531434B1BD0F1A6006A8E48 /* Tags.framework */; };
 		C531435B1BD0F1A6006A8E48 /* TagsInterfaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531435A1BD0F1A6006A8E48 /* TagsInterfaceTests.swift */; };
-		C53143951BD0F332006A8E48 /* TagParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143941BD0F332006A8E48 /* TagParser.swift */; };
 		C53143A01BD1034B006A8E48 /* MemoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531439E1BD1034B006A8E48 /* MemoryData.swift */; };
 		C53143A11BD1034B006A8E48 /* TagMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531439F1BD1034B006A8E48 /* TagMemory.swift */; };
 		C53143A31BD10717006A8E48 /* TagParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143A21BD10717006A8E48 /* TagParserTests.swift */; };
+		C5426D241FDBB3DB00255099 /* OrderedSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5426D231FDBB3DB00255099 /* OrderedSet.swift */; };
+		C5426D261FDBC30200255099 /* UiResponder+currentResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5426D251FDBC30200255099 /* UiResponder+currentResponder.swift */; };
+		C5426D291FDBD12300255099 /* TagParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5426D281FDBD12300255099 /* TagParser.swift */; };
 		C55BCABF1F518AF3001FA158 /* TagDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55BCABE1F518AF3001FA158 /* TagDelegate.swift */; };
 		C570E4E31D1E902900A947F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C570E4E21D1E902900A947F1 /* AppDelegate.swift */; };
 		C570E4E51D1E902900A947F1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C570E4E41D1E902900A947F1 /* ViewController.swift */; };
@@ -38,6 +40,7 @@
 		C586FE121EECC17A005137BE /* TableViewArrayDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C586FE111EECC0D3005137BE /* TableViewArrayDatasource.swift */; };
 		C58E05BE1F51A97100D41CCE /* TagsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58E05BD1F51A97100D41CCE /* TagsDataSource.swift */; };
 		C58E05C01F51A9CF00D41CCE /* String+IsCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58E05BF1F51A9CF00D41CCE /* String+IsCommand.swift */; };
+		C5AE7B821FD3999C00996AE2 /* TagContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AE7B811FD3999C00996AE2 /* TagContainer.swift */; };
 		C5C74BA21D37BEB700A369E7 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C74BA11D37BEB700A369E7 /* Reminder.swift */; };
 		C5C74BA41D37BED300A369E7 /* CommandProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C74BA31D37BED300A369E7 /* CommandProtocol.swift */; };
 		C5D3B7B61F4EF20700D7E74D /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D3B7B51F4EF20700D7E74D /* Tag.swift */; };
@@ -104,10 +107,12 @@
 		C53143551BD0F1A6006A8E48 /* TagsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TagsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C531435A1BD0F1A6006A8E48 /* TagsInterfaceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsInterfaceTests.swift; sourceTree = "<group>"; };
 		C531435C1BD0F1A6006A8E48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C53143941BD0F332006A8E48 /* TagParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagParser.swift; sourceTree = "<group>"; };
 		C531439E1BD1034B006A8E48 /* MemoryData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryData.swift; sourceTree = "<group>"; };
 		C531439F1BD1034B006A8E48 /* TagMemory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagMemory.swift; sourceTree = "<group>"; };
 		C53143A21BD10717006A8E48 /* TagParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagParserTests.swift; sourceTree = "<group>"; };
+		C5426D231FDBB3DB00255099 /* OrderedSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedSet.swift; sourceTree = "<group>"; };
+		C5426D251FDBC30200255099 /* UiResponder+currentResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiResponder+currentResponder.swift"; sourceTree = "<group>"; };
+		C5426D281FDBD12300255099 /* TagParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagParser.swift; sourceTree = "<group>"; };
 		C55BCABE1F518AF3001FA158 /* TagDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagDelegate.swift; sourceTree = "<group>"; };
 		C570E4E01D1E902900A947F1 /* TagsExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TagsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C570E4E21D1E902900A947F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +124,7 @@
 		C586FE111EECC0D3005137BE /* TableViewArrayDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewArrayDatasource.swift; sourceTree = "<group>"; };
 		C58E05BD1F51A97100D41CCE /* TagsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsDataSource.swift; sourceTree = "<group>"; };
 		C58E05BF1F51A9CF00D41CCE /* String+IsCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+IsCommand.swift"; sourceTree = "<group>"; };
+		C5AE7B811FD3999C00996AE2 /* TagContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagContainer.swift; sourceTree = "<group>"; };
 		C5C74BA11D37BEB700A369E7 /* Reminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 		C5C74BA31D37BED300A369E7 /* CommandProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandProtocol.swift; sourceTree = "<group>"; };
 		C5D3B7B51F4EF20700D7E74D /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
@@ -179,6 +185,7 @@
 				C5307B8C1F25AE2A003EC2F6 /* Bundle+Tags.swift */,
 				C58E05BF1F51A9CF00D41CCE /* String+IsCommand.swift */,
 				C5313C5D1F586FA800029021 /* Array+Set.swift */,
+				C5426D251FDBC30200255099 /* UiResponder+currentResponder.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -254,7 +261,7 @@
 				C5FE60211D4B9D8B00C2595D /* TextEntry */,
 				C5FE60131D47A3B700C2595D /* Util */,
 				C5307B8E1F25B142003EC2F6 /* StoryBoards */,
-				C53143911BD0F2FD006A8E48 /* src */,
+				C5426D271FDBD12300255099 /* Parser */,
 				C53143501BD0F1A6006A8E48 /* Info.plist */,
 			);
 			path = Tags;
@@ -273,14 +280,6 @@
 			path = TagsTests;
 			sourceTree = "<group>";
 		};
-		C53143911BD0F2FD006A8E48 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				C53143941BD0F332006A8E48 /* TagParser.swift */,
-			);
-			path = src;
-			sourceTree = "<group>";
-		};
 		C531439D1BD1034B006A8E48 /* Support */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,6 +287,14 @@
 				C531439F1BD1034B006A8E48 /* TagMemory.swift */,
 			);
 			path = Support;
+			sourceTree = "<group>";
+		};
+		C5426D271FDBD12300255099 /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				C5426D281FDBD12300255099 /* TagParser.swift */,
+			);
+			path = Parser;
 			sourceTree = "<group>";
 		};
 		C55BCABD1F518ACE001FA158 /* Delegate */ = {
@@ -325,6 +332,7 @@
 			isa = PBXGroup;
 			children = (
 				C5D3B7B51F4EF20700D7E74D /* Tag.swift */,
+				C5AE7B811FD3999C00996AE2 /* TagContainer.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -335,6 +343,7 @@
 				C5FE60141D47A3B700C2595D /* CellWidth.swift */,
 				C5FE60161D47A3D400C2595D /* FormatDate.swift */,
 				C5FE7E641D6A2DEC006816E7 /* BarButtonHelper.swift */,
+				C5426D231FDBB3DB00255099 /* OrderedSet.swift */,
 			);
 			name = Util;
 			path = Tags/Util;
@@ -533,16 +542,19 @@
 				C5C74BA21D37BEB700A369E7 /* Reminder.swift in Sources */,
 				C5313C5E1F586FA800029021 /* Array+Set.swift in Sources */,
 				C5D3B7B61F4EF20700D7E74D /* Tag.swift in Sources */,
+				C5426D241FDBB3DB00255099 /* OrderedSet.swift in Sources */,
 				C5FE60151D47A3B700C2595D /* CellWidth.swift in Sources */,
+				C5426D261FDBC30200255099 /* UiResponder+currentResponder.swift in Sources */,
+				C5AE7B821FD3999C00996AE2 /* TagContainer.swift in Sources */,
 				C508382D1D1423620025F67F /* CollectionViewDataSource.swift in Sources */,
 				C5307B861F25A2C5003EC2F6 /* TagTitleCell.swift in Sources */,
 				C5C74BA41D37BED300A369E7 /* CommandProtocol.swift in Sources */,
 				C586FE121EECC17A005137BE /* TableViewArrayDatasource.swift in Sources */,
 				C5307B891F25A30D003EC2F6 /* TableView+Register.swift in Sources */,
+				C5426D291FDBD12300255099 /* TagParser.swift in Sources */,
 				C5307B8D1F25AE2A003EC2F6 /* Bundle+Tags.swift in Sources */,
 				C5FE601B1D47B78C00C2595D /* DueDate.swift in Sources */,
 				C50838261D141E820025F67F /* TagCell.swift in Sources */,
-				C53143951BD0F332006A8E48 /* TagParser.swift in Sources */,
 				C50838231D141C3F0025F67F /* CollectionView+Register.swift in Sources */,
 				C5FE7E651D6A2DEC006816E7 /* BarButtonHelper.swift in Sources */,
 				C50838381D1951C10025F67F /* CompletionCell.swift in Sources */,
