@@ -10,8 +10,9 @@ import Foundation
 
 public protocol CommandProtocol {
   var suggestionTitle: String { get }
-  func execute()
+  mutating func execute(data: Any)
   var usesDatePicker: Bool { get }
+  var listTitle: String { get }
 }
 
 extension CommandProtocol {

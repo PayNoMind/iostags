@@ -9,6 +9,8 @@
 import Foundation
 
 struct Reminder: CommandProtocol {
+  var date: Date = Date()
+
   var suggestionTitle: String {
     return "reminder"
   }
@@ -17,7 +19,15 @@ struct Reminder: CommandProtocol {
     return true
   }
 
-  func execute() {
+  var listTitle: String {
+    return suggestionTitle + " " + "\(FormatDate.format(date))"
+  }
+
+  mutating func execute(data: Any) {
     print("Reminder Executed")
+    if let date = data as? Date {
+      self.date = date
+//      Notifications.createNotification(atDate: date)
+    }
   }
 }

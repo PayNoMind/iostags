@@ -16,6 +16,7 @@ class SingleFormatter {
   fileprivate init() {
     formatter = DateFormatter()
     formatter.dateStyle = .medium
+    formatter.timeStyle = .medium
   }
 }
 

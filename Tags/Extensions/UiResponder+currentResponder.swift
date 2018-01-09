@@ -7,7 +7,7 @@
 //
 
 extension UIResponder {
-  private weak static var _currentFirstResponder: UIResponder? = nil
+  private weak static var _currentFirstResponder: UIResponder?
 
   public static var first: UIResponder? {
     UIResponder._currentFirstResponder = nil

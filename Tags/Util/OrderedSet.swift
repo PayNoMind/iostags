@@ -65,6 +65,22 @@ public struct OrderedSet<E: Hashable>: Equatable, Collection {
     return inserted
   }
 
+  @discardableResult
+  public mutating func insert(_ newElement: Element, atIndex: Int) -> Bool {
+    let inserted = set.insert(newElement).inserted
+    if let oldIndex = array.index(of: newElement) {
+      array.remove(at: oldIndex)
+    }
+    array.insert(newElement, at: atIndex)
+    return inserted
+  }
+
+  public mutating func remove(At index: Int) -> Element {
+    let element = array.remove(at: index)
+    set.remove(element)
+    return element
+  }
+
   /// Remove and return the element at the end of the ordered set.
   public mutating func removeLast() -> Element {
     let lastElement = array.removeLast()

@@ -9,6 +9,8 @@
 import Foundation
 
 struct DueDate: CommandProtocol {
+  var date: Date = Date()
+
   var suggestionTitle: String {
     return "duedate"
   }
@@ -17,7 +19,14 @@ struct DueDate: CommandProtocol {
     return true
   }
 
-  func execute() {
-    print("Reminder Executed")
+  var listTitle: String {
+    return suggestionTitle + " " + "\(FormatDate.format(date))"
+  }
+
+  mutating func execute(data: Any) {
+    if let date = data as? Date {
+      self.date = date
+//      Notifications.createNotification(atDate: date)
+    }
   }
 }

@@ -13,7 +13,6 @@ class TextEntryController: UIViewController {
     let temp = TableArrayDataSource<Tag>(anArray: [], withCellIdentifier: TagTitleCell.nameString, andCustomizeClosure: self.setupCell)
     return temp
   }()
-
   private lazy var datePicker: UIDatePicker = UIDatePicker()
   private lazy var datePickerToolbar: UIToolbar = {
     let toolBarFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 35)
@@ -35,13 +34,14 @@ class TextEntryController: UIViewController {
     }
   }
 
-  private func set(Tags tags: [Tag]) {
-    tableDataSource.updateData([tags])
+  private func set(Tags tags: OrderedSet<Tag>) {
+    tableDataSource.updateData([tags.contents])
   }
 
   // Data Picker Buttons
   @objc
   func done(_ button: UIBarButtonItem) {
+    // current cell tag execute
     currentTextField?.resignFirstResponder()
   }
 
@@ -77,7 +77,6 @@ class TextEntryController: UIViewController {
 
   private func presentDatePicker(textField: UITextField?) {
     self.datePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
-
     textField?.inputView = self.datePicker
     textField?.inputAccessoryView = self.datePickerToolbar
     resetInputViews(true)
@@ -95,10 +94,18 @@ class TextEntryController: UIViewController {
       self.presentDatePicker(textField: self.currentTextField)
       let date = self.datePicker.date
       text = FormatDate.format(date)
+//      command.execute()
     } else {
       text = tag.value
     }
+    self.tags.currentTag = tag
     currentTextField?.text = text
+  }
+
+  private func getCurrentCell(FromTextField textfield: UITextField) -> TagTitleCell? {
+    guard let index = self.getIndex(FromTextField: textfield)
+      else { return nil }
+    return self.tagTable.cellForRow(at: index) as? TagTitleCell
   }
 
   @objc
@@ -122,15 +129,25 @@ extension TextEntryController: UITableViewDelegate {
 }
 
 extension TextEntryController: UITextFieldDelegate {
+  private func getSuggestions(byText text: String) {
+    suggestions?(text) { suggestions in
+      self.suggestionView.suggestions = suggestions
+    }
+  }
+
   private func getIndex(FromTextField textField: UITextField) -> IndexPath? {
     let point = textField.convert(textField.frame.origin, to: self.tagTable)
     return self.tagTable.indexPathForRow(at: point)
   }
 
   func textFieldDidBeginEditing(_ textField: UITextField) {
+    getSuggestions(byText: "")
     if let index = getIndex(FromTextField: textField) {
       tags.startEditing(AtIndex: index.row)
       presentSuggestionView(textField)
+      if tags.currentTag == .addTag {
+        textField.text = ""
+      }
     }
   }
 
@@ -144,11 +161,9 @@ extension TextEntryController: UITextFieldDelegate {
   }
 
   func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-    let tagText = NSString(string: textField.text ?? "").replacingCharacters(in: range, with: string)
+    let tagText: String = NSString(string: textField.text ?? "").replacingCharacters(in: range, with: string)
     self.tags.currentTag = Tag.tag(tagText)
-    suggestions?(tagText) { suggestions in
-      self.suggestionView.suggestions = suggestions
-    }
+    getSuggestions(byText: tagText)
     return true
   }
 

@@ -20,6 +20,17 @@ public enum Tag {
     case .tag(let title):
       return title
     case .command(let data):
+      return data.1?.listTitle ?? ""
+    }
+  }
+
+  var suggestionTitle: String {
+    switch self {
+    case .addTag:
+      return "Add Tag"
+    case .tag(let title):
+      return title
+    case .command(let data):
       return data.0
     }
   }

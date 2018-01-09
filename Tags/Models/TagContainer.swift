@@ -2,13 +2,13 @@ import Foundation
 
 public class TagContainer {
   private var saveTag: Tag = Tag.tag("")
-  var set: ((_ tags: [Tag]) -> Void)? {
+  var set: ((_ tags: OrderedSet<Tag>) -> Void)? {
     didSet {
       self.set?(self.tags)
     }
   }
 
-  public var tags: [Tag] = [] {
+  public var tags: OrderedSet<Tag> = [] {
     didSet {
       self.set?(self.tags)
     }
@@ -18,12 +18,15 @@ public class TagContainer {
 
   init(tags: [Tag]) {
     let final: [Tag] = [Tag.addTag] + (tags.contains(Tag.addTag) ? [] : tags)
-    self.tags = final
+    self.tags = OrderedSet<Tag>(final)
   }
 
   func startEditing(AtIndex index: Int) {
     saveTag = tags[index]
     currentTag = tags[index]
+//    if saveTag == .addTag {
+//      tags[index] = Tag.tag("")
+//    }
   }
 
   func doneEditing(AtIndex index: Int) {
@@ -33,16 +36,21 @@ public class TagContainer {
     }
 
     if saveTag.value != currentTag.value {
-      self.tags = self.removeAddTag()
+
+//      self.tags = self.removeAddTag()
       //todo handle this safer
-      tags[index-1] = currentTag
-      let final: [Tag] = [Tag.addTag] + (tags.contains(Tag.addTag) ? [] : tags)
-      self.set?(final)
+//      tags.insert(currentTag, at: 0)
+
+      tags.insert(currentTag, atIndex: index)
+//      tags[index] = currentTag
+      let final: [Tag] = [Tag.addTag] + tags //(tags.contains(Tag.addTag) ? [] : tags)
+      let orderedSet = OrderedSet<Tag>(final)
+      self.set?(orderedSet)
     }
   }
 
   func remove(AtIndex index: Int) {
-    tags.remove(at: index)
+    _ = tags.remove(At: index)
     self.set?(self.tags)
   }
 
@@ -51,8 +59,8 @@ public class TagContainer {
   }
 
   func insert(Tag tag: Tag) {
-    tags.insert(tag, at: 0)
-    tags.insert(Tag.addTag, at: 0)
+    tags.insert(tag, atIndex: 0)
+    tags.insert(Tag.addTag, atIndex: 0)
     self.set?(self.tags)
   }
 }

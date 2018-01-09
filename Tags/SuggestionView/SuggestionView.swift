@@ -55,7 +55,7 @@ open class SuggestionView: UICollectionView {
   }
 
   fileprivate func setupSuggestionCell(_ cell: CompletionCell, item: Tag, path: IndexPath) {
-    cell.title = suggestions[path.row].value
+    cell.title = suggestions[path.row].suggestionTitle
     cell.cellTag = item
     cell.backgroundColor = UIColor.red
   }

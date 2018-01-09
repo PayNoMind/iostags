@@ -34,10 +34,11 @@ open class TagDelegate: NSObject {
     collectionDataSource.updateData([self.tags])
   }
 
-  open func getTags() -> Set<Tag> {
-    return tags.filter {
+  open func getTags() -> OrderedSet<Tag> {
+    let tags = self.tags.filter {
       return $0 != Tag.addTag
-    }.toSet
+    }
+    return OrderedSet<Tag>(tags)
   }
 
   open func tapCellAndCollection() {

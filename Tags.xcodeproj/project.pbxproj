@@ -30,6 +30,7 @@
 		C5426D241FDBB3DB00255099 /* OrderedSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5426D231FDBB3DB00255099 /* OrderedSet.swift */; };
 		C5426D261FDBC30200255099 /* UiResponder+currentResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5426D251FDBC30200255099 /* UiResponder+currentResponder.swift */; };
 		C5426D291FDBD12300255099 /* TagParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5426D281FDBD12300255099 /* TagParser.swift */; };
+		C5426D2B1FDBD5FB00255099 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5426D2A1FDBD5FB00255099 /* Notifications.swift */; };
 		C55BCABF1F518AF3001FA158 /* TagDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55BCABE1F518AF3001FA158 /* TagDelegate.swift */; };
 		C570E4E31D1E902900A947F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C570E4E21D1E902900A947F1 /* AppDelegate.swift */; };
 		C570E4E51D1E902900A947F1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C570E4E41D1E902900A947F1 /* ViewController.swift */; };
@@ -113,6 +114,7 @@
 		C5426D231FDBB3DB00255099 /* OrderedSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedSet.swift; sourceTree = "<group>"; };
 		C5426D251FDBC30200255099 /* UiResponder+currentResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiResponder+currentResponder.swift"; sourceTree = "<group>"; };
 		C5426D281FDBD12300255099 /* TagParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagParser.swift; sourceTree = "<group>"; };
+		C5426D2A1FDBD5FB00255099 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		C55BCABE1F518AF3001FA158 /* TagDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagDelegate.swift; sourceTree = "<group>"; };
 		C570E4E01D1E902900A947F1 /* TagsExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TagsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C570E4E21D1E902900A947F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 				C5FE60161D47A3D400C2595D /* FormatDate.swift */,
 				C5FE7E641D6A2DEC006816E7 /* BarButtonHelper.swift */,
 				C5426D231FDBB3DB00255099 /* OrderedSet.swift */,
+				C5426D2A1FDBD5FB00255099 /* Notifications.swift */,
 			);
 			name = Util;
 			path = Tags/Util;
@@ -540,6 +543,7 @@
 				C55BCABF1F518AF3001FA158 /* TagDelegate.swift in Sources */,
 				C5307B8B1F25A439003EC2F6 /* UIView+ObjectName.swift in Sources */,
 				C5C74BA21D37BEB700A369E7 /* Reminder.swift in Sources */,
+				C5426D2B1FDBD5FB00255099 /* Notifications.swift in Sources */,
 				C5313C5E1F586FA800029021 /* Array+Set.swift in Sources */,
 				C5D3B7B61F4EF20700D7E74D /* Tag.swift in Sources */,
 				C5426D241FDBB3DB00255099 /* OrderedSet.swift in Sources */,
