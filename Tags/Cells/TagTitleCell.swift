@@ -9,7 +9,7 @@
 import UIKit
 
 class TagTitleCell: UITableViewCell {
-  @IBOutlet weak var titleField: UITextField!
+  @IBOutlet private weak var titleField: UITextField!
 
   var fieldDelegate: UITextFieldDelegate? {
     didSet {

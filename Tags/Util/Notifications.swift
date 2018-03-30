@@ -21,7 +21,9 @@ struct Notifications {
     dateInfo.second = (components.second ?? 0) + 15
 
     let trigger = UNCalendarNotificationTrigger(dateMatching: dateInfo, repeats: false)
-    let request = UNNotificationRequest(identifier: "stuff", content: content, trigger: trigger)
+
+    let uuid = UUID().uuidString
+    let request = UNNotificationRequest(identifier: uuid, content: content, trigger: trigger)
 
     let center = UNUserNotificationCenter.current()
     center.add(request) { error in
@@ -31,8 +33,16 @@ struct Notifications {
     }
   }
 
-  static func cancelNotification() {
+  static func cancelNotificationWithTitle(_ title: String) {
     let center = UNUserNotificationCenter.current()
+    center.getPendingNotificationRequests { requests in
 
+      for request in requests {
+        if request.content.title == title {
+          center.removePendingNotificationRequests(withIdentifiers: [request.identifier])
+          break
+        }
+      }
+    }
   }
 }

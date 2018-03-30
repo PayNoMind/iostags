@@ -10,6 +10,10 @@ import Foundation
 import Tags
 
 class TagMemory: TagsDataSource {
+  func deleteTag(Tag tag: String) {
+    
+  }
+
   func getTagsBy(Prefix prefix: String) -> [String] {
     let tags = Array(MemoryData.tags)
     return tags.filter {

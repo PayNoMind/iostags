@@ -26,7 +26,7 @@ struct DueDate: CommandProtocol {
   mutating func execute(data: Any) {
     if let date = data as? Date {
       self.date = date
-//      Notifications.createNotification(atDate: date)
+      Notifications.createNotification(atDate: date)
     }
   }
 }

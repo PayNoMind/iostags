@@ -9,7 +9,7 @@ open class TagDelegate: NSObject {
     return CollectionArrayDataSource<Tag, TagCell>(anArray: [self.tags], withCellIdentifier: String(describing: TagCell.self), andCustomizeClosure: self.customizeCell)
   }()
 
-  private var textEntryController: TextEntryController? {
+  private var textEntryController: TagEntryController? {
     didSet {
       textEntryController?.suggestions = getSuggestions
     }
@@ -45,7 +45,7 @@ open class TagDelegate: NSObject {
     let sb = UIStoryboard(name: "TagPresentation", bundle: Bundle.tagBundle)
     let root = sb.instantiateInitialViewController() as? UINavigationController
 
-    textEntryController = root?.topViewController as? TextEntryController
+    textEntryController = root?.topViewController as? TagEntryController
     textEntryController?.tagPassBack = passText
 
     if let rv = root, let textEntry = textEntryController {

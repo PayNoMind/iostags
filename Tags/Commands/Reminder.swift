@@ -27,7 +27,7 @@ struct Reminder: CommandProtocol {
     print("Reminder Executed")
     if let date = data as? Date {
       self.date = date
-//      Notifications.createNotification(atDate: date)
+      Notifications.createNotification(atDate: date)
     }
   }
 }

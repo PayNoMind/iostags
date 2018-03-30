@@ -1,6 +1,6 @@
 import UIKit
 
-class TextEntryController: UIViewController {
+class TagEntryController: UIViewController {
   @IBOutlet private weak var tagTable: UITableView! {
     didSet {
       self.tagTable.registerNibWith(Title: TagTitleCell.nameString, withBundle: Bundle.tagBundle)
@@ -116,7 +116,7 @@ class TextEntryController: UIViewController {
 }
 
 @available(iOS 11.0, *)
-extension TextEntryController: UITableViewDelegate {
+extension TagEntryController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
     let action = UIContextualAction(style: .destructive, title: "Remove") { (_, _, success) in
       self.tags.remove(AtIndex: indexPath.row-1)
@@ -128,7 +128,7 @@ extension TextEntryController: UITableViewDelegate {
   }
 }
 
-extension TextEntryController: UITextFieldDelegate {
+extension TagEntryController: UITextFieldDelegate {
   private func getSuggestions(byText text: String) {
     suggestions?(text) { suggestions in
       self.suggestionView.suggestions = suggestions

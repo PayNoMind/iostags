@@ -51,7 +51,7 @@
 		C5FE60191D47A45B00C2595D /* FormatDateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FE60181D47A45B00C2595D /* FormatDateTests.swift */; };
 		C5FE601B1D47B78C00C2595D /* DueDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FE601A1D47B78C00C2595D /* DueDate.swift */; };
 		C5FE601D1D4B89A100C2595D /* CellWidthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FE601C1D4B89A100C2595D /* CellWidthTests.swift */; };
-		C5FE60241D4B9DB300C2595D /* TextEntryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FE60221D4B9DB300C2595D /* TextEntryController.swift */; };
+		C5FE60241D4B9DB300C2595D /* TagEntryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FE60221D4B9DB300C2595D /* TagEntryController.swift */; };
 		C5FE60281D509EAB00C2595D /* CollectionSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FE60271D509EAB00C2595D /* CollectionSetup.swift */; };
 		C5FE7E651D6A2DEC006816E7 /* BarButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FE7E641D6A2DEC006816E7 /* BarButtonHelper.swift */; };
 /* End PBXBuildFile section */
@@ -135,7 +135,7 @@
 		C5FE60181D47A45B00C2595D /* FormatDateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormatDateTests.swift; sourceTree = "<group>"; };
 		C5FE601A1D47B78C00C2595D /* DueDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DueDate.swift; sourceTree = "<group>"; };
 		C5FE601C1D4B89A100C2595D /* CellWidthTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellWidthTests.swift; sourceTree = "<group>"; };
-		C5FE60221D4B9DB300C2595D /* TextEntryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEntryController.swift; sourceTree = "<group>"; };
+		C5FE60221D4B9DB300C2595D /* TagEntryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagEntryController.swift; sourceTree = "<group>"; };
 		C5FE60271D509EAB00C2595D /* CollectionSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionSetup.swift; sourceTree = "<group>"; };
 		C5FE7E641D6A2DEC006816E7 /* BarButtonHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarButtonHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -355,7 +355,7 @@
 		C5FE60211D4B9D8B00C2595D /* TextEntry */ = {
 			isa = PBXGroup;
 			children = (
-				C5FE60221D4B9DB300C2595D /* TextEntryController.swift */,
+				C5FE60221D4B9DB300C2595D /* TagEntryController.swift */,
 			);
 			path = TextEntry;
 			sourceTree = "<group>";
@@ -562,7 +562,7 @@
 				C50838231D141C3F0025F67F /* CollectionView+Register.swift in Sources */,
 				C5FE7E651D6A2DEC006816E7 /* BarButtonHelper.swift in Sources */,
 				C50838381D1951C10025F67F /* CompletionCell.swift in Sources */,
-				C5FE60241D4B9DB300C2595D /* TextEntryController.swift in Sources */,
+				C5FE60241D4B9DB300C2595D /* TagEntryController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

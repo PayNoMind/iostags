@@ -16,9 +16,9 @@ enum BarButtonHelper {
   var button: UIBarButtonItem {
     switch self {
     case .cancel(let target):
-      return UIBarButtonItem(title: "Cancel", style: .plain, target: target, action: #selector(TextEntryController.cancel))
+      return UIBarButtonItem(title: "Cancel", style: .plain, target: target, action: #selector(TagEntryController.cancel))
     case .done(let target):
-      return UIBarButtonItem(title: "Done", style: .plain, target: target, action: #selector(TextEntryController.done))
+      return UIBarButtonItem(title: "Done", style: .plain, target: target, action: #selector(TagEntryController.done))
     case .flexibleSpace:
       return UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
     }
