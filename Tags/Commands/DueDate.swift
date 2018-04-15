@@ -8,25 +8,30 @@
 
 import Foundation
 
-struct DueDate: CommandProtocol {
-  var date: Date = Date()
+public struct DueDate: CommandProtocol {
+  public var date: Date = Date()
 
-  var suggestionTitle: String {
+  public var suggestionTitle: String {
     return "duedate"
   }
 
-  var usesDatePicker: Bool {
+  public var usesDatePicker: Bool {
     return true
   }
 
-  var listTitle: String {
+  public var listTitle: String {
     return suggestionTitle + " " + "\(FormatDate.format(date))"
   }
 
-  mutating func execute(data: Any) {
+  init() {}
+
+  public init(date: Date) {
+    self.date = date
+  }
+
+  public mutating func execute(data: Any) {
     if let date = data as? Date {
       self.date = date
-      Notifications.createNotification(atDate: date)
     }
   }
 }

@@ -8,22 +8,22 @@
 
 import Foundation
 
-struct Reminder: CommandProtocol {
-  var date: Date = Date()
+public struct Reminder: CommandProtocol {
+  public var date: Date = Date()
 
-  var suggestionTitle: String {
+  public var suggestionTitle: String {
     return "reminder"
   }
 
-  var usesDatePicker: Bool {
+  public var usesDatePicker: Bool {
     return true
   }
 
-  var listTitle: String {
+  public var listTitle: String {
     return suggestionTitle + " " + "\(FormatDate.format(date))"
   }
 
-  mutating func execute(data: Any) {
+  public mutating func execute(data: Any) {
     print("Reminder Executed")
     if let date = data as? Date {
       self.date = date

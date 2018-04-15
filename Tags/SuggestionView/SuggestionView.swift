@@ -24,14 +24,14 @@ open class SuggestionView: UICollectionView {
   open var setSuggestion: ((Tag) -> Void)?
 
   convenience public init(suggestion: ((Tag) -> Void)?) {
-    let _layout = UICollectionViewFlowLayout()
-    _layout.scrollDirection = .horizontal
-    _layout.estimatedItemSize = CGSize(width: 100, height: 38)
-    _layout.minimumInteritemSpacing = 10
+    let layout = UICollectionViewFlowLayout()
+    layout.scrollDirection = .horizontal
+    layout.estimatedItemSize = CGSize(width: 100, height: 38)
+    layout.minimumInteritemSpacing = 10
 
     let width = UIScreen.main.bounds.width
     let frame = CGRect(x: 0, y: 0, width: width, height: 40)
-    self.init(frame: frame, collectionViewLayout: _layout)
+    self.init(frame: frame, collectionViewLayout: layout)
 
     delegate = self
     dataSource = suggestionDataSource
@@ -40,14 +40,14 @@ open class SuggestionView: UICollectionView {
   }
 
   convenience public init() {
-    let _layout = UICollectionViewFlowLayout()
-    _layout.scrollDirection = .horizontal
-    _layout.estimatedItemSize = CGSize(width: 100, height: 38)
-    _layout.minimumInteritemSpacing = 10
+    let layout = UICollectionViewFlowLayout()
+    layout.scrollDirection = .horizontal
+    layout.estimatedItemSize = CGSize(width: 100, height: 38)
+    layout.minimumInteritemSpacing = 10
 
     let width = UIScreen.main.bounds.width
     let frame = CGRect(x: 0, y: 0, width: width, height: 40)
-    self.init(frame: frame, collectionViewLayout: _layout)
+    self.init(frame: frame, collectionViewLayout: layout)
 
     delegate = self
     dataSource = suggestionDataSource
