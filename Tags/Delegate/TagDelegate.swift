@@ -1,11 +1,9 @@
 import UIKit
 
 open class TagDelegate: NSObject {
-  fileprivate weak var collectionView: UICollectionView?
+  private lazy var parser: TagParser = TagParser(tags: self.tagDataSource)
 
-  fileprivate lazy var parser: TagParser = TagParser(tags: self.tagDataSource)
-
-  fileprivate lazy var collectionDataSource: CollectionArrayDataSource<Tag, TagCell> = {
+  private(set) lazy var collectionDataSource: CollectionArrayDataSource<Tag, TagCell> = {
     return CollectionArrayDataSource<Tag, TagCell>(anArray: [self.tags], withCellIdentifier: String(describing: TagCell.self), andCustomizeClosure: self.customizeCell)
   }()
 
@@ -17,16 +15,13 @@ open class TagDelegate: NSObject {
 
   private var tags = [Tag]()
 
-  public convenience init(collectionView: UICollectionView, tags: [String]) {
+  weak var collectionView: UICollectionView?
+  open var tagDataSource: TagsDataSource!
+
+  public convenience init(tags: [String]) {
     self.init()
     self.tags = tags.map { Tag.tag($0) }
-    collectionView.dataSource = collectionDataSource
-    self.collectionView = collectionView
   }
-
-  open var ownerController: UIViewController!
-
-  open var tagDataSource: TagsDataSource!
 
   open func update(Tags tags: [Tag]) {
     self.tagDataSource.insert(Tags: tags.toStringSet)
@@ -42,15 +37,28 @@ open class TagDelegate: NSObject {
   }
 
   open func tapCellAndCollection() {
-    let sb = UIStoryboard(name: "TagPresentation", bundle: Bundle.tagBundle)
-    let root = sb.instantiateInitialViewController() as? UINavigationController
+    let storyBoard = UIStoryboard(name: "TagPresentation", bundle: Bundle.tagBundle)
+    let root = storyBoard.instantiateInitialViewController() as? UINavigationController
 
     textEntryController = root?.topViewController as? TagEntryController
     textEntryController?.tagPassBack = passText
 
-    if let rv = root, let textEntry = textEntryController {
+    if let navController = root, let textEntry = textEntryController {
       textEntry.tags = TagContainer(tags: tags)
-      self.ownerController.present(rv, animated: true, completion: nil)
+      self.presentOnRootController(navController)
+    }
+  }
+
+  // TODO: - Make this more robust
+  private func presentOnRootController(_ controller: UIViewController) {
+    if let navController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController {
+      if let temp = navController.topViewController?.presentedViewController {
+       temp.present(controller, animated: true, completion: nil)
+      } else {
+        navController.topViewController?.present(controller, animated: true, completion: nil)
+      }
+    } else {
+      UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true, completion: nil)
     }
   }
 

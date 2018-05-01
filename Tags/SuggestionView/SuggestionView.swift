@@ -35,7 +35,7 @@ open class SuggestionView: UICollectionView {
 
     delegate = self
     dataSource = suggestionDataSource
-    registerNibWith(Title: String(describing: CompletionCell.self), withBundle: Bundle(for: type(of: self)))
+    registerNibWithTitle(String(describing: CompletionCell.self), withBundle: Bundle(for: type(of: self)))
     self.setSuggestion = suggestion
   }
 
@@ -51,7 +51,7 @@ open class SuggestionView: UICollectionView {
 
     delegate = self
     dataSource = suggestionDataSource
-    registerNibWith(Title: String(describing: CompletionCell.self), withBundle: Bundle(for: type(of: self)))
+    registerNibWithTitle(String(describing: CompletionCell.self), withBundle: Bundle(for: type(of: self)))
   }
 
   fileprivate func setupSuggestionCell(_ cell: CompletionCell, item: Tag, path: IndexPath) {

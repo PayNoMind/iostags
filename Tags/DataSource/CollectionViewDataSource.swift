@@ -49,16 +49,16 @@ open class CollectionArrayDataSource<T, U: UICollectionViewCell>: NSObject, UICo
   }
 
   open func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-    let id = supplementryID?() ?? ""
-    let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: id, for: indexPath)
+    let supID = supplementryID?() ?? ""
+    let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: supID, for: indexPath)
     customizeSupplementryViewClosure?(view, indexPath)
     return view
   }
 
   private func getCellId(_ indexPath: IndexPath) -> String {
-    guard let id = cellIDClosure
+    guard let cellID = cellIDClosure
       else { return cellIdentifier }
-    return id(indexPath)
+    return cellID(indexPath)
   }
 
   open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

@@ -37,11 +37,9 @@ struct Notifications {
     let center = UNUserNotificationCenter.current()
     center.getPendingNotificationRequests { requests in
 
-      for request in requests {
-        if request.content.title == title {
+      for request in requests where request.content.title == title {
           center.removePendingNotificationRequests(withIdentifiers: [request.identifier])
           break
-        }
       }
     }
   }

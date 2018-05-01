@@ -29,7 +29,7 @@ open class TagParser {
     if command.isEmpty {
       return commands.map {
         Tag.command($0.suggestionTitle, $0)
-      }.flatMap { $0 }
+      }.compactMap { $0 }
     }
 
     if let command = getCommandBy(Name: command.lowercased()) {

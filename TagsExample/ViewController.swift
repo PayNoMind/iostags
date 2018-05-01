@@ -31,6 +31,10 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: TagsDataSource {
+  func insertTag(_ tag: Tag) {
+    tags.insert(tag.value)
+  }
+
   func deleteTag(Tag tag: String) {
     tags.remove(tag)
   }
@@ -45,10 +49,6 @@ extension ViewController: TagsDataSource {
     for tag in tags {
       self.tags.insert(tag)
     }
-  }
-
-  func insert(Tag tag: String) {
-    tags.insert(tag)
   }
 
   func getAllTags() -> Set<String> {

@@ -71,9 +71,9 @@ class TableArrayDataSource<T>: NSObject, UITableViewDataSource {
   }
 
   fileprivate func getCellId(_ path: IndexPath) -> String {
-    guard let id = cellIDClosure
+    guard let cellID = cellIDClosure
       else { return cellIdentifier }
-    return id(path, dataArray[path.section][path.row])
+    return cellID(path, dataArray[path.section][path.row])
   }
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

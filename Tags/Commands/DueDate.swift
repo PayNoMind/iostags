@@ -12,7 +12,7 @@ public struct DueDate: CommandProtocol {
   public var date: Date = Date()
 
   public var suggestionTitle: String {
-    return "duedate"
+    return "Date"
   }
 
   public var usesDatePicker: Bool {
@@ -20,7 +20,7 @@ public struct DueDate: CommandProtocol {
   }
 
   public var listTitle: String {
-    return suggestionTitle + " " + "\(FormatDate.format(date))"
+    return suggestionTitle + " " + FormatDate.format(date, style: .none)
   }
 
   init() {}

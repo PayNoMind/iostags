@@ -3,7 +3,7 @@ import UIKit
 class TagEntryController: UIViewController {
   @IBOutlet private weak var tagTable: UITableView! {
     didSet {
-      self.tagTable.registerNibWith(Title: TagTitleCell.nameString, withBundle: Bundle.tagBundle)
+      self.tagTable.registerNibWithTitle(TagTitleCell.nameString, withBundle: Bundle.tagBundle)
       self.tagTable.dataSource = self.tableDataSource
       self.tableDataSource.tableView = self.tagTable
       self.tagTable.delegate = self

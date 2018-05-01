@@ -17,13 +17,13 @@ class SingleFormatter {
     formatter = DateFormatter()
     formatter.dateStyle = .medium
     formatter.timeStyle = .medium
+    formatter.doesRelativeDateFormatting = true
   }
 }
 
 struct FormatDate {
-  static let formatter = SingleFormatter()
-
-  static func format(_ date: Date) -> String {
-    return formatter.formatter.string(from: date)
+  static func format(_ date: Date, style: DateFormatter.Style = .medium) -> String {
+    SingleFormatter.sharedInstance.formatter.timeStyle = style
+    return SingleFormatter.sharedInstance.formatter.string(from: date)
   }
 }
