@@ -17,9 +17,17 @@ open class TagParser {
     }.first
 
     if let commandType = type {
-      return Tag.command(commandType.suggestionTitle, type)
+      return Tag.command(commandType.suggestionTitle, commandType)
     }
     return nil
+  }
+
+  open class func allCommands() -> [Tag] {
+    let commands: [CommandProtocol] = [Reminder(), DueDate()]
+
+    return commands.map {
+      Tag.command($0.suggestionTitle, $0)
+    }
   }
 
   private func handleCommands(_ command: String) -> [Tag]? {

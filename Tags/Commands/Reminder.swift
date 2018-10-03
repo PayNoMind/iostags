@@ -15,8 +15,8 @@ public struct Reminder: CommandProtocol {
     return "reminder"
   }
 
-  public var usesDatePicker: Bool {
-    return true
+  public var datePickerInfo: DatePickerInfo {
+    return DatePickerInfo(usesDatePicker: true, dateOnly: false)
   }
 
   public var listTitle: String {
@@ -27,7 +27,6 @@ public struct Reminder: CommandProtocol {
     print("Reminder Executed")
     if let date = data as? Date {
       self.date = date
-      Notifications.createNotification(atDate: date)
     }
   }
 }

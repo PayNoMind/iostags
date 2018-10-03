@@ -13,7 +13,11 @@ class TagEntryController: UIViewController {
     let temp = TableArrayDataSource<Tag>(anArray: [], withCellIdentifier: TagTitleCell.nameString, andCustomizeClosure: self.setupCell)
     return temp
   }()
-  private lazy var datePicker: UIDatePicker = UIDatePicker()
+  private lazy var datePicker: UIDatePicker = {
+    let picker = UIDatePicker()
+    picker.minimumDate = Date()
+    return picker
+  }()
   private lazy var datePickerToolbar: UIToolbar = {
     let toolBarFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 35)
     let toolbar = UIToolbar(frame: toolBarFrame)
@@ -90,7 +94,7 @@ class TagEntryController: UIViewController {
 
   private func setSuggestion(ByTag tag: Tag) {
     var text = ""
-    if let command = tag.command, command.usesDatePicker {
+    if let command = tag.command, command.datePickerInfo.usesDatePicker {
       self.presentDatePicker(textField: self.currentTextField)
       let date = self.datePicker.date
       text = FormatDate.format(date)

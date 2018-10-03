@@ -15,8 +15,8 @@ public struct DueDate: CommandProtocol {
     return "Date"
   }
 
-  public var usesDatePicker: Bool {
-    return true
+  public var datePickerInfo: DatePickerInfo {
+    return DatePickerInfo(usesDatePicker: true, dateOnly: false)
   }
 
   public var listTitle: String {

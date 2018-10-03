@@ -8,15 +8,14 @@
 
 import Foundation
 
+public struct DatePickerInfo {
+  let usesDatePicker: Bool
+  let dateOnly: Bool
+}
+
 public protocol CommandProtocol {
   var suggestionTitle: String { get }
   mutating func execute(data: Any)
-  var usesDatePicker: Bool { get }
+  var datePickerInfo: DatePickerInfo { get }
   var listTitle: String { get }
-}
-
-extension CommandProtocol {
-  var usesDatePicker: Bool {
-    return false
-  }
 }

@@ -25,7 +25,7 @@ public class TagContainer {
     saveTag = tags[index]
     currentTag = tags[index]
 //    if saveTag == .addTag {
-//      tags[index] = Tag.tag("")
+//      tags.insert(Tag.tag(""), atIndex: index)
 //    }
   }
 
@@ -36,13 +36,13 @@ public class TagContainer {
     }
 
     if saveTag.value != currentTag.value {
-
 //      self.tags = self.removeAddTag()
       //todo handle this safer
 //      tags.insert(currentTag, at: 0)
 
       tags.insert(currentTag, atIndex: index)
 //      tags[index] = currentTag
+
       let final: [Tag] = [Tag.addTag] + tags //(tags.contains(Tag.addTag) ? [] : tags)
       let orderedSet = OrderedSet<Tag>(final)
       self.set?(orderedSet)
