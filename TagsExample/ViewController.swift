@@ -12,13 +12,13 @@ import Tags
 class ViewController: UIViewController {
   @IBOutlet var collection: UICollectionView! {
     didSet {
-      collection.setupCollectionAsTagView(tagDelegate, withDataSource: self, andOwner: self)
+      collection.setupCollectionAsTagView(tagDelegate, withDataSource: self)
     }
   }
   @IBOutlet weak var tagList: UITextView!
 
   fileprivate lazy var tagDelegate: TagDelegate = {
-    return TagDelegate(collectionView: self.collection, tags: ["CheeseBurger"])
+    return TagDelegate(tags: ["CheeseBurger"])
   }()
 
   private var tags: Set = ["groceries", "CheeseBurger", "home", "work", "stuff", "longstringthatislong", "day"]

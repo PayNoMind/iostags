@@ -79,13 +79,6 @@ class TagEntryController: UIViewController {
     resetInputViews(shouldReset)
   }
 
-  private func presentDatePicker(textField: UITextField?) {
-    self.datePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
-    textField?.inputView = self.datePicker
-    textField?.inputAccessoryView = self.datePickerToolbar
-    resetInputViews(true)
-  }
-
   private func resetInputViews(_ reset: Bool) {
     if reset {
       currentTextField?.reloadInputViews()
@@ -93,29 +86,14 @@ class TagEntryController: UIViewController {
   }
 
   private func setSuggestion(ByTag tag: Tag) {
-    var text = ""
-    if let command = tag.command, command.datePickerInfo.usesDatePicker {
-      self.presentDatePicker(textField: self.currentTextField)
-      let date = self.datePicker.date
-      text = FormatDate.format(date)
-//      command.execute()
-    } else {
-      text = tag.value
-    }
     self.tags.currentTag = tag
-    currentTextField?.text = text
+    currentTextField?.text = tag.value
   }
 
   private func getCurrentCell(FromTextField textfield: UITextField) -> TagTitleCell? {
     guard let index = self.getIndex(FromTextField: textfield)
       else { return nil }
     return self.tagTable.cellForRow(at: index) as? TagTitleCell
-  }
-
-  @objc
-  func dateChanged(datePicker: UIDatePicker) {
-    let date = datePicker.date
-    currentTextField?.text = FormatDate.format(date)
   }
 }
 

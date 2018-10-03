@@ -18,8 +18,7 @@ open class TagCell: UICollectionViewCell {
 
   var cellWidth: CGFloat? {
     if let tagText = tagLabel.text, let font = tagLabel.font, !tagText.isEmpty {
-      let width = CellWidth.widthOf(Text: tagText, withFont: font)
-
+      let width = font.widthOfText(tagText)
       let widthSum = width + leadingConstraint.constant + trailingConstraint.constant + 5
 
       return widthSum

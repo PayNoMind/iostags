@@ -87,7 +87,7 @@ extension TagDelegate: UICollectionViewDelegateFlowLayout {
     let tagText = cell.tagLabel.text, let font = cell.tagLabel.font
       else { return CGSize(width: 20, height: collectionView.bounds.height) }
 
-    let width = cell.cellWidth ?? CellWidth.widthOf(Text: tagText, withFont: font)
+    let width = cell.cellWidth ?? font.widthOfText(tagText)
     return CGSize(width: width, height: collectionView.bounds.height)
   }
 }

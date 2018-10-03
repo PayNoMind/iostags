@@ -8,30 +8,6 @@
 
 import Foundation
 
-public class SaveTag: NSObject, NSCoding {
-  enum CoderTitle: String {
-    case tagString
-  }
-
-  var tagString: String = ""
-
-  public var toTag: Tag {
-    return .tag(tagString)
-  }
-
-  public init(tag: Tag) {
-    tagString = tag.value
-  }
-
-  required public init?(coder aDecoder: NSCoder) {
-    self.tagString = aDecoder.decodeObject(forKey: CoderTitle.tagString.rawValue) as? String ?? ""
-  }
-
-  public func encode(with aCoder: NSCoder) {
-    aCoder.encode(tagString, forKey: CoderTitle.tagString.rawValue)
-  }
-}
-
 public enum Tag {
   static public func == (left: Tag, right: Tag) -> Bool {
     return left.value == right.value
@@ -39,7 +15,6 @@ public enum Tag {
 
   case addTag
   case tag(String)
-  case command(String, CommandProtocol?)
 
   public var value: String {
     switch self {
@@ -47,8 +22,6 @@ public enum Tag {
       return "Add Tag"
     case .tag(let title):
       return title
-    case .command(let data):
-      return data.1?.listTitle ?? ""
     }
   }
 
@@ -58,26 +31,6 @@ public enum Tag {
       return "Add Tag"
     case .tag(let title):
       return title
-    case .command(let data):
-      return data.0
-    }
-  }
-
-  public var command: CommandProtocol? {
-    switch self {
-    case .command(let data):
-      return data.1
-    default:
-      return nil
-    }
-  }
-
-  public var isCommand: Bool {
-    switch self {
-    case .command:
-      return true
-    default:
-      return false
     }
   }
 }
