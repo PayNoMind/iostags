@@ -18,7 +18,9 @@ class ViewController: UIViewController {
   @IBOutlet weak var tagList: UITextView!
 
   fileprivate lazy var tagDelegate: TagDelegate = {
-    return TagDelegate(tags: ["CheeseBurger"])
+    let delegate = TagDelegate(tags: ["CheeseBurger"])
+    delegate.tagDataSource = self
+    return delegate
   }()
 
   private var tags: Set = ["groceries", "CheeseBurger", "home", "work", "stuff", "longstringthatislong", "day"]
@@ -35,17 +37,17 @@ extension ViewController: TagsDataSource {
     tags.insert(tag.value)
   }
 
-  func deleteTag(Tag tag: String) {
+  func deleteTag(_ tag: String) {
     tags.remove(tag)
   }
 
-  func getTagsBy(Prefix prefix: String) -> [String] {
+  func getTagsByPrefix(_ prefix: String) -> [String] {
     return tags.filter {
       $0.lowercased().hasPrefix(prefix)
     }
   }
 
-  func insert(Tags tags: Set<String>) {
+  func insertTags(_ tags: Set<String>) {
     for tag in tags {
       self.tags.insert(tag)
     }

@@ -31,19 +31,7 @@ class TagParserTests: XCTestCase {
     XCTAssertEqual(parser.parse("H").map { $0.suggestionTitle }, ["home"])
   }
 
-  func testParse_CommandCharacter_ReturnsAllCommands() {
-    XCTAssertEqual(Set(parser.parse(":").map { $0.suggestionTitle }), ["reminder", "duedate"])
-  }
-
   func testParse_CommandThatMatchesLetterWithNoCommandPrefix_ReturnsEmptyArray() {
     XCTAssertEqual(parser.parse("r").map { $0.value }, [])
-  }
-
-  func testParse_CommandThatMatchesUpperCaseLetterWithCommandPrefix_ReturnsCommand() {
-    XCTAssertEqual(parser.parse(":R").map { $0.suggestionTitle }, ["reminder"])
-  }
-
-  func testParse_CommandThatMatchesLetterWithCommandPrefix_ReturnsCommand() {
-    XCTAssertEqual(parser.parse(":r").map { $0.suggestionTitle }, ["reminder"])
   }
 }

@@ -6,7 +6,7 @@ open class TagParser {
   open var currentTags = [Tag]()
 
   private func getTagsThatMatch(Text text: String) -> [Tag] {
-    let tags: [Tag] = tagHandler.getTagsBy(Prefix: text.lowercased()).map { tag -> Tag in
+    let tags: [Tag] = tagHandler.getTagsByPrefix(text.lowercased()).map { tag -> Tag in
       return Tag.tag(tag)
     }
     return tags

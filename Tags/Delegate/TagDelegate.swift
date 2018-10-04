@@ -24,7 +24,7 @@ open class TagDelegate: NSObject {
   }
 
   open func update(Tags tags: [Tag]) {
-    self.tagDataSource.insert(Tags: tags.toStringSet)
+    self.tagDataSource.insertTags(tags.toStringSet)
     self.tags = tags + (tags.isEmpty ? [Tag.addTag] : [])
     collectionDataSource.updateData([self.tags])
   }

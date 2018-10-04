@@ -10,11 +10,15 @@ import Foundation
 import Tags
 
 class TagMemory: TagsDataSource {
-  func deleteTag(Tag tag: String) {
+  func insertTag(_ tag: Tag) {
+     MemoryData.tags.insert(tag.value)
+  }
+
+  func deleteTag(_ tag: String) {
     
   }
 
-  func getTagsBy(Prefix prefix: String) -> [String] {
+  func getTagsByPrefix(_ prefix: String) -> [String] {
     let tags = Array(MemoryData.tags)
     return tags.filter {
       $0.hasPrefix(prefix)
@@ -25,13 +29,13 @@ class TagMemory: TagsDataSource {
     return MemoryData.tags
   }
 
-  func insert(Tag tag: String) {
+  func insertTag(_ tag: String) {
     MemoryData.tags.insert(tag)
   }
 
-  func insert(Tags tags: Set<String>) {
+  func insertTags(_ tags: Set<String>) {
     for tag in tags {
-      self.insert(Tag: tag)
+      self.insertTag(tag)
     }
   }
 }

@@ -17,13 +17,13 @@ open class TagCell: UICollectionViewCell {
   }
 
   var cellWidth: CGFloat? {
-    if let tagText = tagLabel.text, let font = tagLabel.font, !tagText.isEmpty {
-      let width = font.widthOfText(tagText)
-      let widthSum = width + leadingConstraint.constant + trailingConstraint.constant + 5
+    guard let tagText = tagLabel.text, let font = tagLabel.font, !tagText.isEmpty
+      else { return nil }
 
-      return widthSum
-    }
-    return nil
+    let width = font.widthOfText(tagText)
+    let widthSum = width + leadingConstraint.constant + trailingConstraint.constant + 5
+
+    return widthSum
   }
 
   open override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {

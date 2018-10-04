@@ -9,10 +9,6 @@
 import Foundation
 
 public enum Tag {
-  static public func == (left: Tag, right: Tag) -> Bool {
-    return left.value == right.value
-  }
-
   case addTag
   case tag(String)
 
@@ -34,6 +30,9 @@ public enum Tag {
     }
   }
 }
+
+extension Tag: Equatable {}
+extension Tag: Hashable {}
 
 extension Tag: Codable {
   private enum CodingKeys: String, CodingKey {
@@ -61,11 +60,5 @@ extension Tag: Codable {
     default:
       throw PostTypeCodingError.decoding("Whoops!")
     }
-  }
-}
-
-extension Tag: Hashable {
-  public var hashValue: Int {
-    return self.value.hashValue &* 16777619
   }
 }

@@ -25,11 +25,11 @@ class TagsInterfaceTests: XCTestCase {
   }
 
   func testGetTagsByPrefix() {
-    XCTAssertEqual(memory.getTagsBy(Prefix: "g"), ["groceries"])
+    XCTAssertEqual(memory.getTagsByPrefix("g"), ["groceries"])
   }
 
   func testInsertTag() {
-    memory.insert(Tag: "cheeseburger")
-    XCTAssertEqual(memory.getTagsBy(Prefix: "c"), ["cheeseburger"])
+    memory.insertTag(Tag.tag("cheeseburger"))
+    XCTAssertEqual(memory.getTagsByPrefix("c"), ["cheeseburger"])
   }
 }
