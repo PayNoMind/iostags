@@ -13,6 +13,7 @@ extension UICollectionView {
     self.registerNibWithTitle(String(describing: TagCell.self), withBundle: Bundle.tagBundle)
 
     tagDelegate.tagDataSource = dataSource
+    tagDelegate.collectionViewRef = self
     self.dataSource = tagDelegate.collectionDataSource
 
     (self.collectionViewLayout as? UICollectionViewFlowLayout)?.estimatedItemSize = CGSize(width: 60, height: 20)

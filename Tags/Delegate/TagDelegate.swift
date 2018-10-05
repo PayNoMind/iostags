@@ -1,8 +1,6 @@
 import UIKit
 
 open class TagDelegate: NSObject {
-  private lazy var parser: TagParser = TagParser(tags: self.tagDataSource)
-
   private(set) lazy var collectionDataSource: CollectionArrayDataSource<Tag, TagCell> = {
     return CollectionArrayDataSource<Tag, TagCell>(anArray: [self.tags], withCellIdentifier: String(describing: TagCell.self), andCustomizeClosure: self.customizeCell)
   }()
@@ -15,8 +13,8 @@ open class TagDelegate: NSObject {
 
   private var tags = [Tag]()
 
-  weak var collectionView: UICollectionView?
-  open var tagDataSource: TagsDataSource!
+  weak var collectionViewRef: UICollectionView?
+  open var tagDataSource: TagsDataSource?
 
   public convenience init(tags: [String]) {
     self.init()
@@ -24,7 +22,7 @@ open class TagDelegate: NSObject {
   }
 
   open func update(Tags tags: [Tag]) {
-    self.tagDataSource.insertTags(tags.toStringSet)
+    self.tagDataSource?.insertTags(tags.toStringSet)
     self.tags = tags + (tags.isEmpty ? [Tag.addTag] : [])
     collectionDataSource.updateData([self.tags])
   }
@@ -49,6 +47,13 @@ open class TagDelegate: NSObject {
     }
   }
 
+  private func getSuggestions(_ text: String) -> [Tag] {
+    let tags: [Tag] = tagDataSource?.getTagsByPrefix(text.lowercased()).map { tag -> Tag in
+      return Tag.tag(tag)
+    } ?? []
+    return tags
+  }
+
   // TODO: - Make this more robust
   private func presentOnRootController(_ controller: UIViewController) {
     if let navController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController {
@@ -63,13 +68,13 @@ open class TagDelegate: NSObject {
   }
 
   private func getSuggestions(_ item: String, closure: ([Tag]) -> Void) {
-    let items = parser.parse(item)
-    closure(items)
+    let suggestions = getSuggestions(item)
+    closure(suggestions)
   }
 
   private func passText(_ tags: [Tag]) {
     self.update(Tags: tags)
-    self.collectionView?.reloadData()
+    self.collectionViewRef?.reloadData()
   }
 
   private func customizeCell(_ cell: TagCell, item: Tag, path: IndexPath) {

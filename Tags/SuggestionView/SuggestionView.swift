@@ -9,7 +9,7 @@
 import UIKit
 
 open class SuggestionView: UICollectionView {
-  fileprivate lazy var suggestionDataSource: CollectionArrayDataSource<Tag, CompletionCell> = {
+  private lazy var suggestionDataSource: CollectionArrayDataSource<Tag, CompletionCell> = {
     return CollectionArrayDataSource<Tag, CompletionCell>(anArray: [self.suggestions],
                                                                              withCellIdentifier: String(describing: CompletionCell.self),
                                                                              andCustomizeClosure: self.setupSuggestionCell)
