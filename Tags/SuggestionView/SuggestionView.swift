@@ -54,10 +54,10 @@ open class SuggestionView: UICollectionView {
     registerNibWithTitle(String(describing: CompletionCell.self), withBundle: Bundle(for: type(of: self)))
   }
 
-  fileprivate func setupSuggestionCell(_ cell: CompletionCell, item: Tag, path: IndexPath) {
+  private func setupSuggestionCell(_ cell: CompletionCell, item: Tag, path: IndexPath) {
     cell.title = suggestions[path.row].suggestionTitle
     cell.cellTag = item
-    cell.backgroundColor = UIColor.red
+    cell.backgroundColor = .red
   }
 }
 

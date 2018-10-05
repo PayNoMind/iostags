@@ -9,7 +9,7 @@
 import UIKit
 
 class CompletionCell: UICollectionViewCell {
-  @IBOutlet fileprivate weak var suggestedLabel: UILabel!
+  @IBOutlet private weak var suggestedLabel: UILabel!
 
   var cellTag: Tag = Tag.tag("")
 

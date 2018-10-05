@@ -26,7 +26,6 @@
 		C531435B1BD0F1A6006A8E48 /* TagsInterfaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531435A1BD0F1A6006A8E48 /* TagsInterfaceTests.swift */; };
 		C53143A01BD1034B006A8E48 /* MemoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531439E1BD1034B006A8E48 /* MemoryData.swift */; };
 		C53143A11BD1034B006A8E48 /* TagMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531439F1BD1034B006A8E48 /* TagMemory.swift */; };
-		C53143A31BD10717006A8E48 /* TagParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53143A21BD10717006A8E48 /* TagParserTests.swift */; };
 		C5426D241FDBB3DB00255099 /* OrderedSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5426D231FDBB3DB00255099 /* OrderedSet.swift */; };
 		C5426D261FDBC30200255099 /* UiResponder+currentResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5426D251FDBC30200255099 /* UiResponder+currentResponder.swift */; };
 		C55BCABF1F518AF3001FA158 /* TagDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55BCABE1F518AF3001FA158 /* TagDelegate.swift */; };
@@ -103,7 +102,6 @@
 		C531435C1BD0F1A6006A8E48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C531439E1BD1034B006A8E48 /* MemoryData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryData.swift; sourceTree = "<group>"; };
 		C531439F1BD1034B006A8E48 /* TagMemory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagMemory.swift; sourceTree = "<group>"; };
-		C53143A21BD10717006A8E48 /* TagParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagParserTests.swift; sourceTree = "<group>"; };
 		C5426D231FDBB3DB00255099 /* OrderedSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedSet.swift; sourceTree = "<group>"; };
 		C5426D251FDBC30200255099 /* UiResponder+currentResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiResponder+currentResponder.swift"; sourceTree = "<group>"; };
 		C55BCABE1F518AF3001FA158 /* TagDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagDelegate.swift; sourceTree = "<group>"; };
@@ -256,7 +254,6 @@
 			children = (
 				C531439D1BD1034B006A8E48 /* Support */,
 				C531435A1BD0F1A6006A8E48 /* TagsInterfaceTests.swift */,
-				C53143A21BD10717006A8E48 /* TagParserTests.swift */,
 				C5FE601C1D4B89A100C2595D /* CellWidthTests.swift */,
 				C531435C1BD0F1A6006A8E48 /* Info.plist */,
 			);
@@ -547,7 +544,6 @@
 				C5FE601D1D4B89A100C2595D /* CellWidthTests.swift in Sources */,
 				C53143A11BD1034B006A8E48 /* TagMemory.swift in Sources */,
 				C53143A01BD1034B006A8E48 /* MemoryData.swift in Sources */,
-				C53143A31BD10717006A8E48 /* TagParserTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
